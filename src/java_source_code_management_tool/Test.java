@@ -11,6 +11,7 @@ public class Test
 	public static void main(String[] args)
 	{
 		testLocalData();
+		testDbData();
 	}
 	
 	public static void testLocalData()
@@ -50,6 +51,23 @@ public class Test
 			descriptions = user.getJavaSourceFile().getVersion(i).getListDescriptions();
 			for(int j=0; j<descriptions.size(); j++)
 				System.out.println("| DESCRIPTION (" + j + ") => " + user.getJavaSourceFile().getVersion(i).getDescription(j).toStringForDisplay());
+		}
+	}
+	
+	public static void testDbData()
+	{
+		UserDAO userDao = new UserDAO();
+		ArrayList<User> users;
+		
+		// Create users
+		userDao.addUser(new User("Jordan", "elPassword", 0));
+		userDao.addUser(new User("Yanis", "passw0rd", 1));
+		
+		// Test users
+		users = userDao.getListUsers();
+		for(int i=0; i<users.size(); i++)
+		{
+			System.out.println("USER (" + i + ") => " + users.get(i).toStringForDisplay());
 		}
 	}
 }
