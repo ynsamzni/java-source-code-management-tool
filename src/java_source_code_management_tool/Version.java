@@ -11,8 +11,8 @@ public class Version
 {
 	private String versionNumber;
 	private String author;
+	private Timestamp date;
 	private ArrayList<Description> listDescriptions = new ArrayList<Description>();
-	Timestamp date;
 	
 	public Version()
 	{
