@@ -62,4 +62,14 @@ public class User
 	{
 		this.javaSourceFile = javaSourceFile;
 	}
+	
+	/**
+	 * Translates the object to String for display
+	 * 
+	 * @return object translated to String for display
+	 */
+	public String toStringForDisplay()
+	{
+		return "username: " + username + " | password: " + password + " | accessLevel: " + accessLevel;
+	}
 }

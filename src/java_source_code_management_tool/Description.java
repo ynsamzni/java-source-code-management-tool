@@ -47,4 +47,14 @@ public class Description
 	{
 		this.description = description;
 	}
+	
+	/**
+	 * Translates the object to String for display
+	 * 
+	 * @return object translated to String for display
+	 */
+	public String toStringForDisplay()
+	{
+		return "description: " + description;
+	}
 }

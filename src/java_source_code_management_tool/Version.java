@@ -82,4 +82,14 @@ public class Version
 	{
 		return listDescriptions.get(index);
 	}
+	
+	/**
+	 * Translates the object to String for display
+	 * 
+	 * @return object translated to String for display
+	 */
+	public String toStringForDisplay()
+	{
+		return "versionNumber: " + versionNumber + " | author: " + author + " | date: " + date;
+	}
 }

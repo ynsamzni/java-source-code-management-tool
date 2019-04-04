@@ -1,5 +1,7 @@
 package java_source_code_management_tool;
 
+import java.util.ArrayList;
+
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
@@ -8,37 +10,46 @@ public class Test
 {
 	public static void main(String[] args)
 	{
-		// Create the user
+		testLocalData();
+	}
+	
+	public static void testLocalData()
+	{
+		ArrayList<Version> versions;
+		ArrayList<Description> descriptions;
+		
+		// Create user
 		User user = new User("Yanis", "passw0rd", 1);
 		
-		// Create a file
-		JavaSourceFile file = new JavaSourceFile("/home/yanis/Documents/test.txt");
-		user.setJavaSourceFile(file);
+		// Create file
+		user.setJavaSourceFile(new JavaSourceFile("/home/yanis/Documents/test.txt"));
 		user.getJavaSourceFile().setContentFromPathFs();
 		
-		// Create a file version
-		Version version = new Version("1.0.0", user.getUsername());
-		user.getJavaSourceFile().addVersion(version);
+		// Create file versions
+		user.getJavaSourceFile().addVersion(new Version("1.0.0", user.getUsername()));
+		user.getJavaSourceFile().addVersion(new Version("1.0.1", user.getUsername()));
 				
-		// Create file version description
-		Description description = new Description("Fix probleme 1");
-		user.getJavaSourceFile().getVersion(0).addDescription(description);
+		// Create file version descriptions
+		user.getJavaSourceFile().getVersion(0).addDescription(new Description("Fix probleme 1"));
+		user.getJavaSourceFile().getVersion(0).addDescription(new Description("Fix probleme 2"));
+		user.getJavaSourceFile().getVersion(1).addDescription(new Description("Fix probleme 3"));
 		
 		// Test user
-		System.out.println("User username: " + user.getUsername());
-		System.out.println("User password: " + user.getPassword());
-		System.out.println("User access level: " + user.getAccessLevel());
+		System.out.println("USER => " + user.toStringForDisplay());
 		
 		// Test file
-		System.out.println("File path: " + user.getJavaSourceFile().getPathFs());
-		System.out.println("File content: " + user.getJavaSourceFile().getContent());
+		System.out.println("FILE => " + user.getJavaSourceFile().toStringForDisplay());
 		
-		// Test file version
-		System.out.println("Version number: " + user.getJavaSourceFile().getVersion(0).getVersion());
-		System.out.println("Version author: " + user.getJavaSourceFile().getVersion(0).getAuthor());
-		System.out.println("Version date: " + user.getJavaSourceFile().getVersion(0).getDate());
-		
-		// Test file version description
-		System.out.println("Version description: " + user.getJavaSourceFile().getVersion(0).getDescription(0).getDescription());
+		// Test file versions
+		versions = user.getJavaSourceFile().getListVersions();
+		for(int i=0; i<versions.size(); i++)
+		{
+			System.out.println("VERSION (" + i + ") => " + user.getJavaSourceFile().getVersion(i).toStringForDisplay());
+			
+			// Test file version descriptions
+			descriptions = user.getJavaSourceFile().getVersion(i).getListDescriptions();
+			for(int j=0; j<descriptions.size(); j++)
+				System.out.println("| DESCRIPTION (" + j + ") => " + user.getJavaSourceFile().getVersion(i).getDescription(j).toStringForDisplay());
+		}
 	}
 }

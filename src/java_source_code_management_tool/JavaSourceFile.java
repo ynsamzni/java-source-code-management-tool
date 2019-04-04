@@ -146,4 +146,14 @@ public class JavaSourceFile
 	{
 		listVersions.add(version);
 	}
+	
+	/**
+	 * Translates the object to String for display
+	 * 
+	 * @return object translated to String for display
+	 */
+	public String toStringForDisplay()
+	{
+		return "pathFs: " + pathFs + " | content: " + content;
+	}
 }
