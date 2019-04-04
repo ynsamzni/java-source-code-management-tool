@@ -63,12 +63,12 @@ public class Version
 		return date;
 	}
 	
-	public void setlistDescriptions(ArrayList<Description> listDescriptions)
+	public void setListDescriptions(ArrayList<Description> listDescriptions)
 	{
 		this.listDescriptions = listDescriptions;
 	}
 
-	public ArrayList<Description> getlistDescriptions()
+	public ArrayList<Description> getListDescriptions()
 	{
 		return listDescriptions;
 	}
