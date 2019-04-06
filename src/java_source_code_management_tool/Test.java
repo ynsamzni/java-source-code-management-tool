@@ -57,17 +57,34 @@ public class Test
 	public static void testDbData()
 	{
 		UserDAO userDao = new UserDAO();
+		JavaSourceFileDAO javaSourceFileDAO = new JavaSourceFileDAO();
 		ArrayList<User> users;
+		ArrayList<JavaSourceFile> javaSourceFiles;
 		
 		// Create users
 		userDao.addUser(new User("Jordan", "elPassword", 0));
 		userDao.addUser(new User("Yanis", "passw0rd", 1));
+		
+		// Create files
+		JavaSourceFile javaSourceFile = new JavaSourceFile("/home/yanis/Documents/test.txt");
+		JavaSourceFile javaSourceFileTwo = new JavaSourceFile("/home/yanis/Documents/test2.txt");
+		javaSourceFile.setContentFromPathFs();
+		javaSourceFileTwo.setContentFromPathFs();
+		javaSourceFileDAO.saveJavaSourceFile(javaSourceFile);
+		javaSourceFileDAO.saveJavaSourceFile(javaSourceFileTwo);
 		
 		// Test users
 		users = userDao.getListUsers();
 		for(int i=0; i<users.size(); i++)
 		{
 			System.out.println("USER (" + i + ") => " + users.get(i).toStringForDisplay());
+		}
+		
+		// Test files
+		javaSourceFiles = javaSourceFileDAO.getListJavaSourceFiles();
+		for(int i=0; i<javaSourceFiles.size(); i++)
+		{
+			System.out.println("FILE (" + i + ") => " + javaSourceFiles.get(i).toStringForDisplay());
 		}
 	}
 }
