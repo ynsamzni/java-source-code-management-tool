@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class Dao
+public class DAO
 {
 	private final static String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	private final static String dbLogin = "BDD1";

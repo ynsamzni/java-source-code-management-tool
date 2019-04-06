@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class UserDAO extends Dao
+public class UserDAO extends DAO
 {
 	public void addUser(User user)
 	{
