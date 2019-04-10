@@ -1,4 +1,4 @@
-package java_source_code_management_tool;
+package java_source_code_management_tool.dao;
 
 import java.sql.Clob;
 import java.sql.Connection;
@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import java_source_code_management_tool.model.JavaSourceFile;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)

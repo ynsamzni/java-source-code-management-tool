@@ -1,4 +1,4 @@
-package java_source_code_management_tool;
+package java_source_code_management_tool.model;
 
 /**
  * This class consists of methods that operate on or return a description of a version.

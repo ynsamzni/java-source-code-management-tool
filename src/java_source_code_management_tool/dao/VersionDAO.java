@@ -1,4 +1,4 @@
-package java_source_code_management_tool;
+package java_source_code_management_tool.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import java_source_code_management_tool.model.Version;
 import oracle.jdbc.OracleTypes;
 
 public class VersionDAO extends DAOManager

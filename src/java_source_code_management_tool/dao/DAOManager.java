@@ -1,4 +1,4 @@
-package java_source_code_management_tool;
+package java_source_code_management_tool.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

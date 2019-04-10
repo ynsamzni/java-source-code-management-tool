@@ -1,4 +1,4 @@
-package java_source_code_management_tool;
+package java_source_code_management_tool.model;
 
 import java.util.ArrayList;
 import java.io.IOException;

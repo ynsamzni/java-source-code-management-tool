@@ -2,6 +2,14 @@ package java_source_code_management_tool;
 
 import java.util.ArrayList;
 
+import java_source_code_management_tool.dao.DAOManager;
+import java_source_code_management_tool.model.Description;
+import java_source_code_management_tool.model.JavaSourceFile;
+import java_source_code_management_tool.model.User;
+import java_source_code_management_tool.model.Version;
+import java_source_code_management_tool.service.JavaSourceFileService;
+import java_source_code_management_tool.service.UserService;
+
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *

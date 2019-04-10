@@ -1,7 +1,14 @@
-package java_source_code_management_tool;
+package java_source_code_management_tool.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import java_source_code_management_tool.dao.DAOManager;
+import java_source_code_management_tool.dao.DescriptionDAO;
+import java_source_code_management_tool.dao.JavaSourceFileDAO;
+import java_source_code_management_tool.dao.VersionDAO;
+import java_source_code_management_tool.model.JavaSourceFile;
+import java_source_code_management_tool.model.Version;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
