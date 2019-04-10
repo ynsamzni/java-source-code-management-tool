@@ -20,7 +20,7 @@ public class VersionDAO
 		this.con = con;
 	}
 	
-	public Integer insertVersion(Version version, int javaSourceFileID)
+	public Integer insertVersion(Version version, Integer javaSourceFileID)
 	{
 		CallableStatement cs = null;
 		Integer generatedId = null;

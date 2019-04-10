@@ -48,7 +48,7 @@ public class UserDAO
 		}
 	}
 	
-	public User getUser(int id)
+	public User getUser(Integer id)
 	{
 		User user = null;
 		PreparedStatement ps = null;

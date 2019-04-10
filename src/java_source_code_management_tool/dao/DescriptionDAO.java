@@ -18,7 +18,7 @@ public class DescriptionDAO
 		this.con = con;
 	}
 	
-	public void insertListDescriptions(ArrayList<Description> descriptions, int versionId)
+	public void insertListDescriptions(ArrayList<Description> descriptions, Integer versionId)
 	{
 		PreparedStatement ps = null;
 		
