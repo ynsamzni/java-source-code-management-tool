@@ -9,6 +9,7 @@ import java_source_code_management_tool.dao.JavaSourceFileDAO;
 import java_source_code_management_tool.dao.VersionDAO;
 import java_source_code_management_tool.model.JavaSourceFile;
 import java_source_code_management_tool.model.Version;
+import java_source_code_management_tool.util.DBHelper;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
@@ -55,19 +56,12 @@ public class JavaSourceFileService
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			try
-			{
-				con.rollback();
-			}
-			catch(SQLException excep)
-			{
-				excep.printStackTrace();
-			}
+			DBHelper.rollback(con);
 		}
 		finally
 		{
 			// Close the connection
-			daoManager.close(con);
+			DBHelper.close(con);
 		}
 	}
 	
@@ -95,7 +89,7 @@ public class JavaSourceFileService
 		finally
 		{
 			// Close the connection
-			daoManager.close(con);
+			DBHelper.close(con);
 		}
 		
 		return javaSourceFile;

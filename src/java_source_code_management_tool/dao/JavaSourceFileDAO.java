@@ -8,12 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java_source_code_management_tool.model.JavaSourceFile;
+import java_source_code_management_tool.util.DBHelper;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class JavaSourceFileDAO extends DAOManager
+public class JavaSourceFileDAO
 {
 	private Connection con = null;
 	
@@ -56,7 +57,7 @@ public class JavaSourceFileDAO extends DAOManager
 		finally
 		{
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return getJavaSourceFileId(javaSourceFile.getPathFs());
@@ -88,7 +89,7 @@ public class JavaSourceFileDAO extends DAOManager
 		finally
 		{
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return id;
@@ -128,10 +129,10 @@ public class JavaSourceFileDAO extends DAOManager
 		finally
 		{
 			// Close the resultSet
-			close(rs);
+			DBHelper.close(rs);
 			
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return javaSourceFile;
@@ -170,10 +171,10 @@ public class JavaSourceFileDAO extends DAOManager
 		finally
 		{
 			// Close the resultSet
-			close(rs);
+			DBHelper.close(rs);
 			
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return javaSourceFiles;

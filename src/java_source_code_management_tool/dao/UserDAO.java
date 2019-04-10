@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java_source_code_management_tool.model.User;
+import java_source_code_management_tool.util.DBHelper;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class UserDAO extends DAOManager
+public class UserDAO
 {
 	private Connection con = null;
 
@@ -43,7 +44,7 @@ public class UserDAO extends DAOManager
 		finally
 		{
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 	}
 	
@@ -77,10 +78,10 @@ public class UserDAO extends DAOManager
 		finally
 		{
 			// Close the resultSet
-			close(rs);
+			DBHelper.close(rs);
 			
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return user;
@@ -115,10 +116,10 @@ public class UserDAO extends DAOManager
 		finally
 		{
 			// Close the resultSet
-			close(rs);
+			DBHelper.close(rs);
 			
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return users;

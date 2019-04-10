@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java_source_code_management_tool.model.Description;
+import java_source_code_management_tool.util.DBHelper;
 
-public class DescriptionDAO extends DAOManager
+public class DescriptionDAO
 {
 	private Connection con = null;
 	
@@ -42,7 +43,7 @@ public class DescriptionDAO extends DAOManager
 		finally
 		{
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 	}
 	
@@ -88,10 +89,10 @@ public class DescriptionDAO extends DAOManager
 		finally
 		{
 			// Close the resultSet
-			close(rs);
+			DBHelper.close(rs);
 			
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return descriptions;

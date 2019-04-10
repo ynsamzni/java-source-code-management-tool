@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java_source_code_management_tool.model.Version;
+import java_source_code_management_tool.util.DBHelper;
 import oracle.jdbc.OracleTypes;
 
-public class VersionDAO extends DAOManager
+public class VersionDAO
 {
 	private Connection con = null;
 	
@@ -59,7 +60,7 @@ public class VersionDAO extends DAOManager
 		finally
 		{
 			// Close the preparedStatement
-			close(cs);
+			DBHelper.close(cs);
 		}
 		
 		return generatedId;
@@ -112,10 +113,10 @@ public class VersionDAO extends DAOManager
 		finally
 		{
 			// Close the resultSet
-			close(rs);
+			DBHelper.close(rs);
 			
 			// Close the preparedStatement
-			close(ps);
+			DBHelper.close(ps);
 		}
 		
 		return versions;

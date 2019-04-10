@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java_source_code_management_tool.dao.DAOManager;
 import java_source_code_management_tool.dao.UserDAO;
 import java_source_code_management_tool.model.User;
+import java_source_code_management_tool.util.DBHelper;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
@@ -39,7 +40,7 @@ public class UserService
 		finally
 		{
 			// Close the connection
-			daoManager.close(con);
+			DBHelper.close(con);
 		}
 	}
 	
@@ -62,7 +63,7 @@ public class UserService
 		finally
 		{
 			// Close the connection
-			daoManager.close(con);
+			DBHelper.close(con);
 		}
 		
 		return users;
