@@ -14,6 +14,7 @@ import java_source_code_management_tool.model.User;
 public class UserService
 {
 	private DAOManager daoManager;
+	private UserDAO userDAO;
 	
 	public UserService(DAOManager daoManager)
 	{
@@ -23,7 +24,6 @@ public class UserService
 	public void addUser(User user)
 	{
 		Connection con = null;
-		UserDAO userDAO;
 		
 		try
 		{
@@ -46,7 +46,6 @@ public class UserService
 	public ArrayList<User> getListUsers()
 	{
 		Connection con = null;
-		UserDAO userDAO;
 		ArrayList<User> users = new ArrayList<User>();
 		
 		try

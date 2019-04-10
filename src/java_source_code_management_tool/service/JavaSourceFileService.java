@@ -17,6 +17,9 @@ import java_source_code_management_tool.model.Version;
 public class JavaSourceFileService
 {
 	private DAOManager daoManager;
+	private JavaSourceFileDAO javaSourceFileDAO;
+	private VersionDAO versionDAO;
+	private DescriptionDAO descriptionDAO;
 	
 	public JavaSourceFileService(DAOManager daoManager)
 	{
@@ -26,9 +29,6 @@ public class JavaSourceFileService
 	public void saveJavaSourceFileWithNewVersionAndDescriptions(JavaSourceFile javaSourceFile, Version version)
 	{
 		Connection con = null;
-		JavaSourceFileDAO javaSourceFileDAO;
-		VersionDAO versionDAO;
-		DescriptionDAO descriptionDAO;
 		Integer javaSourceFileId, versionId;
 		
 		try
@@ -74,9 +74,6 @@ public class JavaSourceFileService
 	public JavaSourceFile getJavaSourceFileWithVersionsAndDescriptions(String pathFs)
 	{
 		Connection con = null;
-		JavaSourceFileDAO javaSourceFileDAO;
-		VersionDAO versionDAO;
-		DescriptionDAO descriptionDAO;
 		JavaSourceFile javaSourceFile;
 		
 		try
