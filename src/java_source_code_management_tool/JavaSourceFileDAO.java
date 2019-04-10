@@ -11,20 +11,23 @@ import java.util.ArrayList;
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class JavaSourceFileDAO extends DAO
+public class JavaSourceFileDAO extends DAOManager
 {
-	public void saveJavaSourceFile(JavaSourceFile javaSourceFile)
+	private Connection con = null;
+	
+	public JavaSourceFileDAO(Connection con)
+	{
+		this.con = con;
+	}
+	
+	public Integer upsertJavaSourceFile(JavaSourceFile javaSourceFile)
 	{
 		Clob javaSourceFileContent = null;
-		Connection con = null;
 		PreparedStatement ps = null;
 		String sqlQuery;
 		
 		try
-		{
-			// Connect to the database
-			con = getConnection();
-			
+		{		
 			// Convert the java source file for the database
 			javaSourceFileContent = con.createClob();
 			javaSourceFileContent.setString(1, javaSourceFile.getContent());
@@ -52,28 +55,55 @@ public class JavaSourceFileDAO extends DAO
 		{
 			// Close the preparedStatement
 			close(ps);
-			
-			// Close the connection
-			close(con);
 		}
+		
+		return getJavaSourceFileId(javaSourceFile.getPathFs());
 	}
 	
-	public JavaSourceFile getJavaSourceFile(int id)
+	public Integer getJavaSourceFileId(String pathFs)
+	{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Integer id = null;
+		
+		try
+		{		
+			// Prepare the SQL query			
+			ps = con.prepareStatement("SELECT jsf_id FROM javasourcefile_jsf WHERE jsf_path_fs = ?");
+			ps.setString(1, pathFs);
+			
+			// Execute the SQL query
+			rs = ps.executeQuery();
+			
+			// Get the java source file ID
+			if(rs.next())
+				id = rs.getInt("jsf_id");
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			// Close the preparedStatement
+			close(ps);
+		}
+		
+		return id;
+	}
+	
+	public JavaSourceFile getJavaSourceFile(String pathFs)
 	{
 		Clob javaSourceFileContent = null;
 		JavaSourceFile javaSourceFile = null;
-		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try
-		{
-			// Connect to the database
-			con = getConnection();
-			
+		{			
 			// Prepare the SQL query
-			ps = con.prepareStatement("SELECT * FROM javasourcefile_jsf WHERE jsf_id = ?");
-			ps.setInt(1, id);
+			ps = con.prepareStatement("SELECT * FROM javasourcefile_jsf WHERE jsf_path_fs = ?");
+			ps.setString(1, pathFs);
 			
 			// Execute the SQL query
 			rs = ps.executeQuery();
@@ -84,7 +114,7 @@ public class JavaSourceFileDAO extends DAO
 				javaSourceFileContent = rs.getClob("jsf_content");
 				
 				javaSourceFile = new JavaSourceFile(
-						rs.getString("jsf_path_fs"),
+						pathFs,
 						javaSourceFileContent.getSubString(1, (int) javaSourceFileContent.length())
 						);
 			}
@@ -100,9 +130,6 @@ public class JavaSourceFileDAO extends DAO
 			
 			// Close the preparedStatement
 			close(ps);
-			
-			// Close the connection
-			close(con);
 		}
 		
 		return javaSourceFile;
@@ -112,15 +139,11 @@ public class JavaSourceFileDAO extends DAO
 	{
 		ArrayList<JavaSourceFile> javaSourceFiles = new ArrayList<JavaSourceFile>();
 		Clob javaSourceFileContent = null;
-		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try
-		{
-			// Connect to the database
-			con = getConnection();
-			
+		{		
 			// Prepare the SQL query
 			ps = con.prepareStatement("SELECT * FROM javasourcefile_jsf");
 			
@@ -149,9 +172,6 @@ public class JavaSourceFileDAO extends DAO
 			
 			// Close the preparedStatement
 			close(ps);
-			
-			// Close the connection
-			close(con);
 		}
 		
 		return javaSourceFiles;

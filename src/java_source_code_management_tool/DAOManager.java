@@ -1,5 +1,6 @@
 package java_source_code_management_tool;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class DAO
+public class DAOManager
 {
 	private final static String dbUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 	private final static String dbLogin = "BDD1";
@@ -50,6 +51,18 @@ public class DAO
 		{
 			if(ps != null)
 				ps.close();
+		}
+		catch (SQLException ignore)
+		{
+		}
+	}
+	
+	public void close(CallableStatement cs)
+	{
+		try
+		{
+			if(cs != null)
+				cs.close();
 		}
 		catch (SQLException ignore)
 		{

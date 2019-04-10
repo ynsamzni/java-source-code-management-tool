@@ -8,32 +8,34 @@ import java.util.ArrayList;
  */
 public class Test
 {
+	private static String pathFsFileTest = "/home/yanis/Documents/test.txt";
+	private static DAOManager daoManager;
+	private static JavaSourceFileService javaSourceFileService;
+	private static UserService userService;
+	
+	
 	public static void main(String[] args)
 	{
-		testLocalData();
-		testDbData();
+		daoManager = new DAOManager();
+		javaSourceFileService = new JavaSourceFileService(daoManager);
+		userService = new UserService(daoManager);
+		
+		// Create test data
+		User user = createTestData();
+		
+		// Test database
+		testWriteDb(user);
+		displayUserData(testReadDb());
+		
+		// Test local
+		//displayUserData(user);
+		
 	}
 	
-	public static void testLocalData()
-	{
+	public static void displayUserData(User user)
+	{	
 		ArrayList<Version> versions;
 		ArrayList<Description> descriptions;
-		
-		// Create user
-		User user = new User("Yanis", "passw0rd", 1);
-		
-		// Create file
-		user.setJavaSourceFile(new JavaSourceFile("/home/yanis/Documents/test.txt"));
-		user.getJavaSourceFile().setContentFromPathFs();
-		
-		// Create file versions
-		user.getJavaSourceFile().addVersion(new Version("1.0.0", user.getUsername()));
-		user.getJavaSourceFile().addVersion(new Version("1.0.1", user.getUsername()));
-				
-		// Create file version descriptions
-		user.getJavaSourceFile().getVersion(0).addDescription(new Description("Fix probleme 1"));
-		user.getJavaSourceFile().getVersion(0).addDescription(new Description("Fix probleme 2"));
-		user.getJavaSourceFile().getVersion(1).addDescription(new Description("Fix probleme 3"));
 		
 		// Test user
 		System.out.println("USER => " + user.toStringForDisplay());
@@ -54,37 +56,52 @@ public class Test
 		}
 	}
 	
-	public static void testDbData()
+	public static void testWriteDb(User user)
+	{		
+		// Create user on database
+		userService.addUser(user);
+		
+		// Create file on database
+		javaSourceFileService.saveJavaSourceFileWithNewVersionAndDescriptions(user.getJavaSourceFile(), user.getJavaSourceFile().getVersion(0));
+	}
+	
+	public static User testReadDb()
 	{
-		UserDAO userDao = new UserDAO();
-		JavaSourceFileDAO javaSourceFileDAO = new JavaSourceFileDAO();
-		ArrayList<User> users;
-		ArrayList<JavaSourceFile> javaSourceFiles;
+		User user;
 		
-		// Create users
-		userDao.addUser(new User("Jordan", "elPassword", 0));
-		userDao.addUser(new User("Yanis", "passw0rd", 1));
+		// Get file from database
+		user = new User("Jordan", "elPass", 0);
+		user.setJavaSourceFile(javaSourceFileService.getJavaSourceFileWithVersionsAndDescriptions(pathFsFileTest));
 		
-		// Create files
-		JavaSourceFile javaSourceFile = new JavaSourceFile("/home/yanis/Documents/test.txt");
-		JavaSourceFile javaSourceFileTwo = new JavaSourceFile("/home/yanis/Documents/test2.txt");
+		return user;
+	}
+	
+	public static User createTestData()
+	{
+		JavaSourceFile javaSourceFile;
+		User user;
+		Version version;
+		ArrayList<Description> descriptions = new ArrayList<Description>();;
+		
+		// Create user
+		user = new User("Yanis", "passw0rd", 1);
+		
+		// Create file
+		javaSourceFile = new JavaSourceFile(pathFsFileTest);
 		javaSourceFile.setContentFromPathFs();
-		javaSourceFileTwo.setContentFromPathFs();
-		javaSourceFileDAO.saveJavaSourceFile(javaSourceFile);
-		javaSourceFileDAO.saveJavaSourceFile(javaSourceFileTwo);
 		
-		// Test users
-		users = userDao.getListUsers();
-		for(int i=0; i<users.size(); i++)
-		{
-			System.out.println("USER (" + i + ") => " + users.get(i).toStringForDisplay());
-		}
+		// Create version
+		version = new Version("1.2.0", user.getUsername());
 		
-		// Test files
-		javaSourceFiles = javaSourceFileDAO.getListJavaSourceFiles();
-		for(int i=0; i<javaSourceFiles.size(); i++)
-		{
-			System.out.println("FILE (" + i + ") => " + javaSourceFiles.get(i).toStringForDisplay());
-		}
+		// Create descriptions
+		descriptions.add(new Description("Fix probleme 1"));
+		descriptions.add(new Description("Fix probleme 2"));
+		
+		// Link data
+		version.setListDescriptions(descriptions);
+		javaSourceFile.addVersion(version);
+		user.setJavaSourceFile(javaSourceFile);
+		
+		return user;
 	}
 }

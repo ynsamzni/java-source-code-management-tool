@@ -10,18 +10,21 @@ import java.util.ArrayList;
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class UserDAO extends DAO
+public class UserDAO extends DAOManager
 {
+	private Connection con = null;
+
+	public UserDAO(Connection con)
+	{
+		this.con = con;
+	}
+	
 	public void addUser(User user)
 	{
-		Connection con = null;
 		PreparedStatement ps = null;
 		
 		try
-		{
-			// Connect to the database
-			con = getConnection();
-			
+		{			
 			// Prepare the SQL query
 			ps = con.prepareStatement("INSERT INTO user_usr (usr_username, usr_password, usr_access_level) VALUES (?, ?, ?)");
 			ps.setString(1, user.getUsername());
@@ -39,24 +42,17 @@ public class UserDAO extends DAO
 		{
 			// Close the preparedStatement
 			close(ps);
-			
-			// Close the connection
-			close(con);
 		}
 	}
 	
 	public User getUser(int id)
 	{
 		User user = null;
-		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try
 		{
-			// Connect to the database
-			con = getConnection();
-			
 			// Prepare the SQL query
 			ps = con.prepareStatement("SELECT * FROM user_usr WHERE usr_id = ?");
 			ps.setInt(1, id);
@@ -83,9 +79,6 @@ public class UserDAO extends DAO
 			
 			// Close the preparedStatement
 			close(ps);
-			
-			// Close the connection
-			close(con);
 		}
 		
 		return user;
@@ -94,15 +87,11 @@ public class UserDAO extends DAO
 	public ArrayList<User> getListUsers()
 	{
 		ArrayList<User> users = new ArrayList<User>();
-		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
 		try
 		{
-			// Connect to the database
-			con = getConnection();
-			
 			// Prepare the SQL query
 			ps = con.prepareStatement("SELECT * FROM user_usr");
 			
@@ -128,9 +117,6 @@ public class UserDAO extends DAO
 			
 			// Close the preparedStatement
 			close(ps);
-			
-			// Close the connection
-			close(con);
 		}
 		
 		return users;
