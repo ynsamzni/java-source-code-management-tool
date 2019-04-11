@@ -11,6 +11,10 @@ import java_source_code_management_tool.model.Version;
 import java_source_code_management_tool.util.DBHelper;
 import oracle.jdbc.OracleTypes;
 
+/**
+ * @author Jordan & Yanis (Group 4 - Pair 10)
+ *
+ */
 public class VersionDAO
 {
 	private Connection con = null;

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java_source_code_management_tool.model.Description;
 import java_source_code_management_tool.util.DBHelper;
 
+/**
+ * @author Jordan & Yanis (Group 4 - Pair 10)
+ *
+ */
 public class DescriptionDAO
 {
 	private Connection con = null;

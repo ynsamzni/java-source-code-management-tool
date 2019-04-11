@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Jordan & Yanis (Group 4 - Pair 10)
+ *
+ */
 public class DBHelper
 {
 	public static void close(Connection con)
