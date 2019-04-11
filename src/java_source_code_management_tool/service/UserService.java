@@ -3,9 +3,9 @@ package java_source_code_management_tool.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import java_source_code_management_tool.dao.DAOManager;
 import java_source_code_management_tool.dao.UserDAO;
 import java_source_code_management_tool.model.User;
+import java_source_code_management_tool.util.ConnectionFactory;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
@@ -14,13 +14,7 @@ import java_source_code_management_tool.util.DBHelper;
  */
 public class UserService
 {
-	private DAOManager daoManager;
 	private UserDAO userDAO;
-	
-	public UserService(DAOManager daoManager)
-	{
-		this.daoManager = daoManager;
-	}
 	
 	public void addUser(User user)
 	{
@@ -29,7 +23,7 @@ public class UserService
 		try
 		{
 			// Connect to the database
-			con = daoManager.getConnection();
+			con = ConnectionFactory.getConnection();
 			
 			// Initialize DAO
 			userDAO = new UserDAO(con);
@@ -52,7 +46,7 @@ public class UserService
 		try
 		{
 			// Connect to the database
-			con = daoManager.getConnection();
+			con = ConnectionFactory.getConnection();
 			
 			// Initialize DAO
 			userDAO = new UserDAO(con);

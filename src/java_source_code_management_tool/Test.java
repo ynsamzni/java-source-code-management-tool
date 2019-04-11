@@ -2,7 +2,6 @@ package java_source_code_management_tool;
 
 import java.util.ArrayList;
 
-import java_source_code_management_tool.dao.DAOManager;
 import java_source_code_management_tool.model.Description;
 import java_source_code_management_tool.model.JavaSourceFile;
 import java_source_code_management_tool.model.User;
@@ -17,16 +16,14 @@ import java_source_code_management_tool.service.UserService;
 public class Test
 {
 	private static String pathFsFileTest = "/home/yanis/Documents/test.txt";
-	private static DAOManager daoManager;
 	private static JavaSourceFileService javaSourceFileService;
 	private static UserService userService;
 	
 	
 	public static void main(String[] args)
 	{
-		daoManager = new DAOManager();
-		javaSourceFileService = new JavaSourceFileService(daoManager);
-		userService = new UserService(daoManager);
+		javaSourceFileService = new JavaSourceFileService();
+		userService = new UserService();
 		
 		// Create test data
 		User user = createTestData();

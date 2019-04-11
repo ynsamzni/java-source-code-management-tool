@@ -3,12 +3,12 @@ package java_source_code_management_tool.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import java_source_code_management_tool.dao.DAOManager;
 import java_source_code_management_tool.dao.DescriptionDAO;
 import java_source_code_management_tool.dao.JavaSourceFileDAO;
 import java_source_code_management_tool.dao.VersionDAO;
 import java_source_code_management_tool.model.JavaSourceFile;
 import java_source_code_management_tool.model.Version;
+import java_source_code_management_tool.util.ConnectionFactory;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
@@ -17,15 +17,9 @@ import java_source_code_management_tool.util.DBHelper;
  */
 public class JavaSourceFileService
 {
-	private DAOManager daoManager;
 	private JavaSourceFileDAO javaSourceFileDAO;
 	private VersionDAO versionDAO;
 	private DescriptionDAO descriptionDAO;
-	
-	public JavaSourceFileService(DAOManager daoManager)
-	{
-		this.daoManager = daoManager;
-	}
 	
 	public void saveJavaSourceFileWithNewVersionAndDescriptions(JavaSourceFile javaSourceFile, Version version)
 	{
@@ -35,7 +29,7 @@ public class JavaSourceFileService
 		try
 		{
 			// Connect to the database
-			con = daoManager.getConnection();
+			con = ConnectionFactory.getConnection();
 			
 			// Begin SQL transaction
 			con.setAutoCommit(false);
@@ -73,7 +67,7 @@ public class JavaSourceFileService
 		try
 		{
 			// Connect to the database
-			con = daoManager.getConnection();
+			con = ConnectionFactory.getConnection();
 			
 			// Initialize DAOs
 			javaSourceFileDAO = new JavaSourceFileDAO(con);
