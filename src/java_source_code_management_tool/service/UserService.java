@@ -38,6 +38,31 @@ public class UserService
 		}
 	}
 	
+	public User getUser(String username, String password)
+	{
+		Connection con = null;
+		User user;
+		
+		try
+		{
+			// Connect to the database
+			con = ConnectionFactory.getConnection();
+			
+			// Initialize DAO
+			userDAO = new UserDAO(con);
+			
+			// Get the user
+			user = userDAO.getUser(username, password);
+		}
+		finally
+		{
+			// Close the connection
+			DBHelper.close(con);
+		}
+		
+		return user;
+	}
+	
 	public ArrayList<User> getListUsers()
 	{
 		Connection con = null;

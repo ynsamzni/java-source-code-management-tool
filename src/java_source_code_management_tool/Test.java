@@ -16,6 +16,8 @@ import java_source_code_management_tool.service.UserService;
 public class Test
 {
 	private static String pathFsFileTest = "/home/yanis/Documents/test.txt";
+	private static String userUsernameTest = "Yanis";
+	private static String userPasswordTest = "passw0rd";
 	private static JavaSourceFileService javaSourceFileService;
 	private static UserService userService;
 	
@@ -75,7 +77,7 @@ public class Test
 		User user;
 		
 		// Get file from database
-		user = new User("Jordan", "elPass", 0);
+		user = userService.getUser(userUsernameTest, userPasswordTest);
 		user.setJavaSourceFile(javaSourceFileService.getJavaSourceFileWithVersionsAndDescriptions(pathFsFileTest));
 		
 		return user;
@@ -89,7 +91,7 @@ public class Test
 		ArrayList<Description> descriptions = new ArrayList<Description>();;
 		
 		// Create user
-		user = new User("Yanis", "passw0rd", 1);
+		user = new User(userUsernameTest, userPasswordTest, 1);
 		
 		// Create file
 		javaSourceFile = new JavaSourceFile(pathFsFileTest);

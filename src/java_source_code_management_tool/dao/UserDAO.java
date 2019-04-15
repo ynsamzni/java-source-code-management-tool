@@ -48,7 +48,7 @@ public class UserDAO
 		}
 	}
 	
-	public User getUser(Integer id)
+	public User getUser(String username, String password)
 	{
 		User user = null;
 		PreparedStatement ps = null;
@@ -57,8 +57,9 @@ public class UserDAO
 		try
 		{
 			// Prepare the SQL query
-			ps = con.prepareStatement("SELECT * FROM user_usr WHERE usr_id = ?");
-			ps.setInt(1, id);
+			ps = con.prepareStatement("SELECT * FROM user_usr WHERE usr_username = ? AND usr_password = ?");
+			ps.setString(1, username);
+			ps.setString(2, password);
 			
 			// Execute the SQL query
 			rs = ps.executeQuery();
