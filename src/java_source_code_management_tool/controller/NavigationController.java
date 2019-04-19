@@ -1,6 +1,6 @@
 package java_source_code_management_tool.controller;
 
-import java_source_code_management_tool.service.UserService;
+import java_source_code_management_tool.model.service.UserService;
 import java_source_code_management_tool.view.MainFrame;
 
 /**

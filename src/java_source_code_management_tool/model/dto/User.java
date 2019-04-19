@@ -1,4 +1,4 @@
-package java_source_code_management_tool.model;
+package java_source_code_management_tool.model.dto;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)

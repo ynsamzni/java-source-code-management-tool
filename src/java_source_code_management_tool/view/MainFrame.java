@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.LoginController;
 import java_source_code_management_tool.controller.NavigationController;
-import java_source_code_management_tool.service.JavaSourceFileService;
+import java_source_code_management_tool.model.service.JavaSourceFileService;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)

@@ -18,10 +18,10 @@ import javax.swing.JTextField;
 
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.NavigationController;
-import java_source_code_management_tool.model.Description;
-import java_source_code_management_tool.model.JavaSourceFile;
-import java_source_code_management_tool.model.Version;
-import java_source_code_management_tool.service.JavaSourceFileService;
+import java_source_code_management_tool.model.dto.Description;
+import java_source_code_management_tool.model.dto.JavaSourceFile;
+import java_source_code_management_tool.model.dto.Version;
+import java_source_code_management_tool.model.service.JavaSourceFileService;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)

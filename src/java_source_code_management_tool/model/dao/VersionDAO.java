@@ -1,4 +1,4 @@
-package java_source_code_management_tool.dao;
+package java_source_code_management_tool.model.dao;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import java_source_code_management_tool.model.Version;
+import java_source_code_management_tool.model.dto.Version;
 import java_source_code_management_tool.util.DBHelper;
 import oracle.jdbc.OracleTypes;
 

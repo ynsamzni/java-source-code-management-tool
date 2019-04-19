@@ -3,8 +3,8 @@ package java_source_code_management_tool;
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.LoginController;
 import java_source_code_management_tool.controller.NavigationController;
-import java_source_code_management_tool.service.JavaSourceFileService;
-import java_source_code_management_tool.service.UserService;
+import java_source_code_management_tool.model.service.JavaSourceFileService;
+import java_source_code_management_tool.model.service.UserService;
 import java_source_code_management_tool.view.MainFrame;
 
 /**

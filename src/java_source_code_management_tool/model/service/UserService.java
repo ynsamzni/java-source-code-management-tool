@@ -1,10 +1,10 @@
-package java_source_code_management_tool.service;
+package java_source_code_management_tool.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import java_source_code_management_tool.dao.UserDAO;
-import java_source_code_management_tool.model.User;
+import java_source_code_management_tool.model.dao.UserDAO;
+import java_source_code_management_tool.model.dto.User;
 import java_source_code_management_tool.util.ConnectionFactory;
 import java_source_code_management_tool.util.DBHelper;
 

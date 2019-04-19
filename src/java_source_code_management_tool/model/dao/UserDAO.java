@@ -1,4 +1,4 @@
-package java_source_code_management_tool.dao;
+package java_source_code_management_tool.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import java_source_code_management_tool.model.User;
+import java_source_code_management_tool.model.dto.User;
 import java_source_code_management_tool.util.DBHelper;
 
 /**

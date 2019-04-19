@@ -1,15 +1,15 @@
-package java_source_code_management_tool.service;
+package java_source_code_management_tool.model.service;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import java_source_code_management_tool.dao.DescriptionDAO;
-import java_source_code_management_tool.dao.JavaSourceFileDAO;
-import java_source_code_management_tool.dao.VersionDAO;
-import java_source_code_management_tool.model.JavaSourceFile;
-import java_source_code_management_tool.model.Version;
+import java_source_code_management_tool.model.dao.DescriptionDAO;
+import java_source_code_management_tool.model.dao.JavaSourceFileDAO;
+import java_source_code_management_tool.model.dao.VersionDAO;
+import java_source_code_management_tool.model.dto.JavaSourceFile;
+import java_source_code_management_tool.model.dto.Version;
 import java_source_code_management_tool.util.ConnectionFactory;
 import java_source_code_management_tool.util.DBHelper;
 
