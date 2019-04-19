@@ -45,16 +45,16 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 	private JTextField textFieldDescription;
 	private JTextField textFieldVersionNumber;
 	private JavaSourceFileController javaSourceFileController;
-	private NavigationController viewController;
+	private NavigationController navigationController;
 	private JLabel labelVersionHistory;
 	private JTextArea textAreaVersions;
 	private JScrollPane scrollPaneVersions;
 	
-	public VersionManagementPanel(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, NavigationController viewController)
+	public VersionManagementPanel(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, NavigationController navigationController)
 	{
 		// Set controllers
 		this.javaSourceFileController = javaSourceFileController;
-		this.viewController = viewController;
+		this.navigationController = navigationController;
 		
 		// Set model
 		javaSourceFileService.addPropertyChangeListener(this);
@@ -161,7 +161,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 			}
 			else if(ae.getSource() == buttonCancel)
 			{
-				viewController.showHomeMenu();
+				navigationController.showHomeMenu();
 			}
 		} 
 		catch (Exception e)

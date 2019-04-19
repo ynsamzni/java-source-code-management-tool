@@ -21,7 +21,7 @@ public class MainFrame extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Container container;
 
-	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController viewController)
+	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController)
 	{	
 		// Configure frame
 		this.setTitle("Java source code management tool");
@@ -35,7 +35,7 @@ public class MainFrame extends JFrame
 		// Attach JPanels to the container
 		container.add(new LoginPanel(loginController), "LOGINPANEL");
 		container.add(new HomePanel(javaSourceFileController), "HOMEPANEL");
-		container.add(new VersionManagementPanel(javaSourceFileService, javaSourceFileController, viewController), "VERSIONMANAGEMENTPANEL");
+		container.add(new VersionManagementPanel(javaSourceFileService, javaSourceFileController, navigationController), "VERSIONMANAGEMENTPANEL");
 		
 		// Show frame
 		this.setVisible(true);

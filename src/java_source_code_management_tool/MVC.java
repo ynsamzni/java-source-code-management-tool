@@ -22,14 +22,14 @@ public class MVC
 		// Instantiate controllers
 		JavaSourceFileController javaSourceFileController = new JavaSourceFileController(javaSourceFileService, userService);
 		LoginController loginController = new LoginController(userService);
-		NavigationController viewController = new NavigationController(userService);
+		NavigationController navigationController = new NavigationController(userService);
 		
 		// Instantiate view
-		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, viewController);	
+		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, navigationController);	
 		
 		// Add views to controllers
 		loginController.setView(view);
-		viewController.setView(view);
+		navigationController.setView(view);
 		javaSourceFileController.setView(view);
 	}
 }
