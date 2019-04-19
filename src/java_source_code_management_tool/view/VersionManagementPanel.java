@@ -131,33 +131,33 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 			if(ae.getSource() == buttonAddVersion)
 			{
 				// Prepare input data for controller
-		    	ArrayList<String> descriptions = new ArrayList<String>();
-		    	
-		    	for(int i=0; i<textFieldsDescription.size(); i++)
-		        	descriptions.add(textFieldsDescription.get(i).getText());
-		    	
-		    	// Notify controller
-		    	javaSourceFileController.addVersionActionPerformed(textFieldVersionNumber.getText(), descriptions);
-		    	
-		    	// Clear corresponding text fields
-		    	textFieldVersionNumber.setText("");
-		    	newVersionDescriptionPanel.removeAll();
-		    	
-		    	// Refresh panel
-                newVersionPanel.revalidate();
-                newVersionPanel.repaint();
+				ArrayList<String> descriptions = new ArrayList<String>();
+				
+				for(int i=0; i<textFieldsDescription.size(); i++)
+					descriptions.add(textFieldsDescription.get(i).getText());
+				
+				// Notify controller
+				javaSourceFileController.addVersionActionPerformed(textFieldVersionNumber.getText(), descriptions);
+				
+				// Clear corresponding text fields
+				textFieldVersionNumber.setText("");
+				newVersionDescriptionPanel.removeAll();
+				
+				// Refresh panel
+				newVersionPanel.revalidate();
+				newVersionPanel.repaint();
 			}
 			else if(ae.getSource() == buttonAddTextFieldDescription)
 			{
-                textFieldDescription = new JTextField();
-                
-                // Add new description text field
-                newVersionDescriptionPanel.add(textFieldDescription);
-                textFieldsDescription.add(textFieldDescription);
-                
-                // Refresh panel
-                newVersionPanel.revalidate();
-                newVersionPanel.repaint();
+				textFieldDescription = new JTextField();
+				
+				// Add new description text field
+				newVersionDescriptionPanel.add(textFieldDescription);
+				textFieldsDescription.add(textFieldDescription);
+				
+				// Refresh panel
+				newVersionPanel.revalidate();
+				newVersionPanel.repaint();
 			}
 			else if(ae.getSource() == buttonCancel)
 			{

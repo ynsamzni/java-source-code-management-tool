@@ -77,8 +77,8 @@ public class LoginPanel extends JPanel implements ActionListener
 				passwordField.setText("");
 				
 				// Refresh panel
-                this.revalidate();
-                this.repaint();
+				this.revalidate();
+				this.repaint();
 			}
 		} 
 		catch (Exception e)
