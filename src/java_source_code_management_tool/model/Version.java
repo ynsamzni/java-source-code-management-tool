@@ -88,7 +88,7 @@ public class Version
 	 * 
 	 * @return object translated to String for display
 	 */
-	public String toStringForDisplay()
+	public String toString()
 	{
 		return "versionNumber: " + versionNumber + " | author: " + author + " | date: " + date;
 	}

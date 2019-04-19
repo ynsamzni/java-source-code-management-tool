@@ -152,7 +152,7 @@ public class JavaSourceFile
 	 * 
 	 * @return object translated to String for display
 	 */
-	public String toStringForDisplay()
+	public String toString()
 	{
 		return "pathFs: " + pathFs + " | content: " + content;
 	}

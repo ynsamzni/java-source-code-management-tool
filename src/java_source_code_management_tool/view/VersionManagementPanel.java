@@ -196,13 +196,13 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		ArrayList<Description> descriptions = version.getListDescriptions();
 		
 		// Show version
-		textAreaVersions.append(version.toStringForDisplay());
+		textAreaVersions.append(version.toString());
 		textAreaVersions.append("\n");
 		
 		// Show version descriptions
 		for(int i=0; i<descriptions.size(); i++)
 		{
-			textAreaVersions.append(descriptions.get(i).toStringForDisplay());
+			textAreaVersions.append(descriptions.get(i).toString());
 			textAreaVersions.append("\n");
 		}
 	}

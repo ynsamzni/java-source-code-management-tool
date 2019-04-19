@@ -68,7 +68,7 @@ public class User
 	 * 
 	 * @return object translated to String for display
 	 */
-	public String toStringForDisplay()
+	public String toString()
 	{
 		return "username: " + username + " | password: " + password + " | accessLevel: " + accessLevel;
 	}
