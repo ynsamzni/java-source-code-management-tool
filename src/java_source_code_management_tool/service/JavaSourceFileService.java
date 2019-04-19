@@ -1,5 +1,7 @@
 package java_source_code_management_tool.service;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -20,12 +22,30 @@ public class JavaSourceFileService
 	private JavaSourceFileDAO javaSourceFileDAO;
 	private VersionDAO versionDAO;
 	private DescriptionDAO descriptionDAO;
+	private PropertyChangeSupport propertyChangeSupport;
+	private JavaSourceFile currentJavaSourceFile;
 	
-	public void saveJavaSourceFileWithNewVersionAndDescriptions(JavaSourceFile javaSourceFile, Version version)
+	public JavaSourceFileService()
+	{
+		propertyChangeSupport = new PropertyChangeSupport(this);
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener)
+	{
+		propertyChangeSupport.addPropertyChangeListener(listener);
+	}
+	
+	public JavaSourceFile getCurrentJavaSourceFile()
+	{
+		return currentJavaSourceFile;
+	}
+	
+	public void addVersion(Version version)
 	{
 		Connection con = null;
 		Integer javaSourceFileId, versionId;
 		
+		// Save version in database
 		try
 		{
 			// Connect to the database
@@ -39,8 +59,11 @@ public class JavaSourceFileService
 			versionDAO = new VersionDAO(con);
 			descriptionDAO = new DescriptionDAO(con);
 			
-			// Save file + version + descriptions
-			javaSourceFileId = javaSourceFileDAO.upsertJavaSourceFile(javaSourceFile);
+			// Save latest file content from file system
+			currentJavaSourceFile.setContentFromPathFs();
+			javaSourceFileId = javaSourceFileDAO.upsertJavaSourceFile(currentJavaSourceFile);
+			
+			// Save new version + descriptions
 			versionId = versionDAO.insertVersion(version, javaSourceFileId);
 			descriptionDAO.insertListDescriptions(version.getListDescriptions(), versionId);
 			
@@ -57,13 +80,20 @@ public class JavaSourceFileService
 			// Close the connection
 			DBHelper.close(con);
 		}
+		
+		// Save version locally
+		currentJavaSourceFile.addVersion(version);
+		
+		// Notify view about the change
+		propertyChangeSupport.firePropertyChange("NEWVERSION", null, version);
 	}
 	
-	public JavaSourceFile getJavaSourceFileWithVersionsAndDescriptions(String pathFs)
+	public void loadJavaSourceFile(String pathFs)
 	{
 		Connection con = null;
 		JavaSourceFile javaSourceFile;
 		
+		// Get data
 		try
 		{
 			// Connect to the database
@@ -74,11 +104,20 @@ public class JavaSourceFileService
 			versionDAO = new VersionDAO(con);
 			descriptionDAO = new DescriptionDAO(con);
 			
-			// Get file + versions + descriptions
-			javaSourceFile = javaSourceFileDAO.getJavaSourceFile(pathFs);
-			javaSourceFile.setListVersions(versionDAO.getListVersions(pathFs));
-			for(int i=0; i<javaSourceFile.getListVersions().size(); i++)
-				javaSourceFile.getVersion(i).setListDescriptions(descriptionDAO.getListDescriptions(pathFs, javaSourceFile.getVersion(i).getVersion()));
+			// Check if Java source file is available on the database
+			if((javaSourceFile = javaSourceFileDAO.getJavaSourceFile(pathFs)) != null)
+			{
+				// Get file + versions + descriptions from database
+				javaSourceFile.setListVersions(versionDAO.getListVersions(pathFs));
+				for(int i=0; i<javaSourceFile.getListVersions().size(); i++)
+					javaSourceFile.getVersion(i).setListDescriptions(descriptionDAO.getListDescriptions(pathFs, javaSourceFile.getVersion(i).getVersion()));
+			}
+			else
+			{
+				// Get file from file system
+				javaSourceFile = new JavaSourceFile(pathFs);
+				javaSourceFile.setContentFromPathFs();
+			}
 		}
 		finally
 		{
@@ -86,6 +125,10 @@ public class JavaSourceFileService
 			DBHelper.close(con);
 		}
 		
-		return javaSourceFile;
+		// Save Java source file locally
+		currentJavaSourceFile = javaSourceFile;
+		
+		// Notify view about the change
+		propertyChangeSupport.firePropertyChange("NEWJAVASOURCEFILE", null, javaSourceFile);	
 	}
 }

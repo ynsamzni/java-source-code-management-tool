@@ -15,6 +15,12 @@ import java_source_code_management_tool.util.DBHelper;
 public class UserService
 {
 	private UserDAO userDAO;
+	private User currentUser;
+	
+	public User getCurrentUser()
+	{
+		return currentUser;
+	}
 	
 	public void addUser(User user)
 	{
@@ -38,10 +44,11 @@ public class UserService
 		}
 	}
 	
-	public User getUser(String username, String password)
+	public boolean loadUser(String username, String password)
 	{
 		Connection con = null;
 		User user;
+		boolean userExists = false;
 		
 		try
 		{
@@ -52,7 +59,7 @@ public class UserService
 			userDAO = new UserDAO(con);
 			
 			// Get the user
-			user = userDAO.getUser(username, password);
+			user = userDAO.getUser(username, password);				
 		}
 		finally
 		{
@@ -60,7 +67,16 @@ public class UserService
 			DBHelper.close(con);
 		}
 		
-		return user;
+		// Check if user exists
+		if(user != null)
+		{
+			userExists = true;
+			
+			// Save user locally
+			currentUser = user;
+		}
+		
+		return userExists;
 	}
 	
 	public ArrayList<User> getListUsers()
