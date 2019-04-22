@@ -1,5 +1,8 @@
 package java_source_code_management_tool;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.LoginController;
 import java_source_code_management_tool.controller.NavigationController;
@@ -23,6 +26,16 @@ public class MVC
 		JavaSourceFileController javaSourceFileController = new JavaSourceFileController(javaSourceFileService, userService);
 		LoginController loginController = new LoginController(userService);
 		NavigationController navigationController = new NavigationController(userService);
+		
+		// Set system look and feel in views
+		try
+		{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+		catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
+		{
+            ex.printStackTrace();
+        }
 		
 		// Instantiate view
 		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, navigationController);	
