@@ -30,12 +30,12 @@ public class MVC
 		// Set system look and feel in views
 		try
 		{
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
 		catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
 		{
-            ex.printStackTrace();
-        }
+			ex.printStackTrace();
+		}
 		
 		// Instantiate view
 		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, navigationController);	
