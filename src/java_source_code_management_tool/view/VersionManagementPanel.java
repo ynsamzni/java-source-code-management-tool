@@ -49,7 +49,6 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 	private JPanel newVersionPanel;
 	private JPanel newVersionDescriptionPanel;
 	private JPanel versionHistoryPanel;
-	private JTextField textFieldDescription;
 	private JTextField textFieldVersionNumber;
 	private JTextArea textAreaVersions;
 	private JScrollPane scrollPaneVersions;
@@ -70,15 +69,44 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(4, 4, 4, 4);
 		
-		// Create and configure sub JPanels		
-		versionHistoryPanel = new JPanel();
-		versionHistoryPanel.setLayout(new BorderLayout());
-		versionHistoryPanel.setBorder(new CompoundBorder(new TitledBorder("Version history"), new EmptyBorder(8, 0, 0, 0)));
+		// Attach "New version" panel
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.PAGE_START;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		this.add(createNewVersionPanel(), gbc);
 		
+		// Attach "Version history" panel
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.PAGE_START;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		this.add(createVersionHistoryPanel(), gbc);
+		
+		// Attach cancel button
+		buttonCancel = new JButton("Cancel");
+		buttonCancel.addActionListener(this);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.PAGE_END;
+		gbc.weighty = 0.0;
+		gbc.gridwidth = 2;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		this.add(buttonCancel, gbc);
+	}
+	
+	public JPanel createNewVersionPanel()
+	{
+		// Create and configure JPanels
 		newVersionPanel = new JPanel();
 		newVersionPanel.setLayout(new BoxLayout(newVersionPanel, BoxLayout.PAGE_AXIS));
 		newVersionPanel.setBorder(new CompoundBorder(new TitledBorder("New version"), new EmptyBorder(8, 0, 0, 0)));
-		
+
 		newVersionDescriptionPanel = new JPanel();
 		newVersionDescriptionPanel.setLayout(new BoxLayout(newVersionDescriptionPanel, BoxLayout.PAGE_AXIS));
 		
@@ -86,14 +114,6 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		labelVersionNumber = new JLabel("Version number:");
 		
 		labelDescription = new JLabel("Descriptions:");
-		
-		textAreaVersions = new JTextArea(5, 20);
-		textAreaVersions.setEditable(false);
-		textAreaVersions.setOpaque(false);
-		
-		scrollPaneVersions = new JScrollPane(textAreaVersions);
-		scrollPaneVersions.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPaneVersions.setOpaque(false);
 
 		textFieldVersionNumber = new JTextField(20);
 		textFieldVersionNumber.setMaximumSize(textFieldVersionNumber.getPreferredSize());
@@ -104,11 +124,8 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		
 		buttonAddVersion = new JButton("Add version");
 		buttonAddVersion.addActionListener(this);
-		
-		buttonCancel = new JButton("Cancel");
-		buttonCancel.addActionListener(this);
 
-		// Attach components to sub JPanels
+		// Attach components to JPanels
 		newVersionPanel.add(labelVersionNumber);
 		newVersionPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		newVersionPanel.add(textFieldVersionNumber);
@@ -120,32 +137,29 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		newVersionPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		newVersionPanel.add(buttonAddVersion);
 		
+		return newVersionPanel;
+	}
+	
+	public JPanel createVersionHistoryPanel()
+	{
+		// Create and configure JPanel
+		versionHistoryPanel = new JPanel();
+		versionHistoryPanel.setLayout(new BorderLayout());
+		versionHistoryPanel.setBorder(new CompoundBorder(new TitledBorder("Version history"), new EmptyBorder(8, 0, 0, 0)));
+		
+		// Create components		
+		textAreaVersions = new JTextArea(5, 20);
+		textAreaVersions.setEditable(false);
+		textAreaVersions.setOpaque(false);
+		
+		scrollPaneVersions = new JScrollPane(textAreaVersions);
+		scrollPaneVersions.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneVersions.setOpaque(false);
+
+		// Attach components to JPanel	
 		versionHistoryPanel.add(scrollPaneVersions);
 		
-		// Attach sub JPanels to this JPanel
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.anchor = GridBagConstraints.PAGE_START;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		this.add(newVersionPanel, gbc);
-		
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.anchor = GridBagConstraints.PAGE_START;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		this.add(versionHistoryPanel, gbc);
-		
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.anchor = GridBagConstraints.PAGE_END;
-		gbc.weighty = 0.0;
-		gbc.gridwidth = 2;
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		this.add(buttonCancel, gbc);
+		return versionHistoryPanel;
 	}
 	
 	public void actionPerformed(ActionEvent ae)
@@ -163,18 +177,12 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 				// Notify controller
 				javaSourceFileController.addVersionActionPerformed(textFieldVersionNumber.getText(), descriptions);
 				
-				// Clear corresponding text fields
-				textFieldVersionNumber.setText("");
-				newVersionDescriptionPanel.removeAll();
-				textFieldsDescription = new ArrayList<JTextField>();
-				
-				// Refresh panel
-				newVersionPanel.revalidate();
-				newVersionPanel.repaint();
+				// Clear panel
+				clearNewVersionPanel();
 			}
 			else if(ae.getSource() == buttonAddTextFieldDescription)
 			{
-				textFieldDescription = new JTextField(20);
+				JTextField textFieldDescription = new JTextField(20);
 				textFieldDescription.setMaximumSize(textFieldDescription.getPreferredSize());
 				textFieldDescription.setAlignmentX(JLabel.LEFT_ALIGNMENT);
 				
@@ -188,7 +196,11 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 			}
 			else if(ae.getSource() == buttonCancel)
 			{
+				// Notify controller
 				navigationController.showHomeMenu();
+				
+				// Clear panel
+				clearNewVersionPanel();
 			}
 		} 
 		catch (Exception e)
@@ -207,14 +219,10 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		else if(pce.getPropertyName().equals("NEWJAVASOURCEFILE"))
 		{
 			// Clear history area
-			textAreaVersions.setText("");
+			clearVersionHistoryPanel();
 			
-			// Display version history
-			ArrayList<Version> versions = ((JavaSourceFile) pce.getNewValue()).getListVersions();
-			for(int i=0; i<versions.size(); i++)
-			{
-				showVersionHistory(versions.get(i));
-			}
+			// Display new Java source file version history
+			showVersionHistory(((JavaSourceFile) pce.getNewValue()).getListVersions());
 		}
 	}
 	
@@ -234,6 +242,34 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		}
 		
 		textAreaVersions.append("\n");
+	}
+	
+	public void showVersionHistory(ArrayList<Version> versions)
+	{
+		for(int i=0; i<versions.size(); i++)
+		{
+			showVersionHistory(versions.get(i));
+		}
+	}
+	
+	public void clearNewVersionPanel()
+	{
+		// Clear text fields
+		textFieldVersionNumber.setText("");
+		textFieldsDescription = new ArrayList<JTextField>();
+		
+		// Clear components added by the user
+		newVersionDescriptionPanel.removeAll();
+		
+		// Refresh panel
+		newVersionPanel.revalidate();
+		newVersionPanel.repaint();
+	}
+	
+	public void clearVersionHistoryPanel()
+	{
+		// Clear text area
+		textAreaVersions.setText("");
 	}
 }
 
