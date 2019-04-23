@@ -166,6 +166,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 				// Clear corresponding text fields
 				textFieldVersionNumber.setText("");
 				newVersionDescriptionPanel.removeAll();
+				textFieldsDescription = new ArrayList<JTextField>();
 				
 				// Refresh panel
 				newVersionPanel.revalidate();
