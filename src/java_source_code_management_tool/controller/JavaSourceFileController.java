@@ -52,19 +52,29 @@ public class JavaSourceFileController
 		Version version;
 		ArrayList<Description> descriptions = new ArrayList<Description>();
 		
-		// Convert view descriptions for the model
-		for(int i=0; i<strDescriptions.size(); i++)
+		// Validate user input
+		if(versionNumber.matches("^(\\d+\\.)?(\\d+\\.)?(\\d+\\.)?(\\d+)$"))
 		{
-			// Ignore empty descriptions
-			if(!strDescriptions.get(i).trim().isEmpty())
-				descriptions.add(new Description(strDescriptions.get(i)));
+			// Convert view descriptions for the model
+			for(int i=0; i<strDescriptions.size(); i++)
+			{
+				// Ignore empty descriptions
+				if(!strDescriptions.get(i).trim().isEmpty())
+					descriptions.add(new Description(strDescriptions.get(i)));
+			}
+			
+			// Convert view version for the model
+			version = new Version(versionNumber, userService.getCurrentUser().getUsername());
+			version.setListDescriptions(descriptions);
+					
+			// Save created data
+			javaSourceFileService.addVersion(version);
+		}
+		else
+		{
+			mainFrame.showIncorrectVersionNumberError();
 		}
 		
-		// Convert view version for the model
-		version = new Version(versionNumber, userService.getCurrentUser().getUsername());
-		version.setListDescriptions(descriptions);
-				
-		// Save created data
-		javaSourceFileService.addVersion(version);
+		
 	}
 }
