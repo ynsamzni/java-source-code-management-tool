@@ -40,14 +40,16 @@ public class LoginPanel extends JPanel implements ActionListener
 		labelUsername = new JLabel("Username:");
 		labelUsername.setAlignmentX(CENTER_ALIGNMENT);
 		
-		textFieldUsername = new JTextField();
+		textFieldUsername = new JTextField(10);
 		textFieldUsername.setAlignmentX(CENTER_ALIGNMENT);
+		textFieldUsername.setMaximumSize(textFieldUsername.getPreferredSize());
 		
 		labelPassword = new JLabel("Password:");
 		labelPassword.setAlignmentX(CENTER_ALIGNMENT);
 		
-		passwordField = new JPasswordField();
+		passwordField = new JPasswordField(10);
 		passwordField.setAlignmentX(CENTER_ALIGNMENT);
+		passwordField.setMaximumSize(passwordField.getPreferredSize());
 		
 		buttonLogin = new JButton("Login");
 		buttonLogin.setAlignmentX(CENTER_ALIGNMENT);
