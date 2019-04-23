@@ -1,6 +1,10 @@
 package java_source_code_management_tool.view;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -15,6 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.NavigationController;
@@ -30,25 +38,22 @@ import java_source_code_management_tool.model.service.JavaSourceFileService;
 public class VersionManagementPanel extends JPanel implements ActionListener, PropertyChangeListener
 {
 	private static final long serialVersionUID = 1L;
-	
+	private JavaSourceFileController javaSourceFileController;
+	private NavigationController navigationController;
 	private ArrayList<JTextField> textFieldsDescription = new ArrayList<JTextField>();
 	private JButton buttonAddTextFieldDescription;
 	private JButton buttonAddVersion;
 	private JButton buttonCancel;
-	private JLabel labelAddVersionInstruction;
 	private JLabel labelDescription;
 	private JLabel labelVersionNumber;
 	private JPanel newVersionPanel;
 	private JPanel newVersionDescriptionPanel;
 	private JPanel versionHistoryPanel;
-	private JPanel versionManagementPanel;
 	private JTextField textFieldDescription;
 	private JTextField textFieldVersionNumber;
-	private JavaSourceFileController javaSourceFileController;
-	private NavigationController navigationController;
-	private JLabel labelVersionHistory;
 	private JTextArea textAreaVersions;
 	private JScrollPane scrollPaneVersions;
+	private GridBagConstraints gbc;
 	
 	public VersionManagementPanel(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, NavigationController navigationController)
 	{
@@ -59,37 +64,41 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		// Set model
 		javaSourceFileService.addPropertyChangeListener(this);
 		
-		// Configure JPanel
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		// Configure this JPanel
+		this.setLayout(new GridBagLayout());
 		
-		// Create and configure sub JPanels
-		versionManagementPanel = new JPanel();
-		versionManagementPanel.setLayout(new BoxLayout(versionManagementPanel, BoxLayout.LINE_AXIS));
+	    gbc = new GridBagConstraints();
+	    gbc.insets = new Insets(4, 4, 4, 4);
 		
+		// Create and configure sub JPanels		
 		versionHistoryPanel = new JPanel();
-		versionHistoryPanel.setLayout(new BoxLayout(versionHistoryPanel, BoxLayout.PAGE_AXIS));
+		versionHistoryPanel.setLayout(new BorderLayout());
+		versionHistoryPanel.setBorder(new CompoundBorder(new TitledBorder("Version history"), new EmptyBorder(8, 0, 0, 0)));
 		
 		newVersionPanel = new JPanel();
 		newVersionPanel.setLayout(new BoxLayout(newVersionPanel, BoxLayout.PAGE_AXIS));
+		newVersionPanel.setBorder(new CompoundBorder(new TitledBorder("New version"), new EmptyBorder(8, 0, 0, 0)));
 		
 		newVersionDescriptionPanel = new JPanel();
 		newVersionDescriptionPanel.setLayout(new BoxLayout(newVersionDescriptionPanel, BoxLayout.PAGE_AXIS));
 		
-		// Create labels
-		labelAddVersionInstruction = new JLabel("Add a new version");
+		// Create components
 		labelVersionNumber = new JLabel("Version number:");
+		
 		labelDescription = new JLabel("Descriptions:");
-		labelVersionHistory = new JLabel("Version history");
 		
-		// Create text areas
-		textAreaVersions = new JTextArea(5,20);
-		scrollPaneVersions = new JScrollPane(textAreaVersions);
+		textAreaVersions = new JTextArea(5, 20);
 		textAreaVersions.setEditable(false);
-
-		// Create text fields
-		textFieldVersionNumber = new JTextField();
+		textAreaVersions.setOpaque(false);
 		
-		// Create buttons
+		scrollPaneVersions = new JScrollPane(textAreaVersions);
+		scrollPaneVersions.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneVersions.setOpaque(false);
+
+		textFieldVersionNumber = new JTextField(20);
+		textFieldVersionNumber.setMaximumSize(textFieldVersionNumber.getPreferredSize());
+		textFieldVersionNumber.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		
 		buttonAddTextFieldDescription = new JButton("+");
 		buttonAddTextFieldDescription.addActionListener(this);
 		
@@ -100,8 +109,6 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		buttonCancel.addActionListener(this);
 
 		// Attach components to sub JPanels
-		newVersionPanel.add(labelAddVersionInstruction);
-		newVersionPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		newVersionPanel.add(labelVersionNumber);
 		newVersionPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		newVersionPanel.add(textFieldVersionNumber);
@@ -113,15 +120,32 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		newVersionPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		newVersionPanel.add(buttonAddVersion);
 		
-		versionHistoryPanel.add(labelVersionHistory);
-		versionHistoryPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		versionHistoryPanel.add(scrollPaneVersions);
 		
-		versionManagementPanel.add(newVersionPanel);	
-		versionManagementPanel.add(versionHistoryPanel);
+		// Attach sub JPanels to this JPanel
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.PAGE_START;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		this.add(newVersionPanel, gbc);
 		
-		this.add(versionManagementPanel);
-		this.add(buttonCancel);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.PAGE_START;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		this.add(versionHistoryPanel, gbc);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.anchor = GridBagConstraints.PAGE_END;
+		gbc.weighty = 0.0;
+		gbc.gridwidth = 2;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		this.add(buttonCancel, gbc);
 	}
 	
 	public void actionPerformed(ActionEvent ae)
@@ -149,7 +173,9 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 			}
 			else if(ae.getSource() == buttonAddTextFieldDescription)
 			{
-				textFieldDescription = new JTextField();
+				textFieldDescription = new JTextField(20);
+				textFieldDescription.setMaximumSize(textFieldDescription.getPreferredSize());
+				textFieldDescription.setAlignmentX(JLabel.LEFT_ALIGNMENT);
 				
 				// Add new description text field
 				newVersionDescriptionPanel.add(textFieldDescription);
@@ -196,15 +222,17 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		ArrayList<Description> descriptions = version.getListDescriptions();
 		
 		// Show version
-		textAreaVersions.append(version.toString());
+		textAreaVersions.append("Version " + version.getVersion() + ":");
 		textAreaVersions.append("\n");
 		
 		// Show version descriptions
 		for(int i=0; i<descriptions.size(); i++)
 		{
-			textAreaVersions.append(descriptions.get(i).toString());
+			textAreaVersions.append("- " + descriptions.get(i).getDescription());
 			textAreaVersions.append("\n");
 		}
+		
+		textAreaVersions.append("\n");
 	}
 }
 
