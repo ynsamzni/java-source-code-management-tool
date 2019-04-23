@@ -67,8 +67,8 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		// Configure this JPanel
 		this.setLayout(new GridBagLayout());
 		
-	    gbc = new GridBagConstraints();
-	    gbc.insets = new Insets(4, 4, 4, 4);
+		gbc = new GridBagConstraints();
+		gbc.insets = new Insets(4, 4, 4, 4);
 		
 		// Create and configure sub JPanels		
 		versionHistoryPanel = new JPanel();
