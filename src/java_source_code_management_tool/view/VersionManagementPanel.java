@@ -102,7 +102,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		buttonAddTextFieldDescription = new JButton("+");
 		buttonAddTextFieldDescription.addActionListener(this);
 		
-		buttonAddVersion = new JButton("Add");
+		buttonAddVersion = new JButton("Add version");
 		buttonAddVersion.addActionListener(this);
 		
 		buttonCancel = new JButton("Cancel");
