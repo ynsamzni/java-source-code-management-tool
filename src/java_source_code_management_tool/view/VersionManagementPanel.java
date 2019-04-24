@@ -43,7 +43,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 	private ArrayList<JTextField> textFieldsDescription = new ArrayList<JTextField>();
 	private JButton buttonAddTextFieldDescription;
 	private JButton buttonAddVersion;
-	private JButton buttonCancel;
+	private JButton buttonHome;
 	private JLabel labelDescription;
 	private JLabel labelVersionNumber;
 	private JPanel newVersionPanel;
@@ -88,8 +88,8 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		this.add(createVersionHistoryPanel(), gbc);
 		
 		// Attach cancel button
-		buttonCancel = new JButton("Cancel");
-		buttonCancel.addActionListener(this);
+		buttonHome = new JButton("Return to home page");
+		buttonHome.addActionListener(this);
 		
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.anchor = GridBagConstraints.PAGE_END;
@@ -97,7 +97,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		gbc.gridwidth = 2;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		this.add(buttonCancel, gbc);
+		this.add(buttonHome, gbc);
 	}
 	
 	public JPanel createNewVersionPanel()
@@ -194,7 +194,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 				newVersionPanel.revalidate();
 				newVersionPanel.repaint();
 			}
-			else if(ae.getSource() == buttonCancel)
+			else if(ae.getSource() == buttonHome)
 			{
 				// Notify controller
 				navigationController.showHomeMenu();
