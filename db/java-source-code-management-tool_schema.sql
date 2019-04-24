@@ -67,7 +67,7 @@ CREATE TABLE version_ver (
   CONSTRAINT ver_pk PRIMARY KEY(ver_id),
   CONSTRAINT ver_jsf_id_fk FOREIGN KEY(ver_jsf_id) REFERENCES javasourcefile_jsf(jsf_id),
   CONSTRAINT ver_usr_id_fk FOREIGN KEY(ver_usr_id) REFERENCES user_usr(usr_id),
-  CONSTRAINT ver_numbers_and_ver_jsf_id UNIQUE(ver_major_number, ver_minor_number, ver_revision_number, ver_build_number, ver_jsf_id)
+  CONSTRAINT ver_numbers_and_ver_jsf_id_un UNIQUE(ver_major_number, ver_minor_number, ver_revision_number, ver_build_number, ver_jsf_id)
 );
 
 --
