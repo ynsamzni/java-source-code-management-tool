@@ -57,6 +57,11 @@ public class MainFrame extends JFrame
 		JOptionPane.showMessageDialog(this, "Incorrect version number. Try again.\nMaximum 4 digits, each separated by a dot are allowed (e.g. 1 or 1.0 or 1.0.1 or 1.0.0.1).", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	public void showDuplicateVersionNumberError()
+	{
+		JOptionPane.showMessageDialog(this, "Duplicate version number. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
 	public String showFileDialog()
 	{
 		String selectedFilePathFs = null;

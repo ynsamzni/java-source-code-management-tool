@@ -51,9 +51,22 @@ public class JavaSourceFileController
 	{
 		Version version;
 		ArrayList<Description> descriptions = new ArrayList<Description>();
+		boolean validVersionNumber, uniqueVersionNumber;
 		
-		// Validate user input
+		// Check if version number is valid
+		validVersionNumber = false;
 		if(versionNumber.matches("^(\\d+\\.)?(\\d+\\.)?(\\d+\\.)?(\\d+)$"))
+			validVersionNumber = true;
+		
+		// Check if version number is unique
+		uniqueVersionNumber = true;
+		for(int i=0; i<javaSourceFileService.getCurrentJavaSourceFile().getListVersions().size(); i++)
+		{
+			if(versionNumber.equals(javaSourceFileService.getCurrentJavaSourceFile().getVersion(i).getVersion()))
+				uniqueVersionNumber = false;
+		}
+		
+		if(validVersionNumber && uniqueVersionNumber)
 		{
 			// Convert view descriptions for the model
 			for(int i=0; i<strDescriptions.size(); i++)
@@ -70,11 +83,13 @@ public class JavaSourceFileController
 			// Save created data
 			javaSourceFileService.addVersion(version);
 		}
-		else
+		else if(!validVersionNumber)
 		{
 			mainFrame.showIncorrectVersionNumberError();
 		}
-		
-		
+		else if(!uniqueVersionNumber)
+		{
+			mainFrame.showDuplicateVersionNumberError();
+		}
 	}
 }
