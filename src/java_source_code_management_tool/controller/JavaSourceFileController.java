@@ -51,7 +51,7 @@ public class JavaSourceFileController
 	{
 		Version version;
 		ArrayList<Description> descriptions = new ArrayList<Description>();
-		boolean validVersionNumber, uniqueVersionNumber;
+		boolean validVersionNumber, validDescriptions, uniqueVersionNumber;
 		
 		// Check if version number is valid (length and format)
 		validVersionNumber = false;
@@ -66,7 +66,15 @@ public class JavaSourceFileController
 				uniqueVersionNumber = false;
 		}
 		
-		if(validVersionNumber && uniqueVersionNumber)
+		// Check if descriptions are valid (length)
+		validDescriptions = true;
+		for(int i=0; i<strDescriptions.size(); i++)
+		{
+			if(strDescriptions.get(i).length() > 300)
+				validDescriptions = false;
+		}
+		
+		if(validVersionNumber && uniqueVersionNumber && validDescriptions)
 		{
 			// Convert view descriptions for the model
 			for(int i=0; i<strDescriptions.size(); i++)
@@ -90,6 +98,10 @@ public class JavaSourceFileController
 		else if(!uniqueVersionNumber)
 		{
 			mainFrame.showDuplicateVersionNumberError();
+		}
+		else if(!validDescriptions)
+		{
+			mainFrame.showIncorrectDescriptionError();
 		}
 	}
 }

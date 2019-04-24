@@ -62,6 +62,11 @@ public class MainFrame extends JFrame
 		JOptionPane.showMessageDialog(this, "Duplicate version number. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	public void showIncorrectDescriptionError()
+	{
+		JOptionPane.showMessageDialog(this, "Incorrect description. Try again.\nMaximum 300 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
 	public String showFileDialog()
 	{
 		String selectedFilePathFs = null;
