@@ -19,8 +19,9 @@ public class DBHelper
 			if(con != null)
 				con.close();
 		} 
-		catch (SQLException ignore)
+		catch (SQLException e)
 		{
+			e.printStackTrace();
 		}
 	}
 	
@@ -31,8 +32,9 @@ public class DBHelper
 			if(ps != null)
 				ps.close();
 		}
-		catch (SQLException ignore)
+		catch (SQLException e)
 		{
+			e.printStackTrace();
 		}
 	}
 	
@@ -43,8 +45,9 @@ public class DBHelper
 			if(cs != null)
 				cs.close();
 		}
-		catch (SQLException ignore)
+		catch (SQLException e)
 		{
+			e.printStackTrace();
 		}
 	}
 	
@@ -55,8 +58,9 @@ public class DBHelper
 			if (rs != null)
 				rs.close();
 		} 
-		catch (SQLException ignore)
+		catch (SQLException e)
 		{
+			e.printStackTrace();
 		}
 	}
 	
@@ -67,8 +71,9 @@ public class DBHelper
 			if (con != null)
 				con.rollback();
 		} 
-		catch (SQLException ignore)
+		catch (SQLException e)
 		{
+			e.printStackTrace();
 		}
 	}
 }
