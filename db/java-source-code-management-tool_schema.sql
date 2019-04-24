@@ -57,10 +57,10 @@ END;
 
 CREATE TABLE version_ver (
   ver_id NUMBER(4),
-  ver_major_number NUMBER(2) CONSTRAINT ver_major_number_nn NOT NULL,
-  ver_minor_number NUMBER(2),
-  ver_revision_number NUMBER(6),
-  ver_build_number NUMBER(16), 
+  ver_major_number NUMBER(4) CONSTRAINT ver_major_number_nn NOT NULL,
+  ver_minor_number NUMBER(4),
+  ver_revision_number NUMBER(4),
+  ver_build_number NUMBER(4), 
   ver_date DATE CONSTRAINT ver_date_nn NOT NULL,
   ver_jsf_id NUMBER(4) CONSTRAINT ver_jsf_id_nn NOT NULL,
   ver_usr_id NUMBER(4) CONSTRAINT ver_usr_id_nn NOT NULL,

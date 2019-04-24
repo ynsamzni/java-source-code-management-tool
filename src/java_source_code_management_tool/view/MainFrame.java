@@ -54,7 +54,7 @@ public class MainFrame extends JFrame
 	
 	public void showIncorrectVersionNumberError()
 	{
-		JOptionPane.showMessageDialog(this, "Incorrect version number. Try again.\nMaximum 4 digits, each separated by a dot are allowed (e.g. 1 or 1.0 or 1.0.1 or 1.0.0.1).", "Error", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(this, "Incorrect version number. Try again.\nMaximum 4 digits, each being between 0 and 9999, and separated by a dot are allowed  (e.g. 1 or 1.0 or 1.0.1 or 1.0.0.1).", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public void showDuplicateVersionNumberError()

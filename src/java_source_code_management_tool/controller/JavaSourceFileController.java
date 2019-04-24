@@ -53,9 +53,9 @@ public class JavaSourceFileController
 		ArrayList<Description> descriptions = new ArrayList<Description>();
 		boolean validVersionNumber, uniqueVersionNumber;
 		
-		// Check if version number is valid
+		// Check if version number is valid (length and format)
 		validVersionNumber = false;
-		if(versionNumber.matches("^(\\d+\\.)?(\\d+\\.)?(\\d+\\.)?(\\d+)$"))
+		if(versionNumber.matches("^([0-9]{1,4}\\.)?([0-9]{1,4}\\.)?([0-9]{1,4}\\.)?([0-9]{1,4})$"))
 			validVersionNumber = true;
 		
 		// Check if version number is unique
