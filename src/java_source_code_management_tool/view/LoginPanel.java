@@ -74,18 +74,16 @@ public class LoginPanel extends JPanel implements ActionListener
 			if(ae.getSource() == buttonLogin)
 			{
 				loginController.loginActionPerformed(textFieldUsername.getText(), passwordField.getPassword());
-				
-				// Clear password field
-				passwordField.setText("");
-				
-				// Refresh panel
-				this.revalidate();
-				this.repaint();
 			}
 		} 
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void clearPasswordField()
+	{
+		passwordField.setText("");
 	}
 }

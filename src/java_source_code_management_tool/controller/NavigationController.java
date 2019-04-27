@@ -22,11 +22,22 @@ public class NavigationController
 		this.mainFrame = mainFrame;
 	}
 	
-	public void showHomeMenu()
+	public void goHomeActionPerformed()
 	{
 		if(userService.getCurrentUser().getAccessLevel() == 0)
 			mainFrame.showCard("HOMEPANEL");
 		else
 			mainFrame.showCard("HOMEPANEL");
+	}
+	
+	public void goHomeFromVersionManagementActionPerformed()
+	{
+		goHomeActionPerformed();
+		mainFrame.getVersionManagementPanel().clearNewVersionPanel();
+	}
+	
+	public void addTextFieldDescriptionActionPerformed()
+	{
+		mainFrame.getVersionManagementPanel().addTextFieldDescription();
 	}
 }

@@ -90,6 +90,8 @@ public class JavaSourceFileController
 					
 			// Save created data
 			javaSourceFileService.addVersion(version);
+			
+			mainFrame.getVersionManagementPanel().clearNewVersionPanel();
 		}
 		else if(!validVersionNumber)
 		{

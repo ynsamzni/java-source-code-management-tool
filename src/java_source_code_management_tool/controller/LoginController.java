@@ -28,5 +28,7 @@ public class LoginController
 			mainFrame.showCard("HOMEPANEL");
 		else
 			mainFrame.showLoginError();
+		
+		mainFrame.getLoginPanel().clearPasswordField();
 	}
 }

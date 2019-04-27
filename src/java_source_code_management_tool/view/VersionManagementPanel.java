@@ -176,31 +176,14 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 				
 				// Notify controller
 				javaSourceFileController.addVersionActionPerformed(textFieldVersionNumber.getText(), descriptions);
-				
-				// Clear panel
-				clearNewVersionPanel();
 			}
 			else if(ae.getSource() == buttonAddTextFieldDescription)
 			{
-				JTextField textFieldDescription = new JTextField(20);
-				textFieldDescription.setMaximumSize(textFieldDescription.getPreferredSize());
-				textFieldDescription.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-				
-				// Add new description text field
-				newVersionDescriptionPanel.add(textFieldDescription);
-				textFieldsDescription.add(textFieldDescription);
-				
-				// Refresh panel
-				newVersionPanel.revalidate();
-				newVersionPanel.repaint();
+				navigationController.addTextFieldDescriptionActionPerformed();
 			}
 			else if(ae.getSource() == buttonHome)
 			{
-				// Notify controller
-				navigationController.showHomeMenu();
-				
-				// Clear panel
-				clearNewVersionPanel();
+				navigationController.goHomeFromVersionManagementActionPerformed();
 			}
 		} 
 		catch (Exception e)
@@ -270,6 +253,21 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 	{
 		// Clear text area
 		textAreaVersions.setText("");
+	}
+	
+	public void addTextFieldDescription()
+	{
+		JTextField textFieldDescription = new JTextField(20);
+		textFieldDescription.setMaximumSize(textFieldDescription.getPreferredSize());
+		textFieldDescription.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		
+		// Add new description text field
+		newVersionDescriptionPanel.add(textFieldDescription);
+		textFieldsDescription.add(textFieldDescription);
+		
+		// Refresh panel
+		newVersionPanel.revalidate();
+		newVersionPanel.repaint();
 	}
 }
 

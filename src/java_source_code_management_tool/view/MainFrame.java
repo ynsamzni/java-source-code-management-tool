@@ -20,6 +20,10 @@ public class MainFrame extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private Container container;
+	private LoginPanel loginPanel;
+	private HomePanel homePanel;
+	private VersionManagementPanel versionManagementPanel;
+	
 
 	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController)
 	{	
@@ -31,11 +35,16 @@ public class MainFrame extends JFrame
 		// Configure container
 		container = this.getContentPane();
 		container.setLayout(new CardLayout());
-				
+		
+		// Create JPanels
+		loginPanel = new LoginPanel(loginController);
+		homePanel = new HomePanel(javaSourceFileController);
+		versionManagementPanel = new VersionManagementPanel(javaSourceFileService, javaSourceFileController, navigationController);
+		
 		// Attach JPanels to the container
-		container.add(new LoginPanel(loginController), "LOGINPANEL");
-		container.add(new HomePanel(javaSourceFileController), "HOMEPANEL");
-		container.add(new VersionManagementPanel(javaSourceFileService, javaSourceFileController, navigationController), "VERSIONMANAGEMENTPANEL");
+		container.add(loginPanel, "LOGINPANEL");
+		container.add(homePanel, "HOMEPANEL");
+		container.add(versionManagementPanel, "VERSIONMANAGEMENTPANEL");
 		
 		// Show frame
 		this.setVisible(true);
@@ -45,6 +54,21 @@ public class MainFrame extends JFrame
 	{
 		CardLayout cardLayout = (CardLayout) container.getLayout();
 		cardLayout.show(container, card);
+	}
+	
+	public LoginPanel getLoginPanel()
+	{
+		return loginPanel;
+	}
+	
+	public HomePanel getHomePanel()
+	{
+		return homePanel;
+	}
+	
+	public VersionManagementPanel getVersionManagementPanel()
+	{
+		return versionManagementPanel;
 	}
 	
 	public void showLoginError()
