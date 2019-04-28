@@ -34,11 +34,11 @@ public class HomePanel extends JPanel implements ActionListener
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// Create and configure components
-		buttonDisplayFile = new JButton("Display a file");
+		buttonDisplayFile = new JButton("Display a Java source file");
 		buttonDisplayFile.setAlignmentX(CENTER_ALIGNMENT);
 		buttonDisplayFile.addActionListener(this);
 		
-		buttonReferenceFile = new JButton("Reference a file");
+		buttonReferenceFile = new JButton("Manage Java source file versions");
 		buttonReferenceFile.setAlignmentX(CENTER_ALIGNMENT);
 		buttonReferenceFile.addActionListener(this);
 
