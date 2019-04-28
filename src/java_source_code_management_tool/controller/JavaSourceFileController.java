@@ -60,7 +60,7 @@ public class JavaSourceFileController
 			// Open Java source file
 			javaSourceFileService.loadJavaSourceFileFromFs(selectedPathFs);
 			
-			// Show Java source file version management view
+			// Show Java source file viewer
 			mainFrame.showCard("JAVASOURCEFILEVIEWERPANEL");
 		}
 	}
@@ -72,7 +72,7 @@ public class JavaSourceFileController
 			// Open Java source file
 			javaSourceFileService.loadJavaSourceFileFromDb(selectedPathFs);
 			
-			// Show Java source file version management view
+			// Show Java source file viewer
 			mainFrame.showCard("JAVASOURCEFILEVIEWERPANEL");
 		}
 	}
