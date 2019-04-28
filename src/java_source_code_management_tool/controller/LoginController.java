@@ -29,6 +29,7 @@ public class LoginController
 		else
 			mainFrame.showLoginError();
 		
+		// Clear password field
 		mainFrame.getLoginPanel().clearPasswordField();
 	}
 }

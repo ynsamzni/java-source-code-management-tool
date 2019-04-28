@@ -23,10 +23,15 @@ public class MainFrame extends JFrame
 	private LoginPanel loginPanel;
 	private HomePanel homePanel;
 	private VersionManagementPanel versionManagementPanel;
-	
+	private JavaSourceFileViewerPanel javaSourceFileViewerPanel;
+	private JavaSourceFileSelectorPanel javaSourceFileSelectionPanel;
+	private NavigationController navigationController;
 
 	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController)
 	{	
+		// Set controller
+		this.navigationController = navigationController;
+		
 		// Configure frame
 		this.setTitle("Java source code management tool");
 		this.setSize(600, 600);
@@ -38,13 +43,17 @@ public class MainFrame extends JFrame
 		
 		// Create JPanels
 		loginPanel = new LoginPanel(loginController);
-		homePanel = new HomePanel(javaSourceFileController);
+		homePanel = new HomePanel(javaSourceFileController, navigationController);
 		versionManagementPanel = new VersionManagementPanel(javaSourceFileService, javaSourceFileController, navigationController);
+		javaSourceFileViewerPanel = new JavaSourceFileViewerPanel(javaSourceFileService, navigationController);
+		javaSourceFileSelectionPanel = new JavaSourceFileSelectorPanel(javaSourceFileController, navigationController, javaSourceFileService);
 		
 		// Attach JPanels to the container
 		container.add(loginPanel, "LOGINPANEL");
 		container.add(homePanel, "HOMEPANEL");
+		container.add(javaSourceFileSelectionPanel, "JAVASOURCEFILESELECTORPANEL");
 		container.add(versionManagementPanel, "VERSIONMANAGEMENTPANEL");
+		container.add(javaSourceFileViewerPanel, "JAVASOURCEFILEVIEWERPANEL");
 		
 		// Show frame
 		this.setVisible(true);
@@ -52,8 +61,12 @@ public class MainFrame extends JFrame
 	
 	public void showCard(String card)
 	{
+		// Show card
 		CardLayout cardLayout = (CardLayout) container.getLayout();
 		cardLayout.show(container, card);
+		
+		// Notify controller
+		navigationController.navigateActionPerformed(card);
 	}
 	
 	public LoginPanel getLoginPanel()
@@ -69,6 +82,11 @@ public class MainFrame extends JFrame
 	public VersionManagementPanel getVersionManagementPanel()
 	{
 		return versionManagementPanel;
+	}
+	
+	public JavaSourceFileSelectorPanel getJavaSourceFileSelectionPanel()
+	{
+		return javaSourceFileSelectionPanel;
 	}
 	
 	public void showLoginError()

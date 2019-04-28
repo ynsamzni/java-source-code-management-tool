@@ -60,7 +60,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		this.javaSourceFileController = javaSourceFileController;
 		this.navigationController = navigationController;
 		
-		// Set model
+		// Add model listener
 		javaSourceFileService.addPropertyChangeListener(this);
 		
 		// Configure this JPanel
@@ -87,7 +87,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		gbc.gridy = 0;
 		this.add(createVersionHistoryPanel(), gbc);
 		
-		// Attach cancel button
+		// Attach home button
 		buttonHome = new JButton("Return to home page");
 		buttonHome.addActionListener(this);
 		
@@ -183,7 +183,7 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 			}
 			else if(ae.getSource() == buttonHome)
 			{
-				navigationController.goHomeFromVersionManagementActionPerformed();
+				navigationController.goHomeActionPerformed();
 			}
 		} 
 		catch (Exception e)

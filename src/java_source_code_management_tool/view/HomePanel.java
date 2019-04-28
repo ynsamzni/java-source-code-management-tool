@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import java_source_code_management_tool.controller.JavaSourceFileController;
+import java_source_code_management_tool.controller.NavigationController;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
@@ -21,10 +22,13 @@ public class HomePanel extends JPanel implements ActionListener
 	private JButton buttonDisplayFile;
 	private JButton buttonReferenceFile;
 	private JavaSourceFileController javaSourceFileController;
+	private NavigationController navigationController;
 	
-	public HomePanel(JavaSourceFileController javaSourceFileController)
+	public HomePanel(JavaSourceFileController javaSourceFileController, NavigationController navigationController)
 	{
+		// Set controllers
 		this.javaSourceFileController = javaSourceFileController;
+		this.navigationController = navigationController;
 		
 		// Configure JPanel
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -53,6 +57,10 @@ public class HomePanel extends JPanel implements ActionListener
 			if(ae.getSource() == buttonReferenceFile)
 			{
 				javaSourceFileController.manageVersionActionPerformed();
+			}
+			else if(ae.getSource() == buttonDisplayFile)
+			{
+				navigationController.goJavaSourceFileSelectorActionPerformed();
 			}
 		} 
 		catch (Exception e)

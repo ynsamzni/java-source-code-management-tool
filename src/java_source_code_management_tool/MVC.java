@@ -25,7 +25,7 @@ public class MVC
 		// Instantiate controllers
 		JavaSourceFileController javaSourceFileController = new JavaSourceFileController(javaSourceFileService, userService);
 		LoginController loginController = new LoginController(userService);
-		NavigationController navigationController = new NavigationController(userService);
+		NavigationController navigationController = new NavigationController(userService, javaSourceFileService);
 		
 		// Set system look and feel in views
 		try

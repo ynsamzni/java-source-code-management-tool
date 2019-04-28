@@ -138,31 +138,23 @@ public class JavaSourceFileDAO
 		return javaSourceFile;
 	}
 	
-	public ArrayList<JavaSourceFile> getListJavaSourceFiles()
+	public ArrayList<String> getListJavaSourceFilePathsFs()
 	{
-		ArrayList<JavaSourceFile> javaSourceFiles = new ArrayList<JavaSourceFile>();
-		Clob javaSourceFileContent = null;
+		ArrayList<String> javaSourceFilePathsFs = new ArrayList<String>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try
 		{		
 			// Prepare the SQL query
-			ps = con.prepareStatement("SELECT * FROM javasourcefile_jsf");
+			ps = con.prepareStatement("SELECT jsf_path_fs FROM javasourcefile_jsf");
 			
 			// Execute the SQL query
 			rs = ps.executeQuery();
 			
-			// Get the list of java source files
-			while(rs.next())
-			{
-				javaSourceFileContent = rs.getClob("jsf_content");
-				
-				javaSourceFiles.add(new JavaSourceFile(
-									rs.getString("jsf_path_fs"),
-									javaSourceFileContent.getSubString(1, (int) javaSourceFileContent.length())
-									));
-			}
+			// Get the list of java source file paths
+			while(rs.next())		
+				javaSourceFilePathsFs.add(rs.getString("jsf_path_fs"));
 		}
 		catch(SQLException e)
 		{
@@ -177,6 +169,6 @@ public class JavaSourceFileDAO
 			DBHelper.close(ps);
 		}
 		
-		return javaSourceFiles;
+		return javaSourceFilePathsFs;
 	}
 }

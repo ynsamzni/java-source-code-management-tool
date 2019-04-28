@@ -67,7 +67,7 @@ public class UserService
 			DBHelper.close(con);
 		}
 		
-		// Check if user exists
+		// Check if an existing user has been found
 		if(user != null)
 		{
 			userExists = true;

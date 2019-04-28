@@ -40,10 +40,40 @@ public class JavaSourceFileController
 		if(selectedPathFs != null)
 		{
 			// Open Java source file
-			javaSourceFileService.loadJavaSourceFile(selectedPathFs);
+			javaSourceFileService.loadJavaSourceFileFromFs(selectedPathFs);
 			
 			// Show Java source file version management view
 			mainFrame.showCard("VERSIONMANAGEMENTPANEL");
+		}
+	}
+	
+	public void selectFsJavaSourceFileActionPerformed()
+	{
+		String selectedPathFs;
+		
+		// Show file dialog
+		selectedPathFs = mainFrame.showFileDialog();
+		
+		// If a file has been selected
+		if(selectedPathFs != null)
+		{
+			// Open Java source file
+			javaSourceFileService.loadJavaSourceFileFromFs(selectedPathFs);
+			
+			// Show Java source file version management view
+			mainFrame.showCard("JAVASOURCEFILEVIEWERPANEL");
+		}
+	}
+	
+	public void selectDbJavaSourceFileActionPerformed(String selectedPathFs)
+	{
+		if(selectedPathFs != null)
+		{
+			// Open Java source file
+			javaSourceFileService.loadJavaSourceFileFromDb(selectedPathFs);
+			
+			// Show Java source file version management view
+			mainFrame.showCard("JAVASOURCEFILEVIEWERPANEL");
 		}
 	}
 	
