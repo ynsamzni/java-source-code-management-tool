@@ -19,8 +19,8 @@ import java_source_code_management_tool.controller.NavigationController;
 public class HomePanel extends JPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
-	private JButton buttonDisplayFile;
-	private JButton buttonReferenceFile;
+	private JButton buttonDisplayJavaSourceFile;
+	private JButton buttonManageVersions;
 	private JavaSourceFileController javaSourceFileController;
 	private NavigationController navigationController;
 	
@@ -34,19 +34,19 @@ public class HomePanel extends JPanel implements ActionListener
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// Create and configure components
-		buttonDisplayFile = new JButton("Display a Java source file");
-		buttonDisplayFile.setAlignmentX(CENTER_ALIGNMENT);
-		buttonDisplayFile.addActionListener(this);
+		buttonDisplayJavaSourceFile = new JButton("Display a Java source file");
+		buttonDisplayJavaSourceFile.setAlignmentX(CENTER_ALIGNMENT);
+		buttonDisplayJavaSourceFile.addActionListener(this);
 		
-		buttonReferenceFile = new JButton("Manage Java source file versions");
-		buttonReferenceFile.setAlignmentX(CENTER_ALIGNMENT);
-		buttonReferenceFile.addActionListener(this);
+		buttonManageVersions = new JButton("Manage Java source file versions");
+		buttonManageVersions.setAlignmentX(CENTER_ALIGNMENT);
+		buttonManageVersions.addActionListener(this);
 
 		// Attach components to JPanel
 		this.add(Box.createVerticalGlue());
-		this.add(buttonDisplayFile);
+		this.add(buttonDisplayJavaSourceFile);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
-		this.add(buttonReferenceFile);
+		this.add(buttonManageVersions);
 		this.add(Box.createVerticalGlue());			
 	}
 	
@@ -54,11 +54,11 @@ public class HomePanel extends JPanel implements ActionListener
 	{		
 		try
 		{
-			if(ae.getSource() == buttonReferenceFile)
+			if(ae.getSource() == buttonManageVersions)
 			{
-				javaSourceFileController.manageVersionActionPerformed();
+				javaSourceFileController.manageVersionsActionPerformed();
 			}
-			else if(ae.getSource() == buttonDisplayFile)
+			else if(ae.getSource() == buttonDisplayJavaSourceFile)
 			{
 				navigationController.goJavaSourceFileSelectorActionPerformed();
 			}

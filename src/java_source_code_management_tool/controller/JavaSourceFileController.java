@@ -29,7 +29,7 @@ public class JavaSourceFileController
 		this.mainFrame = mainFrame;
 	}
 	
-	public void manageVersionActionPerformed()
+	public void manageVersionsActionPerformed()
 	{
 		String selectedPathFs;
 		
