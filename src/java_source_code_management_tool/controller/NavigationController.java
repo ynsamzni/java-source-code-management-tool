@@ -56,7 +56,7 @@ public class NavigationController
 			mainFrame.showCard("HOMEPANEL");
 		
 		// Clear if required
-		if(getPreviousVisibleCardName().contains("VERSIONMANAGEMENTPANEL"))
+		if(getPreviousVisibleCardName().equals("VERSIONMANAGEMENTPANEL"))
 			mainFrame.getVersionManagementPanel().clearNewVersionPanel();
 			
 	}
