@@ -70,10 +70,10 @@ public class JavaSourceFileSelectorPanel extends JPanel implements ActionListene
 		listDbJavaSourceFiles = new JList<String>(listModel);
 		listDbJavaSourceFiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-	    scrollPane = new JScrollPane(listDbJavaSourceFiles);
-	    
-	    buttonSelectFromDb = new JButton("Select remote Java source file");
-	    buttonSelectFromDb.setAlignmentX(CENTER_ALIGNMENT);
+		scrollPane = new JScrollPane(listDbJavaSourceFiles);
+		
+		buttonSelectFromDb = new JButton("Select remote Java source file");
+		buttonSelectFromDb.setAlignmentX(CENTER_ALIGNMENT);
 		buttonSelectFromDb.addActionListener(this);
 		
 		buttonSelectFromFs = new JButton("Select local Java source file");
