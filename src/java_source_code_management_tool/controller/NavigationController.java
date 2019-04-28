@@ -37,7 +37,7 @@ public class NavigationController
 	public void goJavaSourceFileSelectorActionPerformed()
 	{
 		// Refresh list of Java source file available on database
-		mainFrame.getJavaSourceFileSelectionPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());
+		mainFrame.getJavaSourceFileSelectorPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());
 		
 		// Display card
 		mainFrame.showCard("JAVASOURCEFILESELECTORPANEL");

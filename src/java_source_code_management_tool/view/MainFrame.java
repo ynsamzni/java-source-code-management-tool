@@ -24,7 +24,7 @@ public class MainFrame extends JFrame
 	private HomePanel homePanel;
 	private VersionManagementPanel versionManagementPanel;
 	private JavaSourceFileViewerPanel javaSourceFileViewerPanel;
-	private JavaSourceFileSelectorPanel javaSourceFileSelectionPanel;
+	private JavaSourceFileSelectorPanel javaSourceFileSelectorPanel;
 	private NavigationController navigationController;
 
 	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController)
@@ -46,12 +46,12 @@ public class MainFrame extends JFrame
 		homePanel = new HomePanel(javaSourceFileController, navigationController);
 		versionManagementPanel = new VersionManagementPanel(javaSourceFileService, javaSourceFileController, navigationController);
 		javaSourceFileViewerPanel = new JavaSourceFileViewerPanel(javaSourceFileService, navigationController);
-		javaSourceFileSelectionPanel = new JavaSourceFileSelectorPanel(javaSourceFileController, navigationController, javaSourceFileService);
+		javaSourceFileSelectorPanel = new JavaSourceFileSelectorPanel(javaSourceFileController, navigationController, javaSourceFileService);
 		
 		// Attach JPanels to the container
 		container.add(loginPanel, "LOGINPANEL");
 		container.add(homePanel, "HOMEPANEL");
-		container.add(javaSourceFileSelectionPanel, "JAVASOURCEFILESELECTORPANEL");
+		container.add(javaSourceFileSelectorPanel, "JAVASOURCEFILESELECTORPANEL");
 		container.add(versionManagementPanel, "VERSIONMANAGEMENTPANEL");
 		container.add(javaSourceFileViewerPanel, "JAVASOURCEFILEVIEWERPANEL");
 		
@@ -84,9 +84,9 @@ public class MainFrame extends JFrame
 		return versionManagementPanel;
 	}
 	
-	public JavaSourceFileSelectorPanel getJavaSourceFileSelectionPanel()
+	public JavaSourceFileSelectorPanel getJavaSourceFileSelectorPanel()
 	{
-		return javaSourceFileSelectionPanel;
+		return javaSourceFileSelectorPanel;
 	}
 	
 	public void showLoginError()
