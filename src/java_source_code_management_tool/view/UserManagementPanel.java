@@ -62,6 +62,10 @@ public class UserManagementPanel extends JPanel implements ActionListener
 			{
 				navigationController.goHomeActionPerformed();
 			}
+			else if(ae.getSource() == buttonCreateUser)
+			{
+				navigationController.goUserCreationActionPerformed();
+			}
 		} 
 		catch (Exception e)
 		{

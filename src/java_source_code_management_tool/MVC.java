@@ -6,6 +6,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.LoginController;
 import java_source_code_management_tool.controller.NavigationController;
+import java_source_code_management_tool.controller.UserController;
 import java_source_code_management_tool.model.service.JavaSourceFileService;
 import java_source_code_management_tool.model.service.UserService;
 import java_source_code_management_tool.view.MainFrame;
@@ -26,6 +27,7 @@ public class MVC
 		JavaSourceFileController javaSourceFileController = new JavaSourceFileController(javaSourceFileService, userService);
 		LoginController loginController = new LoginController(userService);
 		NavigationController navigationController = new NavigationController(userService, javaSourceFileService);
+		UserController userController = new UserController(userService);
 		
 		// Set system look and feel in views
 		try
@@ -38,11 +40,12 @@ public class MVC
 		}
 		
 		// Instantiate view
-		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, navigationController);	
+		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, navigationController, userController);	
 		
 		// Add views to controllers
 		loginController.setView(view);
 		navigationController.setView(view);
 		javaSourceFileController.setView(view);
+		userController.setView(view);
 	}
 }

@@ -60,6 +60,11 @@ public class NavigationController
 		mainFrame.showCard("USERMANAGEMENTPANEL");
 	}
 	
+	public void goUserCreationActionPerformed()
+	{
+		mainFrame.showCard("USERCREATIONPANEL");
+	}
+	
 	public void goBackActionPerformed()
 	{
 		mainFrame.showCard(getPreviousVisibleCardName());

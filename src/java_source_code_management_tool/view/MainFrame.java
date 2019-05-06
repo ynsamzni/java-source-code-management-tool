@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.LoginController;
 import java_source_code_management_tool.controller.NavigationController;
+import java_source_code_management_tool.controller.UserController;
 import java_source_code_management_tool.model.service.JavaSourceFileService;
 
 /**
@@ -26,9 +27,10 @@ public class MainFrame extends JFrame
 	private JavaSourceFileViewerPanel javaSourceFileViewerPanel;
 	private JavaSourceFileSelectorPanel javaSourceFileSelectorPanel;
 	private UserManagementPanel userManagementPanel;
+	private UserCreationPanel userCreationPanel;
 	private NavigationController navigationController;
 
-	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController)
+	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController, UserController userController)
 	{	
 		// Set controller
 		this.navigationController = navigationController;
@@ -49,6 +51,7 @@ public class MainFrame extends JFrame
 		javaSourceFileViewerPanel = new JavaSourceFileViewerPanel(javaSourceFileService, navigationController);
 		javaSourceFileSelectorPanel = new JavaSourceFileSelectorPanel(javaSourceFileController, navigationController, javaSourceFileService);
 		userManagementPanel = new UserManagementPanel(navigationController);
+		userCreationPanel = new UserCreationPanel(navigationController, userController);
 		
 		// Attach JPanels to the container
 		container.add(loginPanel, "LOGINPANEL");
@@ -57,6 +60,7 @@ public class MainFrame extends JFrame
 		container.add(versionManagementPanel, "VERSIONMANAGEMENTPANEL");
 		container.add(javaSourceFileViewerPanel, "JAVASOURCEFILEVIEWERPANEL");
 		container.add(userManagementPanel, "USERMANAGEMENTPANEL");
+		container.add(userCreationPanel, "USERCREATIONPANEL");
 		
 		// Show frame
 		this.setVisible(true);
