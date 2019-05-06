@@ -31,16 +31,33 @@ public class NavigationController
 	
 	public void navigateActionPerformed(String cardName)
 	{
+		// Update navigation history
 		navHistory.add(cardName);
+		
+		// Perform card start actions
+		if(cardName.equals("HOMEPANEL"))
+		{
+			// Display user accessible areas
+			if(userService.getCurrentUser().getAccessLevel() == 0)
+				mainFrame.getHomePanel().hideAdminArea();
+			else
+				mainFrame.getHomePanel().showAdminArea();
+		}
+		else if(cardName.equals("JAVASOURCEFILESELECTORPANEL"))
+		{
+			// Display list of Java source file available on database
+			mainFrame.getJavaSourceFileSelectorPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());
+		}
 	}
 	
 	public void goJavaSourceFileSelectorActionPerformed()
 	{
-		// Refresh list of Java source file available on database
-		mainFrame.getJavaSourceFileSelectorPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());
-		
-		// Display card
 		mainFrame.showCard("JAVASOURCEFILESELECTORPANEL");
+	}
+	
+	public void goUserManagementActionPerformed()
+	{
+		mainFrame.showCard("USERMANAGEMENTPANEL");
 	}
 	
 	public void goBackActionPerformed()
@@ -50,15 +67,11 @@ public class NavigationController
 	
 	public void goHomeActionPerformed()
 	{
-		if(userService.getCurrentUser().getAccessLevel() == 0)
-			mainFrame.showCard("HOMEPANEL");
-		else
-			mainFrame.showCard("HOMEPANEL");
+		mainFrame.showCard("HOMEPANEL");
 		
-		// Clear if required
+		// Clear previous card if required
 		if(getPreviousVisibleCardName().equals("VERSIONMANAGEMENTPANEL"))
 			mainFrame.getVersionManagementPanel().clearNewVersionPanel();
-			
 	}
 	
 	public void addTextFieldDescriptionActionPerformed()

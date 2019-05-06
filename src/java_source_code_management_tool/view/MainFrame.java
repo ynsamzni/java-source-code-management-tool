@@ -25,6 +25,7 @@ public class MainFrame extends JFrame
 	private VersionManagementPanel versionManagementPanel;
 	private JavaSourceFileViewerPanel javaSourceFileViewerPanel;
 	private JavaSourceFileSelectorPanel javaSourceFileSelectorPanel;
+	private UserManagementPanel userManagementPanel;
 	private NavigationController navigationController;
 
 	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController)
@@ -47,6 +48,7 @@ public class MainFrame extends JFrame
 		versionManagementPanel = new VersionManagementPanel(javaSourceFileService, javaSourceFileController, navigationController);
 		javaSourceFileViewerPanel = new JavaSourceFileViewerPanel(javaSourceFileService, navigationController);
 		javaSourceFileSelectorPanel = new JavaSourceFileSelectorPanel(javaSourceFileController, navigationController, javaSourceFileService);
+		userManagementPanel = new UserManagementPanel(navigationController);
 		
 		// Attach JPanels to the container
 		container.add(loginPanel, "LOGINPANEL");
@@ -54,6 +56,7 @@ public class MainFrame extends JFrame
 		container.add(javaSourceFileSelectorPanel, "JAVASOURCEFILESELECTORPANEL");
 		container.add(versionManagementPanel, "VERSIONMANAGEMENTPANEL");
 		container.add(javaSourceFileViewerPanel, "JAVASOURCEFILEVIEWERPANEL");
+		container.add(userManagementPanel, "USERMANAGEMENTPANEL");
 		
 		// Show frame
 		this.setVisible(true);
