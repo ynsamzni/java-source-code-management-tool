@@ -3,6 +3,7 @@ package java_source_code_management_tool.view;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.FileDialog;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -105,6 +106,11 @@ public class MainFrame extends JFrame
 		return userDeletionPanel;
 	}
 	
+	public void exit()
+	{
+		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+	}
+	
 	public void showLoginError()
 	{
 		JOptionPane.showMessageDialog(this, "Incorrect username or password. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -123,6 +129,17 @@ public class MainFrame extends JFrame
 	public void showIncorrectDescriptionError()
 	{
 		JOptionPane.showMessageDialog(this, "Incorrect description. Try again.\nMaximum 300 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public boolean showCurrentUserDeletionWarning()
+	{
+		boolean userChoice = false;
+		Object[] options = {"Delete and exit", "Cancel"};
+
+		if(JOptionPane.showOptionDialog(this, "Are you sure you want to delete the user you are currently being logged in?\nIf you choose to, the application will then exit.", "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION)
+			userChoice = true;
+		
+		return userChoice;
 	}
 	
 	public String showFileDialog()

@@ -35,6 +35,23 @@ public class UserController
 	
 	public void deleteUserActionPerformed(String username)
 	{
-		userService.deleteUser(username);
+		// If the current user is the one being deleted
+		if(username.equals(userService.getCurrentUser().getUsername()))
+		{
+			// Warn the user
+			if(mainFrame.showCurrentUserDeletionWarning())
+			{
+				// Delete user
+				userService.deleteUser(username);
+				
+				// Exit app
+				mainFrame.exit();
+			}
+		}
+		else
+		{
+			// Delete user
+			userService.deleteUser(username);
+		}
 	}
 }
