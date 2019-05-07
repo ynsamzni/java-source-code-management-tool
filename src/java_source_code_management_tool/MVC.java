@@ -40,7 +40,7 @@ public class MVC
 		}
 		
 		// Instantiate view
-		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, navigationController, userController);	
+		MainFrame view = new MainFrame(javaSourceFileService, javaSourceFileController, loginController, navigationController, userService, userController);
 		
 		// Add views to controllers
 		loginController.setView(view);

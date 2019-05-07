@@ -12,6 +12,7 @@ import java_source_code_management_tool.controller.LoginController;
 import java_source_code_management_tool.controller.NavigationController;
 import java_source_code_management_tool.controller.UserController;
 import java_source_code_management_tool.model.service.JavaSourceFileService;
+import java_source_code_management_tool.model.service.UserService;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
@@ -28,9 +29,10 @@ public class MainFrame extends JFrame
 	private JavaSourceFileSelectorPanel javaSourceFileSelectorPanel;
 	private UserManagementPanel userManagementPanel;
 	private UserCreationPanel userCreationPanel;
+	private UserDeletionPanel userDeletionPanel;
 	private NavigationController navigationController;
 
-	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController, UserController userController)
+	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController, UserService userService, UserController userController)
 	{	
 		// Set controller
 		this.navigationController = navigationController;
@@ -52,6 +54,7 @@ public class MainFrame extends JFrame
 		javaSourceFileSelectorPanel = new JavaSourceFileSelectorPanel(javaSourceFileController, navigationController, javaSourceFileService);
 		userManagementPanel = new UserManagementPanel(navigationController);
 		userCreationPanel = new UserCreationPanel(navigationController, userController);
+		userDeletionPanel = new UserDeletionPanel(navigationController, userController, userService);
 		
 		// Attach JPanels to the container
 		container.add(loginPanel, "LOGINPANEL");
@@ -61,6 +64,7 @@ public class MainFrame extends JFrame
 		container.add(javaSourceFileViewerPanel, "JAVASOURCEFILEVIEWERPANEL");
 		container.add(userManagementPanel, "USERMANAGEMENTPANEL");
 		container.add(userCreationPanel, "USERCREATIONPANEL");
+		container.add(userDeletionPanel, "USERDELETIONPANEL");
 		
 		// Show frame
 		this.setVisible(true);
@@ -94,6 +98,11 @@ public class MainFrame extends JFrame
 	public JavaSourceFileSelectorPanel getJavaSourceFileSelectorPanel()
 	{
 		return javaSourceFileSelectorPanel;
+	}
+	
+	public UserDeletionPanel getUserDeletionPanel()
+	{
+		return userDeletionPanel;
 	}
 	
 	public void showLoginError()

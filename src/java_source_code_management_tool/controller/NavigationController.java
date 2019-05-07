@@ -48,6 +48,11 @@ public class NavigationController
 			// Display list of Java source file available on database
 			mainFrame.getJavaSourceFileSelectorPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());
 		}
+		else if(cardName.equals("USERDELETIONPANEL"))
+		{
+			// Display list of users available on database
+			mainFrame.getUserDeletionPanel().showListDbUserUsernames(userService.getListUserUsernames());
+		}
 	}
 	
 	public void goJavaSourceFileSelectorActionPerformed()
@@ -63,6 +68,11 @@ public class NavigationController
 	public void goUserCreationActionPerformed()
 	{
 		mainFrame.showCard("USERCREATIONPANEL");
+	}
+	
+	public void goUserDeletionActionPerformed()
+	{
+		mainFrame.showCard("USERDELETIONPANEL");
 	}
 	
 	public void goBackActionPerformed()

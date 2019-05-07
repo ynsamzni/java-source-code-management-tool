@@ -66,6 +66,10 @@ public class UserManagementPanel extends JPanel implements ActionListener
 			{
 				navigationController.goUserCreationActionPerformed();
 			}
+			else if(ae.getSource() == buttonDeleteUser)
+			{
+				navigationController.goUserDeletionActionPerformed();
+			}
 		} 
 		catch (Exception e)
 		{

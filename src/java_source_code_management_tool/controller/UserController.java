@@ -32,4 +32,9 @@ public class UserController
 		// Save created data
 		userService.addUser(new User(username, new String(password), accessLevel));
 	}
+	
+	public void deleteUserActionPerformed(String username)
+	{
+		userService.deleteUser(username);
+	}
 }

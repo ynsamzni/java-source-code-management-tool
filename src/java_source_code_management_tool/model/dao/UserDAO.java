@@ -48,6 +48,30 @@ public class UserDAO
 		}
 	}
 	
+	public void deleteUser(String username)
+	{
+		PreparedStatement ps = null;
+		
+		try
+		{
+			// Prepare the SQL query
+			ps = con.prepareStatement("DELETE FROM user_usr WHERE usr_username = ?");
+			ps.setString(1, username);
+			
+			// Execute the SQL query
+			ps.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			// Close the preparedStatement
+			DBHelper.close(ps);
+		}
+	}
+	
 	public User getUser(String username, String password)
 	{
 		User user = null;
@@ -88,27 +112,23 @@ public class UserDAO
 		return user;
 	}
 	
-	public ArrayList<User> getListUsers()
+	public ArrayList<String> getListUserUsernames()
 	{
-		ArrayList<User> users = new ArrayList<User>();
+		ArrayList<String> userUsernames = new ArrayList<String>();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
 		try
 		{
 			// Prepare the SQL query
-			ps = con.prepareStatement("SELECT * FROM user_usr");
+			ps = con.prepareStatement("SELECT usr_username FROM user_usr");
 			
 			// Execute the SQL query
 			rs = ps.executeQuery();
 			
 			// Get the list of users
 			while(rs.next())
-				users.add(new User(
-						rs.getString("usr_username"),
-						rs.getString("usr_password"),
-						rs.getInt("usr_access_level")
-						));
+				userUsernames.add(rs.getString("usr_username"));
 		}
 		catch(SQLException e)
 		{
@@ -123,6 +143,6 @@ public class UserDAO
 			DBHelper.close(ps);
 		}
 		
-		return users;
+		return userUsernames;
 	}
 }

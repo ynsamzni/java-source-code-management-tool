@@ -1,5 +1,7 @@
 package java_source_code_management_tool.model.service;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -16,6 +18,17 @@ public class UserService
 {
 	private UserDAO userDAO;
 	private User currentUser;
+	private PropertyChangeSupport propertyChangeSupport;
+	
+	public UserService()
+	{
+		propertyChangeSupport = new PropertyChangeSupport(this);
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener)
+	{
+		propertyChangeSupport.addPropertyChangeListener(listener);
+	}
 	
 	public User getCurrentUser()
 	{
@@ -42,6 +55,31 @@ public class UserService
 			// Close the connection
 			DBHelper.close(con);
 		}
+	}
+	
+	public void deleteUser(String username)
+	{
+		Connection con = null;
+		
+		try
+		{
+			// Connect to the database
+			con = ConnectionFactory.getConnection();
+			
+			// Initialize DAO
+			userDAO = new UserDAO(con);
+			
+			// Delete user
+			userDAO.deleteUser(username);
+		}
+		finally
+		{
+			// Close the connection
+			DBHelper.close(con);
+		}
+		
+		// Notify view about the change
+		propertyChangeSupport.firePropertyChange("DELETEDUSER", username, null);
 	}
 	
 	public boolean loadUser(String username, String password)
@@ -79,28 +117,23 @@ public class UserService
 		return userExists;
 	}
 	
-	public ArrayList<User> getListUsers()
+	public ArrayList<String> getListUserUsernames()
 	{
 		Connection con = null;
-		ArrayList<User> users = new ArrayList<User>();
+		ArrayList<String> userUsernames = new ArrayList<String>();
 		
-		try
-		{
-			// Connect to the database
-			con = ConnectionFactory.getConnection();
-			
-			// Initialize DAO
-			userDAO = new UserDAO(con);
-			
-			// Get the list of users
-			users = userDAO.getListUsers();
-		}
-		finally
-		{
-			// Close the connection
-			DBHelper.close(con);
-		}
+		// Connect to the database
+		con = ConnectionFactory.getConnection();
 		
-		return users;
+		// Initialize DAO
+		userDAO = new UserDAO(con);
+		
+		// Get list of user usernames stored on database
+		userUsernames = userDAO.getListUserUsernames();
+
+		// Close the connection
+		DBHelper.close(con);
+		
+		return userUsernames;
 	}
 }
