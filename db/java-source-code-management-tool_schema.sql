@@ -63,10 +63,10 @@ CREATE TABLE version_ver (
   ver_build_number NUMBER(4), 
   ver_date DATE CONSTRAINT ver_date_nn NOT NULL,
   ver_jsf_id NUMBER(4) CONSTRAINT ver_jsf_id_nn NOT NULL,
-  ver_usr_id NUMBER(4) CONSTRAINT ver_usr_id_nn NOT NULL,
+  ver_usr_id NUMBER(4),
   CONSTRAINT ver_pk PRIMARY KEY(ver_id),
   CONSTRAINT ver_jsf_id_fk FOREIGN KEY(ver_jsf_id) REFERENCES javasourcefile_jsf(jsf_id),
-  CONSTRAINT ver_usr_id_fk FOREIGN KEY(ver_usr_id) REFERENCES user_usr(usr_id),
+  CONSTRAINT ver_usr_id_fk FOREIGN KEY(ver_usr_id) REFERENCES user_usr(usr_id) ON DELETE SET NULL,
   CONSTRAINT ver_numbers_and_ver_jsf_id_un UNIQUE(ver_major_number, ver_minor_number, ver_revision_number, ver_build_number, ver_jsf_id)
 );
 

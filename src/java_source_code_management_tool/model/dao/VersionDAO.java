@@ -80,7 +80,7 @@ public class VersionDAO
 		try
 		{			
 			// Prepare the SQL query
-			ps = con.prepareStatement("SELECT ver_major_number, ver_minor_number, ver_revision_number, ver_build_number, usr_username, ver_date FROM version_ver JOIN user_usr ON (ver_usr_id = usr_id) JOIN javasourcefile_jsf ON (ver_jsf_id = jsf_id) WHERE jsf_path_fs = ?");
+			ps = con.prepareStatement("SELECT ver_major_number, ver_minor_number, ver_revision_number, ver_build_number, usr_username, ver_date FROM version_ver LEFT OUTER JOIN user_usr ON (ver_usr_id = usr_id) JOIN javasourcefile_jsf ON (ver_jsf_id = jsf_id) WHERE jsf_path_fs = ?");
 			ps.setString(1, pathFs);
 			
 			// Execute the SQL query
