@@ -112,6 +112,9 @@ public class UserService
 			
 			// Save user locally
 			currentUser = user;
+			
+			// Notify view about the change
+			propertyChangeSupport.firePropertyChange("NEWLOGGEDINUSER", null, user);
 		}
 		
 		return userExists;

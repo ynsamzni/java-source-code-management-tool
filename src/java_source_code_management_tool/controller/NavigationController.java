@@ -35,15 +35,7 @@ public class NavigationController
 		navHistory.add(cardName);
 		
 		// Perform card start actions
-		if(cardName.equals("HOMEPANEL"))
-		{
-			// Display user accessible areas
-			if(userService.getCurrentUser().getAccessLevel() == 0)
-				mainFrame.getHomePanel().hideAdminArea();
-			else
-				mainFrame.getHomePanel().showAdminArea();
-		}
-		else if(cardName.equals("JAVASOURCEFILESELECTORPANEL"))
+		if(cardName.equals("JAVASOURCEFILESELECTORPANEL"))
 		{
 			// Display list of Java source file available on database
 			mainFrame.getJavaSourceFileSelectorPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());

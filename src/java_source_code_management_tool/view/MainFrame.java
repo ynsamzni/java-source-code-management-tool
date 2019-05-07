@@ -48,7 +48,7 @@ public class MainFrame extends JFrame
 		
 		// Create JPanels
 		loginPanel = new LoginPanel(loginController);
-		homePanel = new HomePanel(javaSourceFileController, navigationController);
+		homePanel = new HomePanel(javaSourceFileController, navigationController, userService);
 		versionManagementPanel = new VersionManagementPanel(javaSourceFileService, javaSourceFileController, navigationController);
 		javaSourceFileViewerPanel = new JavaSourceFileViewerPanel(javaSourceFileService, navigationController);
 		javaSourceFileSelectorPanel = new JavaSourceFileSelectorPanel(javaSourceFileController, navigationController, javaSourceFileService);

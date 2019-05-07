@@ -3,6 +3,8 @@ package java_source_code_management_tool.view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -11,12 +13,14 @@ import javax.swing.JPanel;
 
 import java_source_code_management_tool.controller.JavaSourceFileController;
 import java_source_code_management_tool.controller.NavigationController;
+import java_source_code_management_tool.model.dto.User;
+import java_source_code_management_tool.model.service.UserService;
 
 /**
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
-public class HomePanel extends JPanel implements ActionListener
+public class HomePanel extends JPanel implements ActionListener, PropertyChangeListener
 {
 	private static final long serialVersionUID = 1L;
 	private JButton buttonDisplayJavaSourceFile;
@@ -25,11 +29,14 @@ public class HomePanel extends JPanel implements ActionListener
 	private JavaSourceFileController javaSourceFileController;
 	private NavigationController navigationController;
 	
-	public HomePanel(JavaSourceFileController javaSourceFileController, NavigationController navigationController)
+	public HomePanel(JavaSourceFileController javaSourceFileController, NavigationController navigationController, UserService userService)
 	{
 		// Set controllers
 		this.javaSourceFileController = javaSourceFileController;
 		this.navigationController = navigationController;
+		
+		// Add model listener
+		userService.addPropertyChangeListener(this);
 		
 		// Configure JPanel
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -77,6 +84,18 @@ public class HomePanel extends JPanel implements ActionListener
 		catch (Exception e)
 		{
 			e.printStackTrace();
+		}
+	}
+	
+	public void propertyChange(PropertyChangeEvent pce)
+	{
+		if(pce.getPropertyName().equals("NEWLOGGEDINUSER"))
+		{
+			// Display user accessible areas
+			if(((User) pce.getNewValue()).getAccessLevel() == 0)
+				hideAdminArea();
+			else
+				showAdminArea();
 		}
 	}
 	
