@@ -3,6 +3,7 @@ package java_source_code_management_tool.view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -113,5 +114,20 @@ public class UserCreationPanel extends JPanel implements ActionListener
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	public void clear()
+	{
+		// Clear text fields
+		textFieldUsername.setText("");
+		clearPasswordField();
+		
+		// Set checkbox default state
+		checkBoxIsAdmin.setSelected(false);
+	}
+	
+	public void clearPasswordField()
+	{
+		passwordField.setText("");
 	}
 }

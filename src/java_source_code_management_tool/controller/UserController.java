@@ -22,15 +22,56 @@ public class UserController
 	public void createUserActionPerformed(String username, char[] password, boolean isAdmin)
 	{
 		int accessLevel;
+		boolean validUsername, validPassword, uniqueUsername;
 		
-		// Convert view user data for the model
-		if(isAdmin)
-			accessLevel = 1;
-		else
-			accessLevel = 0;
+		// Check if username is valid (length)
+		validUsername = false;
+		if(username.length() > 0 && username.length() < 21)
+			validUsername = true;
 		
-		// Save created data
-		userService.addUser(new User(username, new String(password), accessLevel));
+		// Check if username is unique
+		uniqueUsername = true;
+		for(int i=0; i<userService.getListUserUsernames().size(); i++)
+		{
+			if(username.equals(userService.getListUserUsernames().get(i)))
+				uniqueUsername = false;
+		}
+		
+		// Check if password is valid (length)
+		validPassword = false;
+		if(password.length > 0 && password.length < 101)
+			validPassword = true;
+		
+		// If all checks passed
+		if(validUsername && validPassword && uniqueUsername)
+		{
+			// Convert view user input for the model
+			if(isAdmin)
+				accessLevel = 1;
+			else
+				accessLevel = 0;
+					
+			// Save created data
+			userService.addUser(new User(username, new String(password), accessLevel));
+			
+			// Show success message
+			mainFrame.showUserCreationSuccessInformation();
+			
+			// Clear view from user input
+			mainFrame.getUserCreationPanel().clear();
+		}
+		else if(!validUsername)
+		{
+			mainFrame.showIncorrectUsernameError();
+		}
+		else if(!uniqueUsername)
+		{
+			mainFrame.showDuplicateUsernameError();
+		}
+		else if(!validPassword)
+		{
+			mainFrame.showIncorrectPasswordError();
+		}
 	}
 	
 	public void deleteUserActionPerformed(String username)

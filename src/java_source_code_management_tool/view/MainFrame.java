@@ -106,6 +106,11 @@ public class MainFrame extends JFrame
 		return userDeletionPanel;
 	}
 	
+	public UserCreationPanel getUserCreationPanel()
+	{
+		return userCreationPanel;
+	}
+	
 	public void exit()
 	{
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
@@ -131,6 +136,21 @@ public class MainFrame extends JFrame
 		JOptionPane.showMessageDialog(this, "Incorrect description. Try again.\nMaximum 300 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	public void showIncorrectUsernameError()
+	{
+		JOptionPane.showMessageDialog(this, "Incorrect username. Try again.\nBetween 1-20 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void showDuplicateUsernameError()
+	{
+		JOptionPane.showMessageDialog(this, "Duplicate username. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void showIncorrectPasswordError()
+	{
+		JOptionPane.showMessageDialog(this, "Incorrect password. Try again.\nBetween 1-100 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
 	public boolean showCurrentUserDeletionWarning()
 	{
 		boolean userChoice = false;
@@ -140,6 +160,11 @@ public class MainFrame extends JFrame
 			userChoice = true;
 		
 		return userChoice;
+	}
+	
+	public void showUserCreationSuccessInformation()
+	{
+		JOptionPane.showMessageDialog(this, "User successfully created.");
 	}
 	
 	public String showFileDialog()
