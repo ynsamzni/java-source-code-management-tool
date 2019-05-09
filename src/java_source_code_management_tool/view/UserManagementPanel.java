@@ -20,6 +20,7 @@ public class UserManagementPanel extends JPanel implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private JButton buttonCreateUser;
 	private JButton buttonDeleteUser;
+	private JButton buttonUserHistory;
 	private JButton buttonHome;
 	private NavigationController navigationController;
 	
@@ -40,6 +41,10 @@ public class UserManagementPanel extends JPanel implements ActionListener
 		buttonDeleteUser.setAlignmentX(CENTER_ALIGNMENT);
 		buttonDeleteUser.addActionListener(this);
 		
+		buttonUserHistory = new JButton("History of an existing user");
+		buttonUserHistory.setAlignmentX(CENTER_ALIGNMENT);
+		buttonUserHistory.addActionListener(this);
+		
 		buttonHome = new JButton("Return to home page");
 		buttonHome.setAlignmentX(CENTER_ALIGNMENT);
 		buttonHome.addActionListener(this);
@@ -49,6 +54,8 @@ public class UserManagementPanel extends JPanel implements ActionListener
 		this.add(buttonCreateUser);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
 		this.add(buttonDeleteUser);
+		this.add(Box.createRigidArea(new Dimension(0, 20)));
+		this.add(buttonUserHistory);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
 		this.add(buttonHome);
 		this.add(Box.createVerticalGlue());			
@@ -69,6 +76,10 @@ public class UserManagementPanel extends JPanel implements ActionListener
 			else if(ae.getSource() == buttonDeleteUser)
 			{
 				navigationController.goUserDeletionActionPerformed();
+			}
+			else if(ae.getSource() == buttonUserHistory)
+			{
+				navigationController.goUserHistoryActionPerformed();
 			}
 		} 
 		catch (Exception e)

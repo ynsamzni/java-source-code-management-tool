@@ -95,4 +95,13 @@ public class UserController
 			userService.deleteUser(username);
 		}
 	}
+	
+	public void selectUserForHistoryActionPerformed(String username)
+	{
+		// Clear currently displayed user history
+		mainFrame.getUserHistoryPanel().clearUserHistoryPanel();
+		
+		// Display newly selected user history
+		mainFrame.getUserHistoryPanel().showUserHistory(userService.getUserHistory(username));
+	}
 }

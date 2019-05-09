@@ -31,6 +31,7 @@ public class MainFrame extends JFrame
 	private UserManagementPanel userManagementPanel;
 	private UserCreationPanel userCreationPanel;
 	private UserDeletionPanel userDeletionPanel;
+	private UserHistoryPanel userHistoryPanel;
 	private NavigationController navigationController;
 
 	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController, UserService userService, UserController userController)
@@ -56,6 +57,7 @@ public class MainFrame extends JFrame
 		userManagementPanel = new UserManagementPanel(navigationController);
 		userCreationPanel = new UserCreationPanel(navigationController, userController);
 		userDeletionPanel = new UserDeletionPanel(navigationController, userController, userService);
+		userHistoryPanel = new UserHistoryPanel(navigationController, userController);
 		
 		// Attach JPanels to the container
 		container.add(loginPanel, "LOGINPANEL");
@@ -66,6 +68,7 @@ public class MainFrame extends JFrame
 		container.add(userManagementPanel, "USERMANAGEMENTPANEL");
 		container.add(userCreationPanel, "USERCREATIONPANEL");
 		container.add(userDeletionPanel, "USERDELETIONPANEL");
+		container.add(userHistoryPanel, "USERHISTORYPANEL");
 		
 		// Show frame
 		this.setVisible(true);
@@ -109,6 +112,11 @@ public class MainFrame extends JFrame
 	public UserCreationPanel getUserCreationPanel()
 	{
 		return userCreationPanel;
+	}
+	
+	public UserHistoryPanel getUserHistoryPanel()
+	{
+		return userHistoryPanel;
 	}
 	
 	public void exit()

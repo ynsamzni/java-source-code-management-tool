@@ -61,6 +61,14 @@ public class NavigationController
 		mainFrame.getUserDeletionPanel().showListDbUserUsernames(userService.getListUserUsernames());
 	}
 	
+	public void goUserHistoryActionPerformed()
+	{
+		mainFrame.showCard("USERHISTORYPANEL");
+		
+		// Display list of users available on database
+		mainFrame.getUserHistoryPanel().showListDbUserUsernames(userService.getListUserUsernames());
+	}
+	
 	public void goBackActionPerformed()
 	{
 		mainFrame.showCard(getPreviousVisibleCardName());

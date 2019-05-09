@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import java_source_code_management_tool.model.dao.UserDAO;
+import java_source_code_management_tool.model.dao.UserHistoryDAO;
 import java_source_code_management_tool.model.dto.User;
+import java_source_code_management_tool.model.dto.UserHistory;
 import java_source_code_management_tool.util.ConnectionFactory;
 import java_source_code_management_tool.util.DBHelper;
 
@@ -17,6 +19,7 @@ import java_source_code_management_tool.util.DBHelper;
 public class UserService
 {
 	private UserDAO userDAO;
+	private UserHistoryDAO userHistoryDAO;
 	private User currentUser;
 	private PropertyChangeSupport propertyChangeSupport;
 	
@@ -138,5 +141,25 @@ public class UserService
 		DBHelper.close(con);
 		
 		return userUsernames;
+	}
+	
+	public ArrayList<UserHistory> getUserHistory(String username)
+	{
+		Connection con = null;
+		ArrayList<UserHistory> userHistory = new ArrayList<UserHistory>();
+		
+		// Connect to the database
+		con = ConnectionFactory.getConnection();
+		
+		// Initialize DAO
+		userHistoryDAO = new UserHistoryDAO(con);
+		
+		// Get user history from database
+		userHistory = userHistoryDAO.getUserHistory(username);
+
+		// Close the connection
+		DBHelper.close(con);
+		
+		return userHistory;
 	}
 }
