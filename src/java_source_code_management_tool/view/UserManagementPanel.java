@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java_source_code_management_tool.controller.NavigationController;
@@ -22,6 +23,7 @@ public class UserManagementPanel extends JPanel implements ActionListener
 	private JButton buttonDeleteUser;
 	private JButton buttonUserHistory;
 	private JButton buttonHome;
+	private JLabel labelTitle;
 	private NavigationController navigationController;
 	
 	public UserManagementPanel(NavigationController navigationController)
@@ -33,6 +35,10 @@ public class UserManagementPanel extends JPanel implements ActionListener
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// Create and configure components
+		labelTitle = new JLabel("MANAGE USERS");
+		labelTitle.setFont(labelTitle.getFont().deriveFont(32.0f));
+		labelTitle.setAlignmentX(CENTER_ALIGNMENT);
+		
 		buttonCreateUser = new JButton("Create a new user");
 		buttonCreateUser.setAlignmentX(CENTER_ALIGNMENT);
 		buttonCreateUser.addActionListener(this);
@@ -41,7 +47,7 @@ public class UserManagementPanel extends JPanel implements ActionListener
 		buttonDeleteUser.setAlignmentX(CENTER_ALIGNMENT);
 		buttonDeleteUser.addActionListener(this);
 		
-		buttonUserHistory = new JButton("History of an existing user");
+		buttonUserHistory = new JButton("Display an existing user history");
 		buttonUserHistory.setAlignmentX(CENTER_ALIGNMENT);
 		buttonUserHistory.addActionListener(this);
 		
@@ -51,12 +57,14 @@ public class UserManagementPanel extends JPanel implements ActionListener
 
 		// Attach components to JPanel
 		this.add(Box.createVerticalGlue());
+		this.add(labelTitle);
+		this.add(Box.createRigidArea(new Dimension(0, 60)));
 		this.add(buttonCreateUser);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
 		this.add(buttonDeleteUser);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
 		this.add(buttonUserHistory);
-		this.add(Box.createRigidArea(new Dimension(0, 20)));
+		this.add(Box.createRigidArea(new Dimension(0, 70)));
 		this.add(buttonHome);
 		this.add(Box.createVerticalGlue());			
 	}
