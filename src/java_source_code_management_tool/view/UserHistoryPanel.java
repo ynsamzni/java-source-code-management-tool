@@ -116,6 +116,7 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		tableModelUserHistory = new DefaultTableModel();
 		tableModelUserHistory.addColumn("Date");
 		tableModelUserHistory.addColumn("File");
+		tableModelUserHistory.addColumn("Parent path");
 		tableModelUserHistory.addColumn("Added version");
 		
 		JTable tableUserHistory = new JTable(tableModelUserHistory)
@@ -184,7 +185,7 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 	{
 		for(int i=0; i<userHistory.size(); i++)
 		{
-			tableModelUserHistory.addRow(new Object[]{userHistory.get(i).getDate(), userHistory.get(i).getJavaSourceFilePathFs(), userHistory.get(i).getVersion()});
+			tableModelUserHistory.addRow(new Object[]{userHistory.get(i).getDate(), userHistory.get(i).getJavaSourceFilePathFs().getFileName(), userHistory.get(i).getJavaSourceFilePathFs().getParent(), userHistory.get(i).getVersion()});
 		}
 	}
 	

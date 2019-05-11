@@ -1,5 +1,6 @@
 package java_source_code_management_tool.model.dao;
 
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,7 +61,7 @@ public class UserHistoryDAO
 				
 				singleUserHistory.setUsername(username);
 				singleUserHistory.setDate(rs.getTimestamp("ver_date"));
-				singleUserHistory.setJavaSourceFilePathFs(rs.getString("jsf_path_fs"));
+				singleUserHistory.setJavaSourceFilePathFs(Paths.get(rs.getString("jsf_path_fs")));
 				singleUserHistory.setVersion(versionNumber);
 				
 				// Update user history

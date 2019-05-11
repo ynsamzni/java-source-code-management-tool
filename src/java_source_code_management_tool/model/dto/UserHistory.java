@@ -1,5 +1,6 @@
 package java_source_code_management_tool.model.dto;
 
+import java.nio.file.Path;
 import java.sql.Timestamp;
 
 /**
@@ -10,7 +11,7 @@ public class UserHistory
 {
 	private String username;
 	private Timestamp date;
-	private String javaSourceFilePathFs;
+	private Path javaSourceFilePathFs;
 	private String versionNumber;
 	
 	public UserHistory()
@@ -18,7 +19,7 @@ public class UserHistory
 		
 	}
 
-	public UserHistory(String username, Timestamp date, String javaSourceFilePathFs, String versionNumber)
+	public UserHistory(String username, Timestamp date, Path javaSourceFilePathFs, String versionNumber)
 	{
 		this.username = username;
 		this.date = date;
@@ -46,12 +47,12 @@ public class UserHistory
 		this.date = date;
 	}
 	
-	public String getJavaSourceFilePathFs()
+	public Path getJavaSourceFilePathFs()
 	{
 		return javaSourceFilePathFs;
 	}
 	
-	public void setJavaSourceFilePathFs(String javaSourceFilePathFs)
+	public void setJavaSourceFilePathFs(Path javaSourceFilePathFs)
 	{
 		this.javaSourceFilePathFs = javaSourceFilePathFs;
 	}
