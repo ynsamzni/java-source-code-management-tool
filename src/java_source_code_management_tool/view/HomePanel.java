@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java_source_code_management_tool.controller.JavaSourceFileController;
@@ -26,6 +27,7 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 	private JButton buttonDisplayJavaSourceFile;
 	private JButton buttonManageVersions;
 	private JButton buttonManageUsers;
+	private JLabel labelTitle;
 	private JavaSourceFileController javaSourceFileController;
 	private NavigationController navigationController;
 	
@@ -42,6 +44,10 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		
 		// Create and configure components
+		labelTitle = new JLabel("HOME");
+		labelTitle.setFont(labelTitle.getFont().deriveFont(32.0f));
+		labelTitle.setAlignmentX(CENTER_ALIGNMENT);
+		
 		buttonDisplayJavaSourceFile = new JButton("Display a Java source file");
 		buttonDisplayJavaSourceFile.setAlignmentX(CENTER_ALIGNMENT);
 		buttonDisplayJavaSourceFile.addActionListener(this);
@@ -56,6 +62,8 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 
 		// Attach components to JPanel
 		this.add(Box.createVerticalGlue());
+		this.add(labelTitle);
+		this.add(Box.createRigidArea(new Dimension(0, 60)));
 		this.add(buttonDisplayJavaSourceFile);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
 		this.add(buttonManageVersions);
