@@ -72,6 +72,10 @@ public class NavigationController
 	public void goBackActionPerformed()
 	{
 		mainFrame.showCard(getPreviousVisibleCardName());
+		
+		// Clear previous card if required
+		if(getPreviousVisibleCardName().equals("USERCREATIONPANEL"))
+			mainFrame.getUserCreationPanel().clear();
 	}
 	
 	public void goHomeActionPerformed()
@@ -86,6 +90,16 @@ public class NavigationController
 	public void addTextFieldDescriptionActionPerformed()
 	{
 		mainFrame.getVersionManagementPanel().addTextFieldDescription();
+	}
+	
+	public void hideCommentsActionPerformed()
+	{
+		mainFrame.getJavaSourceFileViewerPanel().deleteComments();
+	}
+	
+	public void indentCodeActionPerformed()
+	{
+		mainFrame.getJavaSourceFileViewerPanel().indentCode();
 	}
 	
 	public String getPreviousVisibleCardName()
