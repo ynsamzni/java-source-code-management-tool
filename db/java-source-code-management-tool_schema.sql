@@ -4,8 +4,8 @@
 
 CREATE TABLE user_usr (
   usr_id NUMBER(4),
-  usr_username VARCHAR2(20) CONSTRAINT usr_username_nn NOT NULL,
-  usr_password VARCHAR2(100) CONSTRAINT usr_password_nn NOT NULL,
+  usr_username VARCHAR2(20 CHAR) CONSTRAINT usr_username_nn NOT NULL,
+  usr_password VARCHAR2(100 CHAR) CONSTRAINT usr_password_nn NOT NULL,
   usr_access_level NUMBER(1) CONSTRAINT usr_access_level_nn NOT NULL,
   CONSTRAINT usr_pk PRIMARY KEY(usr_id),
   CONSTRAINT usr_username_un UNIQUE(usr_username)
@@ -90,7 +90,7 @@ END;
 
 CREATE TABLE description_descr (
   descr_id NUMBER(4),
-  descr_description VARCHAR2(300) CONSTRAINT descr_description_nn NOT NULL,
+  descr_description VARCHAR2(300 CHAR) CONSTRAINT descr_description_nn NOT NULL,
   descr_ver_id NUMBER(4) CONSTRAINT descr_ver_id_nn NOT NULL,
   CONSTRAINT descr_pk PRIMARY KEY(descr_id),
   CONSTRAINT descr_ver_id_fk FOREIGN KEY(descr_ver_id) REFERENCES version_ver(ver_id)
