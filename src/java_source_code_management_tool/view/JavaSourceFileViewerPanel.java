@@ -32,6 +32,7 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 	private JMenu menuFile;
 	private JMenuItem menuItemHome;
 	private JMenuItem menuItemOpen;
+	private JMenuItem menuItemVersions;
 	private JMenu menuDisplay;
 	private JCheckBoxMenuItem checkBoxMenuItemDeleteComments;
 	private JCheckBoxMenuItem checkBoxMenuItemIndent;
@@ -72,6 +73,9 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		menuItemOpen = new JMenuItem("Open...");
 		menuItemOpen.addActionListener(this);
 		
+		menuItemVersions = new JMenuItem("Manage versions");
+		menuItemVersions.addActionListener(this);
+		
 		menuItemHome = new JMenuItem("Return to home page");
 		menuItemHome.addActionListener(this);
 		
@@ -86,6 +90,7 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		menuBar.add(menuDisplay);
 		
 		menuFile.add(menuItemOpen);
+		menuFile.add(menuItemVersions);
 		menuFile.add(menuItemHome);
 		
 		menuDisplay.add(checkBoxMenuItemDeleteComments);
@@ -103,6 +108,10 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 			if(ae.getSource() == menuItemOpen)
 			{
 				navigationController.goJavaSourceFileSelectorActionPerformed();
+			}
+			else if(ae.getSource() == menuItemVersions)
+			{
+				navigationController.goVersionManagementActionPerformed();
 			}
 			else if(ae.getSource() == menuItemHome)
 			{

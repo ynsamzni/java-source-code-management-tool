@@ -44,6 +44,11 @@ public class NavigationController
 		mainFrame.getJavaSourceFileSelectorPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());
 	}
 	
+	public void goVersionManagementActionPerformed()
+	{
+		mainFrame.showCard("VERSIONMANAGEMENTPANEL");
+	}
+	
 	public void goUserManagementActionPerformed()
 	{
 		mainFrame.showCard("USERMANAGEMENTPANEL");
