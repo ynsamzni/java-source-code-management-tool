@@ -187,8 +187,8 @@ public class JavaFormatter
 				case '{':
 				case '}':
 					
-					// If not between quotes or not in a comment
-					if(quoteState.equals("NONE") && commentState.equals("NONE"))
+					// If not between quotes or not in a one-line-comment
+					if(quoteState.equals("NONE") && !commentState.equals("ONE_LINE_COMMENT"))
 					{
 						// Make '{' and '}' always appear alone in a line
 						if(nextChar != '\n')
@@ -204,7 +204,7 @@ public class JavaFormatter
 						}
 						
 						// Update number of indents to apply if detecting closing braces
-						if(currentChar == '}')
+						if(currentChar == '}' && nbIndent > 0)
 							nbIndent--;
 						
 						// Apply indentation to current line containing only a brace
@@ -319,7 +319,8 @@ public class JavaFormatter
 				else if((contentSB.indexOf("break;", i) == i) && quoteState.equals("NONE") && commentState.equals("NONE"))
 				{
 					// Update number of indents to apply
-					nbIndent--;
+					if(nbIndent > 0)
+						nbIndent--;
 				}
 				
 				// Conditional statement having no braces indentation
