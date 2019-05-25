@@ -80,17 +80,16 @@ public class NavigationController
 		mainFrame.showCard(getPreviousVisibleCardName());
 		
 		// Clear previous card if required
-		if(getPreviousVisibleCardName().equals("USERCREATIONPANEL"))
+		if(getPreviousVisibleCardName().equals("VERSIONMANAGEMENTPANEL"))
+			mainFrame.getVersionManagementPanel().clearNewVersionPanel();
+		
+		else if(getPreviousVisibleCardName().equals("USERCREATIONPANEL"))
 			mainFrame.getUserCreationPanel().clear();
 	}
 	
 	public void goHomeActionPerformed()
 	{
 		mainFrame.showCard("HOMEPANEL");
-		
-		// Clear previous card if required
-		if(getPreviousVisibleCardName().equals("VERSIONMANAGEMENTPANEL"))
-			mainFrame.getVersionManagementPanel().clearNewVersionPanel();
 	}
 	
 	public void addTextFieldDescriptionActionPerformed()
