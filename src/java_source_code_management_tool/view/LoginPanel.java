@@ -82,6 +82,11 @@ public class LoginPanel extends JPanel implements ActionListener
 		}
 	}
 	
+	public void clearUsernameField()
+	{
+		textFieldUsername.setText("");
+	}
+	
 	public void clearPasswordField()
 	{
 		passwordField.setText("");

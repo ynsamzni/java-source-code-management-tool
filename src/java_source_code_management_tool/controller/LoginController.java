@@ -25,11 +25,20 @@ public class LoginController
 	public void loginActionPerformed(String username, char[] password)
 	{
 		if(userService.loadUser(username, new String(password)))
+		{
 			mainFrame.showCard("HOMEPANEL");
+			mainFrame.getLoginPanel().clearUsernameField();
+		}
 		else
 			mainFrame.showLoginError();
 		
 		// Clear password field
 		mainFrame.getLoginPanel().clearPasswordField();
+	}
+	
+	public void logoutActionPerformed()
+	{
+		mainFrame.showCard("LOGINPANEL");
+		userService.unloadUser();
 	}
 }

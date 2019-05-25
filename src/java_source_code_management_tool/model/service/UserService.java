@@ -123,6 +123,11 @@ public class UserService
 		return userExists;
 	}
 	
+	public void unloadUser()
+	{
+		currentUser = null;
+	}
+	
 	public ArrayList<String> getListUserUsernames()
 	{
 		Connection con = null;

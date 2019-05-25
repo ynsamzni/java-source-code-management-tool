@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java_source_code_management_tool.controller.JavaSourceFileController;
+import java_source_code_management_tool.controller.LoginController;
 import java_source_code_management_tool.controller.NavigationController;
 import java_source_code_management_tool.model.dto.User;
 import java_source_code_management_tool.model.service.UserService;
@@ -27,15 +28,18 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 	private JButton buttonDisplayJavaSourceFile;
 	private JButton buttonManageVersions;
 	private JButton buttonManageUsers;
+	private JButton buttonLogout;
 	private JLabel labelTitle;
 	private JavaSourceFileController javaSourceFileController;
 	private NavigationController navigationController;
+	private LoginController loginController;
 	
-	public HomePanel(JavaSourceFileController javaSourceFileController, NavigationController navigationController, UserService userService)
+	public HomePanel(JavaSourceFileController javaSourceFileController, NavigationController navigationController, LoginController loginController, UserService userService)
 	{
 		// Set controllers
 		this.javaSourceFileController = javaSourceFileController;
 		this.navigationController = navigationController;
+		this.loginController = loginController;
 		
 		// Add model listener
 		userService.addPropertyChangeListener(this);
@@ -59,6 +63,10 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 		buttonManageUsers = new JButton("Manage users");
 		buttonManageUsers.setAlignmentX(CENTER_ALIGNMENT);
 		buttonManageUsers.addActionListener(this);
+		
+		buttonLogout = new JButton("Logout");
+		buttonLogout.setAlignmentX(CENTER_ALIGNMENT);
+		buttonLogout.addActionListener(this);
 
 		// Attach components to JPanel
 		this.add(Box.createVerticalGlue());
@@ -69,6 +77,8 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 		this.add(buttonManageVersions);
 		this.add(Box.createRigidArea(new Dimension(0, 20)));
 		this.add(buttonManageUsers);
+		this.add(Box.createRigidArea(new Dimension(0, 70)));
+		this.add(buttonLogout);
 		this.add(Box.createVerticalGlue());			
 	}
 	
@@ -87,6 +97,10 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 			else if(ae.getSource() == buttonManageUsers)
 			{
 				navigationController.goUserManagementActionPerformed();
+			}
+			else if(ae.getSource() == buttonLogout)
+			{
+				loginController.logoutActionPerformed();
 			}
 		} 
 		catch (Exception e)
