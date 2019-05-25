@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -31,6 +32,9 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 	private JMenu menuFile;
 	private JMenuItem menuItemHome;
 	private JMenuItem menuItemOpen;
+	private JMenu menuDisplay;
+	private JCheckBoxMenuItem checkBoxMenuItemDeleteComments;
+	private JCheckBoxMenuItem checkBoxMenuItemIndent;
 	
 	public JavaSourceFileViewerPanel(JavaSourceFileService javaSourceFileService, NavigationController navigationController)
 	{
@@ -63,18 +67,29 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		menuBar = new JMenuBar();
 		
 		menuFile = new JMenu("File");
+		menuDisplay = new JMenu("Display");
 		
 		menuItemOpen = new JMenuItem("Open...");
 		menuItemOpen.addActionListener(this);
 		
 		menuItemHome = new JMenuItem("Return to home page");
 		menuItemHome.addActionListener(this);
+		
+		checkBoxMenuItemDeleteComments = new JCheckBoxMenuItem("Hide comments");
+		checkBoxMenuItemDeleteComments.addActionListener(this);
+		
+		checkBoxMenuItemIndent = new JCheckBoxMenuItem("Indent code");
+		checkBoxMenuItemIndent.addActionListener(this);
 
 		// Attach components to components
 		menuBar.add(menuFile);
+		menuBar.add(menuDisplay);
 		
 		menuFile.add(menuItemOpen);
 		menuFile.add(menuItemHome);
+		
+		menuDisplay.add(checkBoxMenuItemDeleteComments);
+		menuDisplay.add(checkBoxMenuItemIndent);
 		
 		// Attach components to JPanel
 		this.add(menuBar, BorderLayout.PAGE_START);
@@ -93,6 +108,14 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 			{
 				navigationController.goHomeActionPerformed();
 			}
+			else if(ae.getSource() == checkBoxMenuItemDeleteComments)
+			{
+				navigationController.toggleCommentDeletionActionPerformed(checkBoxMenuItemDeleteComments.isSelected(), textPane.getText());
+			}
+			else if(ae.getSource() == checkBoxMenuItemIndent)
+			{
+				navigationController.toggleIndentActionPerformed(checkBoxMenuItemIndent.isSelected(), textPane.getText());
+			}
 		} 
 		catch (Exception e)
 		{
@@ -105,10 +128,35 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		if(pce.getPropertyName().equals("NEWJAVASOURCEFILE"))
 		{			
 			// Display new Java source file content
-			textPane.setText(((JavaSourceFile) pce.getNewValue()).getContent());
+			setDisplayedContent(((JavaSourceFile) pce.getNewValue()).getContent());
 			
-			// Scroll to the top
-			textPane.setCaretPosition(0);
+			// Reset user selected options
+			resetMenuItemsCheckBoxes();
 		}
+	}
+	
+	public void setDisplayedContent(String content)
+	{
+		// Display new Java source file content
+		textPane.setText(content);
+		
+		// Scroll to the top
+		textPane.setCaretPosition(0);
+	}
+	
+	public void resetMenuItemsCheckBoxes()
+	{
+		checkBoxMenuItemDeleteComments.setSelected(false);
+		checkBoxMenuItemIndent.setSelected(false);
+	}
+	
+	public boolean commentDeletionIsActive()
+	{
+		return checkBoxMenuItemDeleteComments.isSelected();
+	}
+	
+	public boolean indentationIsActive()
+	{
+		return checkBoxMenuItemIndent.isSelected();
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java_source_code_management_tool.model.service.JavaSourceFileService;
 import java_source_code_management_tool.model.service.UserService;
+import java_source_code_management_tool.util.JavaFormatter;
 import java_source_code_management_tool.view.MainFrame;
 
 /**
@@ -90,6 +91,40 @@ public class NavigationController
 	public void addTextFieldDescriptionActionPerformed()
 	{
 		mainFrame.getVersionManagementPanel().addTextFieldDescription();
+	}
+	
+	public void toggleCommentDeletionActionPerformed(boolean commentDeletionIsActive, String currentContent)
+	{
+		if(commentDeletionIsActive)
+			mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(JavaFormatter.deleteComments(currentContent));
+		else
+			reloadJavaSourceFileViewerContent();
+	}
+
+	public void toggleIndentActionPerformed(boolean indentationIsActive, String currentContent)
+	{
+		if(indentationIsActive)
+			mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(JavaFormatter.indent(currentContent));
+		else
+			reloadJavaSourceFileViewerContent();
+	}
+	
+	public void reloadJavaSourceFileViewerContent()
+	{
+		String reloadedContent;
+		
+		// Get original content
+		reloadedContent = javaSourceFileService.getCurrentJavaSourceFile().getContent();
+		
+		// Re-apply toggled display options
+		if(mainFrame.getJavaSourceFileViewerPanel().commentDeletionIsActive())
+			reloadedContent = JavaFormatter.deleteComments(reloadedContent);
+		
+		if(mainFrame.getJavaSourceFileViewerPanel().indentationIsActive())
+			reloadedContent = JavaFormatter.indent(reloadedContent);
+		
+		// Set reloaded content
+		mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(reloadedContent);
 	}
 	
 	public String getPreviousVisibleCardName()

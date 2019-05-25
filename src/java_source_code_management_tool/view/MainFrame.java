@@ -104,6 +104,11 @@ public class MainFrame extends JFrame
 		return javaSourceFileSelectorPanel;
 	}
 	
+	public JavaSourceFileViewerPanel getJavaSourceFileViewerPanel()
+	{
+		return javaSourceFileViewerPanel;
+	}
+	
 	public UserDeletionPanel getUserDeletionPanel()
 	{
 		return userDeletionPanel;
