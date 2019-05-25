@@ -59,10 +59,10 @@ public class LoginPanel extends JPanel implements ActionListener
 		this.add(Box.createVerticalGlue());
 		this.add(labelUsername);
 		this.add(textFieldUsername);
-		this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(Box.createRigidArea(new Dimension(0, 15)));
 		this.add(labelPassword);
 		this.add(passwordField);
-		this.add(Box.createRigidArea(new Dimension(0, 20)));
+		this.add(Box.createRigidArea(new Dimension(0, 60)));
 		this.add(buttonLogin);
 		this.add(Box.createVerticalGlue());
 	}
