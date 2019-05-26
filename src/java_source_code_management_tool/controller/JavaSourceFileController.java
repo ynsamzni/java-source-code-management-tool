@@ -9,6 +9,8 @@ import java_source_code_management_tool.model.service.UserService;
 import java_source_code_management_tool.view.MainFrame;
 
 /**
+ * This class consists of controller methods related to actions on Java source files that follow the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -18,18 +20,33 @@ public class JavaSourceFileController
 	private UserService userService;
 	private MainFrame mainFrame;
 	
+	/**
+	 * Constructs a new Java source file controller with the specified Java source file service and user service.
+	 * 
+	 * @param javaSourceFileService the Java source file service acting as a model.
+	 * @param userService the user service acting as a model.
+	 */
 	public JavaSourceFileController(JavaSourceFileService javaSourceFileService, UserService userService)
 	{
 		this.javaSourceFileService = javaSourceFileService;
 		this.userService = userService;
 	}
 	
+	/**
+	 * Sets the view to use.
+	 * 
+	 * @param mainFrame the view to use.
+	 */
 	public void setView(MainFrame mainFrame)
 	{
 		this.mainFrame = mainFrame;
 	}
 	
-	public void manageVersionsActionPerformed()
+	/**
+	 * Tells the view to show a file dialog from which the user can select a file on its file system.
+	 * If a file is selected, tells the model to load it, and the view to display its version related data in the file version management panel.
+	 */
+	public void openFsJavaSourceFileAndManageVersionsActionPerformed()
 	{
 		String selectedPathFs;
 		
@@ -47,7 +64,11 @@ public class JavaSourceFileController
 		}
 	}
 	
-	public void selectFsJavaSourceFileActionPerformed()
+	/**
+	 * Tells the view to show a file dialog from which the user can select a file on its file system.
+	 * If a file is selected, tells the model to load it, and the view to display its content in the Java source file viewer panel.
+	 */
+	public void openFsJavaSourceFileAndDisplayContentActionPerformed()
 	{
 		String selectedPathFs;
 		
@@ -65,7 +86,13 @@ public class JavaSourceFileController
 		}
 	}
 	
-	public void selectDbJavaSourceFileActionPerformed(String selectedPathFs)
+	/**
+	 * Tells the model to load from the database the Java source file that has the specified file system path.
+	 * When the file has been loaded, tells the view to display its content in the Java source file viewer panel.
+	 * 
+	 * @param selectedPathFs the file system path of the Java source file to load from the database.
+	 */
+	public void openDbJavaSourceFileAndDisplayContentActionPerformed(String selectedPathFs)
 	{
 		if(selectedPathFs != null)
 		{
@@ -77,6 +104,13 @@ public class JavaSourceFileController
 		}
 	}
 	
+	/**
+	 * Tells the model to add a new version to the currently opened Java source file.
+	 * The specified version number and its list of related descriptions are first checked before being saved.
+	 * 
+	 * @param versionNumber the version number to add.
+	 * @param strDescriptions the list of descriptions of the new version to add.
+	 */
 	public void addVersionActionPerformed(String versionNumber, ArrayList<String> strDescriptions)
 	{
 		Version version;

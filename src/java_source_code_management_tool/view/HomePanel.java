@@ -19,6 +19,8 @@ import java_source_code_management_tool.model.dto.User;
 import java_source_code_management_tool.model.service.UserService;
 
 /**
+ * This class consists of view methods related to the display of the home panel following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -34,6 +36,14 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 	private NavigationController navigationController;
 	private LoginController loginController;
 	
+	/**
+	 * Constructs a new home panel with the specified Java source file controller, navigation controller, login controller and user service.
+	 * 
+	 * @param javaSourceFileController the Java source file controller.
+	 * @param navigationController the navigation controller.
+	 * @param loginController the login controller.
+	 * @param userService the user service acting as a model.
+	 */
 	public HomePanel(JavaSourceFileController javaSourceFileController, NavigationController navigationController, LoginController loginController, UserService userService)
 	{
 		// Set controllers
@@ -82,13 +92,16 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 		this.add(Box.createVerticalGlue());			
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{		
 		try
 		{
 			if(ae.getSource() == buttonManageVersions)
 			{
-				javaSourceFileController.manageVersionsActionPerformed();
+				javaSourceFileController.openFsJavaSourceFileAndManageVersionsActionPerformed();
 			}
 			else if(ae.getSource() == buttonDisplayJavaSourceFile)
 			{
@@ -109,6 +122,9 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 		}
 	}
 	
+	/**
+	 * Updates the view when a change has been notified by the model.
+	 */
 	public void propertyChange(PropertyChangeEvent pce)
 	{
 		if(pce.getPropertyName().equals("NEWLOGGEDINUSER"))
@@ -121,11 +137,17 @@ public class HomePanel extends JPanel implements ActionListener, PropertyChangeL
 		}
 	}
 	
+	/**
+	 * Enables display of the admin area.
+	 */
 	public void showAdminArea()
 	{
 		buttonManageUsers.setVisible(true);
 	}
 	
+	/**
+	 * Disables display of the admin area.
+	 */
 	public void hideAdminArea()
 	{
 		buttonManageUsers.setVisible(false);

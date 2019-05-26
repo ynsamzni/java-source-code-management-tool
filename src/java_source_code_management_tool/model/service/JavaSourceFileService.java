@@ -15,6 +15,8 @@ import java_source_code_management_tool.util.ConnectionFactory;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
+ * This class consists of model methods which persist local and remote data on the database related to Java source files following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -26,21 +28,39 @@ public class JavaSourceFileService
 	private PropertyChangeSupport propertyChangeSupport;
 	private JavaSourceFile currentJavaSourceFile;
 	
+	/**
+	 * Constructs a new Java source file service acting as a model.
+	 */
 	public JavaSourceFileService()
 	{
 		propertyChangeSupport = new PropertyChangeSupport(this);
 	}
 	
+	/**
+	 * Adds listener of property changes in the Java source file service.
+	 * 
+	 * @param listener the listener that is notified of property change in the Java source file service.
+	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener)
 	{
 		propertyChangeSupport.addPropertyChangeListener(listener);
 	}
 	
+	/**
+	 * Returns the currently loaded Java source file.
+	 * 
+	 * @return the currently loaded Java source file.
+	 */
 	public JavaSourceFile getCurrentJavaSourceFile()
 	{
 		return currentJavaSourceFile;
 	}
 	
+	/**
+	 * Adds the specified version to the currently loaded Java source file locally and remotely on the database.
+	 * 
+	 * @param version the version to add to the currently loaded Java source file locally and remotely on the database.
+	 */
 	public void addVersion(Version version)
 	{
 		Connection con = null;
@@ -89,6 +109,11 @@ public class JavaSourceFileService
 		propertyChangeSupport.firePropertyChange("NEWVERSION", null, version);
 	}
 	
+	/**
+	 * Loads from the database the Java source file which has the specified file system path.
+	 * 
+	 * @param pathFs the Java source file path on the file system of the file to load.
+	 */
 	public void loadJavaSourceFileFromDb(String pathFs)
 	{
 		Connection con = null;
@@ -124,6 +149,11 @@ public class JavaSourceFileService
 		propertyChangeSupport.firePropertyChange("NEWJAVASOURCEFILE", null, javaSourceFile);	
 	}
 	
+	/**
+	 * Loads from the file system the Java source file which has the specified file system path.
+	 * 
+	 * @param pathFs the Java source file path on the file system of the file to load.
+	 */
 	public void loadJavaSourceFileFromFs(String pathFs)
 	{
 		Connection con = null;
@@ -166,6 +196,11 @@ public class JavaSourceFileService
 		propertyChangeSupport.firePropertyChange("NEWJAVASOURCEFILE", null, javaSourceFile);	
 	}
 	
+	/**
+	 * Returns the list of database Java source file paths.
+	 * 
+	 * @return the list of database Java source file paths.
+	 */
 	public ArrayList<String> getListJavaSourceFilePathsFs()
 	{
 		Connection con = null;

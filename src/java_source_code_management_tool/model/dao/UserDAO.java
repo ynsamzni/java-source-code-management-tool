@@ -10,6 +10,8 @@ import java_source_code_management_tool.model.dto.User;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
+ * This class consists of methods that operate on or return users from the database.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -17,12 +19,22 @@ public class UserDAO
 {
 	private Connection con = null;
 
+	/**
+	 * Constructs a new user DAO.
+	 * 
+	 * @param con the connection to the database.
+	 */
 	public UserDAO(Connection con)
 	{
 		this.con = con;
 	}
 	
-	public void addUser(User user)
+	/**
+	 * Inserts the specified user into the database.
+	 * 
+	 * @param user the user to insert into the database.
+	 */
+	public void insertUser(User user)
 	{
 		PreparedStatement ps = null;
 		
@@ -48,6 +60,11 @@ public class UserDAO
 		}
 	}
 	
+	/**
+	 * Deletes the specified user from the database.
+	 * 
+	 * @param username the username of the user to delete from the database.
+	 */
 	public void deleteUser(String username)
 	{
 		PreparedStatement ps = null;
@@ -72,6 +89,13 @@ public class UserDAO
 		}
 	}
 	
+	/**
+	 * Returns the database user which has the specified username and password.
+	 * 
+	 * @param username the username of the user to look for.
+	 * @param password the password of the user to look for.
+	 * @return the database user which has the specified username and password.
+	 */
 	public User getUser(String username, String password)
 	{
 		User user = null;
@@ -112,6 +136,11 @@ public class UserDAO
 		return user;
 	}
 	
+	/**
+	 * Returns the list of database user usernames.
+	 * 
+	 * @return the list of database user usernames.
+	 */
 	public ArrayList<String> getListUserUsernames()
 	{
 		ArrayList<String> userUsernames = new ArrayList<String>();

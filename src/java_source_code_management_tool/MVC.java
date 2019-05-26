@@ -12,11 +12,18 @@ import java_source_code_management_tool.model.service.UserService;
 import java_source_code_management_tool.view.MainFrame;
 
 /**
+ * This class instantiates models, views and controllers following the MVC pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
 public class MVC
 {
+	/**
+	 * Main method to run on program start.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		// Instantiate models

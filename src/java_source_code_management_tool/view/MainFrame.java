@@ -16,6 +16,8 @@ import java_source_code_management_tool.model.service.JavaSourceFileService;
 import java_source_code_management_tool.model.service.UserService;
 
 /**
+ * This class consists of view methods related to the display of all panels following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -34,6 +36,16 @@ public class MainFrame extends JFrame
 	private UserHistoryPanel userHistoryPanel;
 	private NavigationController navigationController;
 
+	/**
+	 * Constructs a new main frame with the specified Java source file service and controller, login controller, navigation controller and user service and controller.
+	 * 
+	 * @param javaSourceFileService the Java source file service acting as a model.
+	 * @param javaSourceFileController the Java source file controller.
+	 * @param loginController the login controller.
+	 * @param navigationController the navigation controller.
+	 * @param userService the user service acting as a model.
+	 * @param userController the user controller.
+	 */
 	public MainFrame(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, LoginController loginController, NavigationController navigationController, UserService userService, UserController userController)
 	{	
 		// Set controller
@@ -74,6 +86,11 @@ public class MainFrame extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Displays the specified card.
+	 * 
+	 * @param card the name of the card to display.
+	 */
 	public void showCard(String card)
 	{
 		// Show card
@@ -84,86 +101,155 @@ public class MainFrame extends JFrame
 		navigationController.navigateActionPerformed(card);
 	}
 	
+	/**
+	 * Returns the login panel.
+	 * 
+	 * @return the login panel.
+	 */
 	public LoginPanel getLoginPanel()
 	{
 		return loginPanel;
 	}
 	
+	/**
+	 * Returns the home panel.
+	 * 
+	 * @return the home panel.
+	 */
 	public HomePanel getHomePanel()
 	{
 		return homePanel;
 	}
 	
+	/**
+	 * Returns the versions management panel.
+	 * 
+	 * @return the version management panel.
+	 */
 	public VersionManagementPanel getVersionManagementPanel()
 	{
 		return versionManagementPanel;
 	}
 	
+	/**
+	 * Returns the Java source file selector panel.
+	 * 
+	 * @return the Java source file selector panel.
+	 */
 	public JavaSourceFileSelectorPanel getJavaSourceFileSelectorPanel()
 	{
 		return javaSourceFileSelectorPanel;
 	}
 	
+	/**
+	 * Returns the Java source file viewer panel.
+	 * 
+	 * @return the Java source file viewer panel.
+	 */
 	public JavaSourceFileViewerPanel getJavaSourceFileViewerPanel()
 	{
 		return javaSourceFileViewerPanel;
 	}
 	
+	/**
+	 * Returns the user deletion panel.
+	 * 
+	 * @return the user deletion panel.
+	 */
 	public UserDeletionPanel getUserDeletionPanel()
 	{
 		return userDeletionPanel;
 	}
 	
+	/**
+	 * Returns the user creation panel.
+	 * 
+	 * @return the user creation panel.
+	 */
 	public UserCreationPanel getUserCreationPanel()
 	{
 		return userCreationPanel;
 	}
 	
+	/**
+	 * Returns the user history panel.
+	 * 
+	 * @return the user history panel.
+	 */
 	public UserHistoryPanel getUserHistoryPanel()
 	{
 		return userHistoryPanel;
 	}
 	
+	/**
+	 * Exits the program.
+	 */
 	public void exit()
 	{
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 	
+	/**
+	 * Displays a login error.
+	 */
 	public void showLoginError()
 	{
 		JOptionPane.showMessageDialog(this, "Incorrect username or password. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Displays a incorrect version number error.
+	 */
 	public void showIncorrectVersionNumberError()
 	{
 		JOptionPane.showMessageDialog(this, "Incorrect version number. Try again.\nMaximum 4 digits, each being between 0 and 9999, and separated by a dot are allowed  (e.g. 1 or 1.0 or 1.0.1 or 1.0.0.1).", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Displays a duplicate version number error.
+	 */
 	public void showDuplicateVersionNumberError()
 	{
 		JOptionPane.showMessageDialog(this, "Duplicate version number. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Displays a incorrect description error.
+	 */
 	public void showIncorrectDescriptionError()
 	{
 		JOptionPane.showMessageDialog(this, "Incorrect description. Try again.\nMaximum 300 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Displays a incorrect username error.
+	 */
 	public void showIncorrectUsernameError()
 	{
 		JOptionPane.showMessageDialog(this, "Incorrect username. Try again.\nBetween 1-20 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Displays a duplicate username error.
+	 */
 	public void showDuplicateUsernameError()
 	{
 		JOptionPane.showMessageDialog(this, "Duplicate username. Try again.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Displays a incorrect password error.
+	 */
 	public void showIncorrectPasswordError()
 	{
 		JOptionPane.showMessageDialog(this, "Incorrect password. Try again.\nBetween 1-100 characters are allowed.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	/**
+	 * Displays a current user deletion warning.
+	 * 
+	 * @return the user choice of deleting itself.
+	 */
 	public boolean showCurrentUserDeletionWarning()
 	{
 		boolean userChoice = false;
@@ -175,11 +261,19 @@ public class MainFrame extends JFrame
 		return userChoice;
 	}
 	
+	/**
+	 * Displays a user creation success information.
+	 */
 	public void showUserCreationSuccessInformation()
 	{
 		JOptionPane.showMessageDialog(this, "User successfully created.");
 	}
 	
+	/**
+	 * Displays a file dialog from which the user can select a file on the file system.
+	 * 
+	 * @return the selected file path on the file system.
+	 */
 	public String showFileDialog()
 	{
 		String selectedFilePathFs = null;

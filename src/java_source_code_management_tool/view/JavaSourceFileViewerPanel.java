@@ -19,6 +19,8 @@ import java_source_code_management_tool.model.dto.JavaSourceFile;
 import java_source_code_management_tool.model.service.JavaSourceFileService;
 
 /**
+ * This class consists of view methods related to the display of the Java source file viewer panel following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -37,6 +39,12 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 	private JCheckBoxMenuItem checkBoxMenuItemDeleteComments;
 	private JCheckBoxMenuItem checkBoxMenuItemIndent;
 	
+	/**
+	 * Constructs a new Java source file viewer panel with the specified Java source file controller and navigation controller.
+	 * 
+	 * @param javaSourceFileService the Java source file service acting as a model.
+	 * @param navigationController the navigation controller.
+	 */
 	public JavaSourceFileViewerPanel(JavaSourceFileService javaSourceFileService, NavigationController navigationController)
 	{
 		// Set controller
@@ -101,6 +109,9 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{		
 		try
@@ -123,7 +134,7 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 			}
 			else if(ae.getSource() == checkBoxMenuItemIndent)
 			{
-				navigationController.toggleIndentActionPerformed(checkBoxMenuItemIndent.isSelected(), textPane.getText());
+				navigationController.toggleIndentationActionPerformed(checkBoxMenuItemIndent.isSelected(), textPane.getText());
 			}
 		} 
 		catch (Exception e)
@@ -132,6 +143,9 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		}
 	}
 	
+	/**
+	 * Updates the view when a change has been notified by the model.
+	 */
 	public void propertyChange(PropertyChangeEvent pce)
 	{
 		if(pce.getPropertyName().equals("NEWJAVASOURCEFILE"))
@@ -144,6 +158,11 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		}
 	}
 	
+	/**
+	 * Displays specified Java source file content.
+	 * 
+	 * @param content the Java source file content to display.
+	 */
 	public void setDisplayedContent(String content)
 	{
 		// Display new Java source file content
@@ -153,17 +172,30 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		textPane.setCaretPosition(0);
 	}
 	
+	/**
+	 * Sets all menu toggles to their default state.
+	 */
 	public void resetMenuItemsCheckBoxes()
 	{
 		checkBoxMenuItemDeleteComments.setSelected(false);
 		checkBoxMenuItemIndent.setSelected(false);
 	}
 	
+	/**
+	 * Returns the comment deletion toggle state.
+	 * 
+	 * @return the comment deletion toggle state.
+	 */
 	public boolean commentDeletionIsActive()
 	{
 		return checkBoxMenuItemDeleteComments.isSelected();
 	}
 	
+	/**
+	 * Returns the indentation toggle state.
+	 * 
+	 * @return the indentation toggle state.
+	 */
 	public boolean indentationIsActive()
 	{
 		return checkBoxMenuItemIndent.isSelected();

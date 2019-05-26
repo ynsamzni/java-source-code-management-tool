@@ -25,6 +25,8 @@ import java_source_code_management_tool.controller.NavigationController;
 import java_source_code_management_tool.model.service.JavaSourceFileService;
 
 /**
+ * This class consists of view methods related to the display of the Java source file selector panel following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -43,6 +45,13 @@ public class JavaSourceFileSelectorPanel extends JPanel implements ActionListene
 	private JavaSourceFileController javaSourceFileController;
 	private NavigationController navigationController;
 	
+	/**
+	 * Constructs a new Java source file selector panel with the specified Java source file controller, navigation controller and Java source file service.
+	 * 
+	 * @param javaSourceFileController the Java source file controller.
+	 * @param navigationController the navigation controller.
+	 * @param javaSourceFileService the Java source file service acting as a model.
+	 */
 	public JavaSourceFileSelectorPanel(JavaSourceFileController javaSourceFileController, NavigationController navigationController, JavaSourceFileService javaSourceFileService)
 	{
 		// Set controller
@@ -118,17 +127,20 @@ public class JavaSourceFileSelectorPanel extends JPanel implements ActionListene
 		this.add(buttonCancel, gbc);		
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{		
 		try
 		{
 			if(ae.getSource() == buttonSelectFromDb)
 			{
-				javaSourceFileController.selectDbJavaSourceFileActionPerformed(listDbJavaSourceFiles.getSelectedValue());
+				javaSourceFileController.openDbJavaSourceFileAndDisplayContentActionPerformed(listDbJavaSourceFiles.getSelectedValue());
 			}
 			else if(ae.getSource() == buttonSelectFromFs)
 			{
-				javaSourceFileController.selectFsJavaSourceFileActionPerformed();
+				javaSourceFileController.openFsJavaSourceFileAndDisplayContentActionPerformed();
 			}
 			else if(ae.getSource() == buttonCancel)
 			{
@@ -141,6 +153,11 @@ public class JavaSourceFileSelectorPanel extends JPanel implements ActionListene
 		}
 	}
 	
+	/**
+	 * Displays the specified list of database Java source files.
+	 * 
+	 * @param javaSourceFilePathsFs the list of Java source files saved on the database.
+	 */
 	public void showListDbJavaSourceFiles(ArrayList<String> javaSourceFilePathsFs)
 	{
 		// Clear list

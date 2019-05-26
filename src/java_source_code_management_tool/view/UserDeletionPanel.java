@@ -24,6 +24,12 @@ import java_source_code_management_tool.controller.NavigationController;
 import java_source_code_management_tool.controller.UserController;
 import java_source_code_management_tool.model.service.UserService;
 
+/**
+ * This class consists of view methods related to the display of the user deletion panel following the Model-View-Controller pattern.
+ * 
+ * @author Jordan & Yanis (Group 4 - Pair 10)
+ *
+ */
 public class UserDeletionPanel extends JPanel implements ActionListener, PropertyChangeListener
 {
 	private static final long serialVersionUID = 1L;
@@ -36,6 +42,12 @@ public class UserDeletionPanel extends JPanel implements ActionListener, Propert
 	private JList<String> listDbUsers;
 	private JScrollPane scrollPane;
 
+	/**
+	 * Constructs a new user deletion panel with the specified navigation controller, user controller and user service.
+	 * @param navigationController the navigation controller.
+	 * @param userController the user controller.
+	 * @param userService the user service acting as a model.
+	 */
 	public UserDeletionPanel(NavigationController navigationController, UserController userController, UserService userService)
 	{
 		// Set controllers
@@ -83,6 +95,9 @@ public class UserDeletionPanel extends JPanel implements ActionListener, Propert
 		this.add(Box.createVerticalGlue());
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{		
 		try
@@ -102,6 +117,9 @@ public class UserDeletionPanel extends JPanel implements ActionListener, Propert
 		}
 	}
 	
+	/**
+	 * Updates the view when a change has been notified by the model.
+	 */
 	public void propertyChange(PropertyChangeEvent pce)
 	{
 		if(pce.getPropertyName().equals("DELETEDUSER"))
@@ -111,6 +129,11 @@ public class UserDeletionPanel extends JPanel implements ActionListener, Propert
 		}
 	}
 	
+	/**
+	 * Displays the specified list of database user usernames.
+	 * 
+	 * @param userUsernames the list of user usernames saved on the database.
+	 */
 	public void showListDbUserUsernames(ArrayList<String> userUsernames)
 	{
 		// Clear list

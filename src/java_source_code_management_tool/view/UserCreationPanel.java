@@ -20,6 +20,8 @@ import java_source_code_management_tool.controller.NavigationController;
 import java_source_code_management_tool.controller.UserController;
 
 /**
+ * This class consists of view methods related to the display of the user creation panel following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -37,6 +39,12 @@ public class UserCreationPanel extends JPanel implements ActionListener
 	private NavigationController navigationController;
 	private JPanel newUserPanel;
 
+	/**
+	 * Constructs a new user creation panel with the specified navigation controller and user controller.
+	 * 
+	 * @param navigationController the navigation controller.
+	 * @param userController the user controller.
+	 */
 	public UserCreationPanel(NavigationController navigationController, UserController userController)
 	{
 		// Set controllers
@@ -96,6 +104,9 @@ public class UserCreationPanel extends JPanel implements ActionListener
 		this.add(Box.createVerticalGlue());
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{		
 		try
@@ -115,6 +126,9 @@ public class UserCreationPanel extends JPanel implements ActionListener
 		}
 	}
 	
+	/**
+	 * Clears the view to set it to its default state.
+	 */
 	public void clear()
 	{
 		// Clear text fields
@@ -125,6 +139,9 @@ public class UserCreationPanel extends JPanel implements ActionListener
 		checkBoxIsAdmin.setSelected(false);
 	}
 	
+	/**
+	 * Clears the password field.
+	 */
 	public void clearPasswordField()
 	{
 		passwordField.setText("");

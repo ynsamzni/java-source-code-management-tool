@@ -12,6 +12,8 @@ import java_source_code_management_tool.util.DBHelper;
 import oracle.jdbc.OracleTypes;
 
 /**
+ * This class consists of method that operate on or return versions from the database.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -19,11 +21,23 @@ public class VersionDAO
 {
 	private Connection con = null;
 	
+	/**
+	 * Constructs a new version DAO.
+	 * 
+	 * @param con the connection to the database.
+	 */
 	public VersionDAO(Connection con)
 	{
 		this.con = con;
 	}
 	
+	/**
+	 * Inserts the specified version into the database to the specified Java source file ID.
+	 * 
+	 * @param version the version to insert into the database.
+	 * @param javaSourceFileID the Java source file ID to link with the new version.
+	 * @return The inserted version database ID.
+	 */
 	public Integer insertVersion(Version version, Integer javaSourceFileID)
 	{
 		CallableStatement cs = null;
@@ -70,6 +84,12 @@ public class VersionDAO
 		return generatedId;
 	}
 	
+	/**
+	 * Returns the list of database versions linked to the specified Java source file path on the file system.
+	 * 
+	 * @param pathFs the Java source file path on the file system linked to the versions to look for.
+	 * @return the list of database versions linked to the specified Java source file path on the file system.
+	 */
 	public ArrayList<Version> getListVersions(String pathFs)
 	{
 		ArrayList<Version> versions = new ArrayList<Version>();

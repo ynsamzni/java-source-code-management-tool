@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * This class consists of helper methods that operate on or return a connection to the database.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -15,6 +17,11 @@ public class ConnectionFactory
 	private static String dbPass = "BDD1";
 	private static Connection con = null;
 	
+	/**
+	 * Returns the connection to the database.
+	 * 
+	 * @return the connection to the database.
+	 */
 	public static Connection getConnection()
 	{
 		try

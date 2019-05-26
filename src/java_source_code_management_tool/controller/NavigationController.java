@@ -8,6 +8,8 @@ import java_source_code_management_tool.util.JavaFormatter;
 import java_source_code_management_tool.view.MainFrame;
 
 /**
+ * This class consists of controller methods related to navigation actions that follow the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -18,6 +20,12 @@ public class NavigationController
 	private JavaSourceFileService javaSourceFileService;
 	private ArrayList<String> navHistory;
 	
+	/**
+	 * Constructs a new navigation controller with the specified user service and Java source file service.
+	 * 
+	 * @param userService the user service acting as a model.
+	 * @param javaSourceFileService the Java source file service acting as a model.
+	 */
 	public NavigationController(UserService userService, JavaSourceFileService javaSourceFileService)
 	{
 		this.userService = userService;
@@ -25,17 +33,30 @@ public class NavigationController
 		navHistory = new ArrayList<String>();
 	}
 	
+	/**
+	 * Sets the view to use.
+	 * 
+	 * @param mainFrame the view to use.
+	 */
 	public void setView(MainFrame mainFrame)
 	{
 		this.mainFrame = mainFrame;
 	}
 	
+	/**
+	 * Keeps a history of navigation done between panels.
+	 * 
+	 * @param cardName the newly user accessed panel name.
+	 */
 	public void navigateActionPerformed(String cardName)
 	{
 		// Update navigation history
 		navHistory.add(cardName);
 	}
 	
+	/**
+	 * Tells the view to display the Java source file selector panel.
+	 */
 	public void goJavaSourceFileSelectorActionPerformed()
 	{
 		mainFrame.showCard("JAVASOURCEFILESELECTORPANEL");
@@ -44,21 +65,33 @@ public class NavigationController
 		mainFrame.getJavaSourceFileSelectorPanel().showListDbJavaSourceFiles(javaSourceFileService.getListJavaSourceFilePathsFs());
 	}
 	
+	/**
+	 * Tells the view to display the version management panel.
+	 */
 	public void goVersionManagementActionPerformed()
 	{
 		mainFrame.showCard("VERSIONMANAGEMENTPANEL");
 	}
 	
+	/**
+	 * Tells the view to display the user management panel.
+	 */
 	public void goUserManagementActionPerformed()
 	{
 		mainFrame.showCard("USERMANAGEMENTPANEL");
 	}
 	
+	/**
+	 * Tells the view to display the user creation panel.
+	 */
 	public void goUserCreationActionPerformed()
 	{
 		mainFrame.showCard("USERCREATIONPANEL");
 	}
 	
+	/**
+	 * Tells the view to display the user deletion panel.
+	 */
 	public void goUserDeletionActionPerformed()
 	{
 		mainFrame.showCard("USERDELETIONPANEL");
@@ -67,6 +100,9 @@ public class NavigationController
 		mainFrame.getUserDeletionPanel().showListDbUserUsernames(userService.getListUserUsernames());
 	}
 	
+	/**
+	 * Tells the view to display the user history panel.
+	 */
 	public void goUserHistoryActionPerformed()
 	{
 		mainFrame.showCard("USERHISTORYPANEL");
@@ -75,6 +111,9 @@ public class NavigationController
 		mainFrame.getUserHistoryPanel().showListDbUserUsernames(userService.getListUserUsernames());
 	}
 	
+	/**
+	 * Tells the view to display the previous user accessed panel.
+	 */
 	public void goBackActionPerformed()
 	{
 		mainFrame.showCard(getPreviousVisibleCardName());
@@ -87,16 +126,28 @@ public class NavigationController
 			mainFrame.getUserCreationPanel().clear();
 	}
 	
+	/**
+	 * Tells the view to display the home panel.
+	 */
 	public void goHomeActionPerformed()
 	{
 		mainFrame.showCard("HOMEPANEL");
 	}
 	
+	/**
+	 * Tells the view to display a new description text field in the version management panel.
+	 */
 	public void addTextFieldDescriptionActionPerformed()
 	{
 		mainFrame.getVersionManagementPanel().addTextFieldDescription();
 	}
 	
+	/**
+	 * Tells the view to update the displayed content of the opened Java source file by applying the comment deletion toggle state in the Java source file viewer panel.
+	 * 
+	 * @param commentDeletionIsActive the comment deletion toggle state.
+	 * @param currentContent the currently being displayed Java source file content in the Java source file viewer panel.
+	 */
 	public void toggleCommentDeletionActionPerformed(boolean commentDeletionIsActive, String currentContent)
 	{
 		if(commentDeletionIsActive)
@@ -105,7 +156,13 @@ public class NavigationController
 			reloadJavaSourceFileViewerContent();
 	}
 
-	public void toggleIndentActionPerformed(boolean indentationIsActive, String currentContent)
+	/**
+	 * Tells the view to update the displayed content of the opened Java source file by applying the indentation toggle state in the Java source file viewer panel.
+	 * 
+	 * @param indentationIsActive the indentation toggle state.
+	 * @param currentContent the currently being displayed Java source file content in the Java source file viewer panel.
+	 */
+	public void toggleIndentationActionPerformed(boolean indentationIsActive, String currentContent)
 	{
 		if(indentationIsActive)
 			mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(JavaFormatter.indent(currentContent));
@@ -113,6 +170,9 @@ public class NavigationController
 			reloadJavaSourceFileViewerContent();
 	}
 	
+	/**
+	 * Tells the view to reload the displayed content of the opened Java source file and re-apply all active display toggle in the Java source file viewer panel.
+	 */
 	public void reloadJavaSourceFileViewerContent()
 	{
 		String reloadedContent;
@@ -131,6 +191,11 @@ public class NavigationController
 		mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(reloadedContent);
 	}
 	
+	/**
+	 * Returns the previously user accessed panel name.
+	 * 
+	 * @return the previously user accessed panel name.
+	 */
 	public String getPreviousVisibleCardName()
 	{
 		return navHistory.get(navHistory.size() - 2);

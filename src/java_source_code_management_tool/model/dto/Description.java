@@ -1,7 +1,7 @@
 package java_source_code_management_tool.model.dto;
 
 /**
- * This class consists of methods that operate on or return a description of a version.
+ * This class consists of methods that operate on or return a description.
  * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
@@ -19,7 +19,7 @@ public class Description
 	}
 	
 	/**
-	 * Constructs a new description with the specified description of a version.
+	 * Constructs a new description with the specified description.
 	 * 
 	 * @param description the description of a version.
 	 */
@@ -29,9 +29,9 @@ public class Description
 	}
 	
 	/**
-	 * Returns the description of a version.
+	 * Returns the saved description.
 	 * 
-	 * @return the description of a version.
+	 * @return the saved description.
 	 */
 	public String getDescription()
 	{
@@ -39,9 +39,9 @@ public class Description
 	}
 	
 	/**
-	 * Sets the description of a version.
+	 * Sets the description.
 	 * 
-	 * @param description the description of a version.
+	 * @param description the description.
 	 */
 	public void setDescription(String description)
 	{
@@ -49,9 +49,9 @@ public class Description
 	}
 	
 	/**
-	 * Translates the object to String for display
+	 * Translates the object to String for display.
 	 * 
-	 * @return object translated to String for display
+	 * @return object translated to String for display.
 	 */
 	public String toString()
 	{

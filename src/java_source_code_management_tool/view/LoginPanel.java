@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import java_source_code_management_tool.controller.LoginController;
 
 /**
+ * This class consists of view methods related to the display of the login panel following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -28,6 +30,11 @@ public class LoginPanel extends JPanel implements ActionListener
 	private JLabel labelPassword;
 	private LoginController loginController;
 	
+	/**
+	 * Constructs a new login panel with the specified login controller.
+	 * 
+	 * @param loginController the login controller.
+	 */
 	public LoginPanel(LoginController loginController)
 	{
 		// Set controller
@@ -67,6 +74,9 @@ public class LoginPanel extends JPanel implements ActionListener
 		this.add(Box.createVerticalGlue());
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{	
 		try
@@ -82,11 +92,17 @@ public class LoginPanel extends JPanel implements ActionListener
 		}
 	}
 	
+	/**
+	 * Clears the username text field.
+	 */
 	public void clearUsernameField()
 	{
 		textFieldUsername.setText("");
 	}
 	
+	/**
+	 * Clears the password field.
+	 */
 	public void clearPasswordField()
 	{
 		passwordField.setText("");

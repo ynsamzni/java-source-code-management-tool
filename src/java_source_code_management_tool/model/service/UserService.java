@@ -13,6 +13,8 @@ import java_source_code_management_tool.util.ConnectionFactory;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
+ * This class consists of model methods which persist local and remote data on the database related to users following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -23,21 +25,39 @@ public class UserService
 	private User currentUser;
 	private PropertyChangeSupport propertyChangeSupport;
 	
+	/**
+	 * Constructs a new user service acting as a model.
+	 */
 	public UserService()
 	{
 		propertyChangeSupport = new PropertyChangeSupport(this);
 	}
 	
+	/**
+	 * Adds listener of property changes in the user service.
+	 * 
+	 * @param listener the listener that is notified of property change in the user service.
+	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener)
 	{
 		propertyChangeSupport.addPropertyChangeListener(listener);
 	}
 	
+	/**
+	 * Returns the currently loaded user.
+	 * 
+	 * @return the currently loaded user.
+	 */
 	public User getCurrentUser()
 	{
 		return currentUser;
 	}
 	
+	/**
+	 * Adds the specified user remotely on the database.
+	 * 
+	 * @param user the user to add remotely on the database.
+	 */
 	public void addUser(User user)
 	{
 		Connection con = null;
@@ -51,7 +71,7 @@ public class UserService
 			userDAO = new UserDAO(con);
 			
 			// Add user
-			userDAO.addUser(user);
+			userDAO.insertUser(user);
 		}
 		finally
 		{
@@ -60,6 +80,11 @@ public class UserService
 		}
 	}
 	
+	/**
+	 * Deletes the user which has the specified username remotely from the database.
+	 * 
+	 * @param username the username of the user to delete remotely from the database.
+	 */
 	public void deleteUser(String username)
 	{
 		Connection con = null;
@@ -85,6 +110,13 @@ public class UserService
 		propertyChangeSupport.firePropertyChange("DELETEDUSER", username, null);
 	}
 	
+	/**
+	 * Loads from the database the user which has the specified username and password.
+	 * 
+	 * @param username the username of the user to look for.
+	 * @param password the password of the user to look for.
+	 * @return if the user has been found.
+	 */
 	public boolean loadUser(String username, String password)
 	{
 		Connection con = null;
@@ -123,11 +155,19 @@ public class UserService
 		return userExists;
 	}
 	
+	/**
+	 * Unloads the currently loaded user.
+	 */
 	public void unloadUser()
 	{
 		currentUser = null;
 	}
 	
+	/**
+	 * Returns the database list of user usernames.
+	 * 
+	 * @return the database list of user usernames.
+	 */
 	public ArrayList<String> getListUserUsernames()
 	{
 		Connection con = null;
@@ -148,6 +188,12 @@ public class UserService
 		return userUsernames;
 	}
 	
+	/**
+	 * Returns the list of user history entries linked to the specified user username.
+	 * 
+	 * @param username the user username linked to user history entries to look for.
+	 * @return the list of user history entries linked to the specified user username.
+	 */
 	public ArrayList<UserHistory> getUserHistory(String username)
 	{
 		Connection con = null;

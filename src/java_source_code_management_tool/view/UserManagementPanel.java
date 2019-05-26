@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import java_source_code_management_tool.controller.NavigationController;
 
 /**
+ * This class consists of view methods related to the display of the user management panel following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -26,6 +28,11 @@ public class UserManagementPanel extends JPanel implements ActionListener
 	private JLabel labelTitle;
 	private NavigationController navigationController;
 	
+	/**
+	 * Constructs a new user management panel with the specified navigation controller.
+	 * 
+	 * @param navigationController the navigation controller.
+	 */
 	public UserManagementPanel(NavigationController navigationController)
 	{
 		// Set controllers
@@ -69,6 +76,9 @@ public class UserManagementPanel extends JPanel implements ActionListener
 		this.add(Box.createVerticalGlue());			
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{		
 		try

@@ -7,11 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * This class consists of helper methods that operate on database related objects.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
 public class DBHelper
 {
+	/**
+	 * Closes the specified database connection.
+	 * 
+	 * @param con the database connection to close.
+	 */
 	public static void close(Connection con)
 	{
 		try
@@ -25,6 +32,11 @@ public class DBHelper
 		}
 	}
 	
+	/**
+	 * Closes the specified PreparedStatement object.
+	 * 
+	 * @param ps the PreparedStatement to close.
+	 */
 	public static void close(PreparedStatement ps)
 	{
 		try
@@ -38,6 +50,11 @@ public class DBHelper
 		}
 	}
 	
+	/**
+	 * Closes the specified CallableStatement.
+	 * 
+	 * @param cs the CallableStatement to close.
+	 */
 	public static void close(CallableStatement cs)
 	{
 		try
@@ -51,6 +68,11 @@ public class DBHelper
 		}
 	}
 	
+	/**
+	 * Closes the specified ResultSet.
+	 * 
+	 * @param rs the ResultSet to close.
+	 */
 	public static void close(ResultSet rs)
 	{
 		try
@@ -64,6 +86,11 @@ public class DBHelper
 		}
 	}
 	
+	/**
+	 * Rollbacks all changes made in the current transaction of the specified database connection.
+	 * 
+	 * @param con the database connection containing the transaction to rollback.
+	 */
 	public static void rollback(Connection con)
 	{
 		try

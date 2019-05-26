@@ -11,6 +11,8 @@ import java_source_code_management_tool.model.dto.UserHistory;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
+ * This class consists of methods that operate on or return user history entries from the database.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -18,11 +20,22 @@ public class UserHistoryDAO
 {
 	private Connection con = null;
 
+	/**
+	 * Constructs a new user history DAO.
+	 * 
+	 * @param con the connection to the database.
+	 */
 	public UserHistoryDAO(Connection con)
 	{
 		this.con = con;
 	}
 	
+	/**
+	 * Returns the list of user history entries linked to the specified user username.
+	 * 
+	 * @param username the user username linked to user history entries to look for.
+	 * @return the list of user history entries linked to the specified user username.
+	 */
 	public ArrayList<UserHistory> getUserHistory(String username)
 	{
 		PreparedStatement ps = null;

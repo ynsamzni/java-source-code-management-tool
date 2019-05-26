@@ -1,11 +1,19 @@
 package java_source_code_management_tool.util;
 
 /**
+ * This class consists of helper methods that operate on or return Java code.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
 public class JavaFormatter
 {
+	/**
+	 * Returns the specified Java code with all comments being deleted.
+	 * 
+	 * @param content the Java code to operate on.
+	 * @return the Java code with all comments being deleted.
+	 */
 	public static String deleteComments(String content)
 	{
 		StringBuilder contentSB;
@@ -150,6 +158,12 @@ public class JavaFormatter
 		return contentSB.toString();
 	}
 	
+	/**
+	 * Returns the specified Java code with the code being indented.
+	 * 
+	 * @param content the Java code to operate on.
+	 * @return the Java code with the code being indented.
+	 */
 	public static String indent(String content)
 	{
 		StringBuilder contentSB = new StringBuilder();
@@ -386,6 +400,13 @@ public class JavaFormatter
 		return contentSB.toString();
 	}
 	
+	/**
+	 * Returns if the specified index is between quotes or in a comment in the specified content.
+	 * 
+	 * @param index the index of the char to look for.
+	 * @param content the content from which the index is processed.
+	 * @return if the specified index is between quotes or in a comment in the specified content.
+	 */
 	public static boolean isBetweenQuotesOrCommentsAt(int index, String content)
 	{
 		boolean isBetweenSingleQuotes = false, isBetweenDoubleQuotes = false;
@@ -452,6 +473,14 @@ public class JavaFormatter
 		return isBetweenSingleQuotes || isBetweenDoubleQuotes || isInOneLineComment || isInMultipleLinesComment;
 	}
 	
+	/**
+	 * Returns the index within the specified content of the first occurrence of the specified substring being outside quotes and comments, starting at the specified index.
+	 * 
+	 * @param str the substring to look for that is outside quotes and comments.
+	 * @param fromIndex the index from which to start the search.
+	 * @param content the content from which to do the search.
+	 * @return the index within the specified content of the first occurrence of the specified substring being outside quotes and comments, starting at the specified index.
+	 */
 	public static int indexOutsideQuotesAndCommentsOf(String str, int fromIndex, String content)
 	{
 		int index = content.indexOf(str, fromIndex);

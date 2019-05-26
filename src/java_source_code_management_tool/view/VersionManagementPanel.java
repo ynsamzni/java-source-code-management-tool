@@ -32,6 +32,8 @@ import java_source_code_management_tool.model.dto.Version;
 import java_source_code_management_tool.model.service.JavaSourceFileService;
 
 /**
+ * This class consists of view methods related to the display of the version management panel following the Model-View-Controller pattern.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -54,6 +56,13 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 	private JScrollPane scrollPaneVersions;
 	private GridBagConstraints gbc;
 	
+	/**
+	 * Constructs a new version management panel with the specified Java source file service, Java source file controller and navigation controller.
+	 * 
+	 * @param javaSourceFileService the Java source file service acting as a model.
+	 * @param javaSourceFileController the Java source file controller.
+	 * @param navigationController the navigation controller.
+	 */
 	public VersionManagementPanel(JavaSourceFileService javaSourceFileService, JavaSourceFileController javaSourceFileController, NavigationController navigationController)
 	{
 		// Set controllers
@@ -100,6 +109,11 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		this.add(buttonCancel, gbc);
 	}
 	
+	/**
+	 * Returns the new version panel, sub-panel of the version management panel.
+	 * 
+	 * @return the new version panel.
+	 */
 	public JPanel createNewVersionPanel()
 	{
 		// Create and configure JPanels
@@ -140,6 +154,11 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		return newVersionPanel;
 	}
 	
+	/**
+	 * Returns the version history panel, sub-panel of the version management panel.
+	 * 
+	 * @return the version history panel.
+	 */
 	public JPanel createVersionHistoryPanel()
 	{
 		// Create and configure JPanel
@@ -162,6 +181,9 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		return versionHistoryPanel;
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{
 		try
@@ -192,6 +214,9 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		}
 	}
 	
+	/**
+	 * Updates the view when a change has been notified by the model.
+	 */
 	public void propertyChange(PropertyChangeEvent pce)
 	{
 		if(pce.getPropertyName().equals("NEWVERSION"))
@@ -209,6 +234,11 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		}
 	}
 	
+	/**
+	 * Appends specified version to the already displayed list of versions.
+	 *  
+	 * @param version the version to display.
+	 */
 	public void showVersionHistory(Version version)
 	{
 		ArrayList<Description> descriptions = version.getListDescriptions();
@@ -227,6 +257,11 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		textAreaVersions.append("\n");
 	}
 	
+	/**
+	 * Displays specified list of versions.
+	 * 
+	 * @param versions the list of versions.
+	 */
 	public void showVersionHistory(ArrayList<Version> versions)
 	{
 		for(int i=0; i<versions.size(); i++)
@@ -235,6 +270,9 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		}
 	}
 	
+	/**
+	 * Clears the new version panel, sub-panel of the version management panel.
+	 */
 	public void clearNewVersionPanel()
 	{
 		// Clear text fields
@@ -249,12 +287,18 @@ public class VersionManagementPanel extends JPanel implements ActionListener, Pr
 		newVersionPanel.repaint();
 	}
 	
+	/**
+	 * Clears the version history panel, sub-panel of the version management panel.
+	 */
 	public void clearVersionHistoryPanel()
 	{
 		// Clear text area
 		textAreaVersions.setText("");
 	}
 	
+	/**
+	 * Displays a new description text field.
+	 */
 	public void addTextFieldDescription()
 	{
 		JTextField textFieldDescription = new JTextField(20);

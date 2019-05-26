@@ -26,6 +26,12 @@ import java_source_code_management_tool.controller.NavigationController;
 import java_source_code_management_tool.controller.UserController;
 import java_source_code_management_tool.model.dto.UserHistory;
 
+/**
+ * This class consists of view methods related to the display of the user history panel following the Model-View-Controller pattern.
+ * 
+ * @author Jordan & Yanis (Group 4 - Pair 10)
+ *
+ */
 public class UserHistoryPanel extends JPanel implements ActionListener, ListSelectionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +47,12 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 	private JScrollPane scrollPaneUserHistory;
 	private DefaultTableModel tableModelUserHistory;
 
+	/**
+	 * Constructs a new home panel with the specified navigation controller and user controller.
+	 * 
+	 * @param navigationController the navigation controller.
+	 * @param userController the user controller.
+	 */
 	public UserHistoryPanel(NavigationController navigationController, UserController userController)
 	{
 		// Set controller
@@ -83,6 +95,11 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		this.add(buttonCancel, gbc);
 	}
 	
+	/**
+	 * Returns the user selection panel, sub-panel of the user history panel.
+	 * 
+	 * @return the user selection panel.
+	 */
 	public JPanel createUserSelectionPanel()
 	{
 		// Create and configure JPanel
@@ -105,6 +122,11 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		return userSelectionPanel;
 	}
 	
+	/**
+	 * Returns the user history panel, sub-panel of the user history panel.
+	 * 
+	 * @return the user history panel.
+	 */
 	public JPanel createUserHistoryPanel()
 	{
 		// Create and configure JPanel
@@ -137,6 +159,9 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		return userHistoryPanel;
 	}
 	
+	/**
+	 * Tells the controllers when an action occurs on the view.
+	 */
 	public void actionPerformed(ActionEvent ae)
 	{
 		try
@@ -152,6 +177,9 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		}
 	}
 	
+	/**
+	 * Tells the controller when a list selection event occurs on the view.
+	 */
 	public void valueChanged(ListSelectionEvent lse)
 	{
 		try
@@ -168,6 +196,11 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		}
 	}
 	
+	/**
+	 * Displays specified list of database user usernames.
+	 * 
+	 * @param userUsernames the list of user usernames saved on the database.
+	 */
 	public void showListDbUserUsernames(ArrayList<String> userUsernames)
 	{
 		// Clear list
@@ -181,6 +214,11 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		listUsers.setSelectedIndex(0);
 	}
 	
+	/**
+	 * Displays specified list of user history.
+	 * 
+	 * @param userHistory the list of user history.
+	 */
 	public void showUserHistory(ArrayList<UserHistory> userHistory)
 	{
 		for(int i=0; i<userHistory.size(); i++)
@@ -189,6 +227,9 @@ public class UserHistoryPanel extends JPanel implements ActionListener, ListSele
 		}
 	}
 	
+	/**
+	 * Clears the user history panel, sub-panel of the user history panel.
+	 */
 	public void clearUserHistoryPanel()
 	{
 		tableModelUserHistory.setRowCount(0);

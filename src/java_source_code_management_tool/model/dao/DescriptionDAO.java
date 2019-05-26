@@ -10,6 +10,8 @@ import java_source_code_management_tool.model.dto.Description;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
+ * This class consists of methods that operate on or return descriptions from the database.
+ * .
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -17,11 +19,22 @@ public class DescriptionDAO
 {
 	private Connection con = null;
 	
+	/**
+	 * Constructs a new description DAO.
+	 * 
+	 * @param con the connection to the database.
+	 */
 	public DescriptionDAO(Connection con)
 	{
 		this.con = con;
 	}
 	
+	/**
+	 * Inserts a list of descriptions for a specified version in the database.
+	 * 
+	 * @param descriptions the list of descriptions to insert.
+	 * @param versionId the database version ID to which the descriptions belong.
+	 */
 	public void insertListDescriptions(ArrayList<Description> descriptions, Integer versionId)
 	{
 		PreparedStatement ps = null;
@@ -51,6 +64,13 @@ public class DescriptionDAO
 		}
 	}
 	
+	/**
+	 * Returns a list of descriptions which are linked to the specified file system Java source file path and version number.
+	 * 
+	 * @param pathFs the descriptions linked Java source file path on the file system.
+	 * @param versionNumber the descriptions linked version number.
+	 * @return the list of descriptions.
+	 */
 	public ArrayList<Description> getListDescriptions(String pathFs, String versionNumber)
 	{
 		ArrayList<Description> descriptions = new ArrayList<Description>();

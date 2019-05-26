@@ -11,6 +11,8 @@ import java_source_code_management_tool.model.dto.JavaSourceFile;
 import java_source_code_management_tool.util.DBHelper;
 
 /**
+ * This class consists of methods that operate on or return Java source files from the database.
+ * 
  * @author Jordan & Yanis (Group 4 - Pair 10)
  *
  */
@@ -18,11 +20,22 @@ public class JavaSourceFileDAO
 {
 	private Connection con = null;
 	
+	/**
+	 * Constructs a new Java source file DAO.
+	 * 
+	 * @param con the connection to the database.
+	 */
 	public JavaSourceFileDAO(Connection con)
 	{
 		this.con = con;
 	}
-	
+	/**
+	 * If the specified Java source file exists in the database, update its content.
+	 * Otherwise, insert the specified Java source file into the database.
+	 * 
+	 * @param javaSourceFile the Java source file to upsert (update/insert) in the database.
+	 * @return The upserted (updated/inserted) Java source file database ID.
+	 */
 	public Integer upsertJavaSourceFile(JavaSourceFile javaSourceFile)
 	{
 		Clob javaSourceFileContent = null;
@@ -63,6 +76,12 @@ public class JavaSourceFileDAO
 		return getJavaSourceFileId(javaSourceFile.getPathFs());
 	}
 	
+	/**
+	 * Returns the database Java source file ID linked to the specified Java source file path on the file system.
+	 * 
+	 * @param pathFs the Java source file path on the file system.
+	 * @return the database Java source file ID linked to the specified Java source file path on the file system.
+	 */
 	public Integer getJavaSourceFileId(String pathFs)
 	{
 		PreparedStatement ps = null;
@@ -95,6 +114,12 @@ public class JavaSourceFileDAO
 		return id;
 	}
 	
+	/**
+	 * Returns the database Java source file linked to the specified Java source file path on the file system.
+	 * 
+	 * @param pathFs the Java source file path on the file system.
+	 * @return the database Java source file linked to the specified Java source file path on the file system.
+	 */
 	public JavaSourceFile getJavaSourceFile(String pathFs)
 	{
 		Clob javaSourceFileContent = null;
@@ -138,6 +163,11 @@ public class JavaSourceFileDAO
 		return javaSourceFile;
 	}
 	
+	/**
+	 * Returns the list of database Java source file paths.
+	 * 
+	 * @return the list of database Java source file paths.
+	 */
 	public ArrayList<String> getListJavaSourceFilePathsFs()
 	{
 		ArrayList<String> javaSourceFilePathsFs = new ArrayList<String>();

@@ -28,7 +28,7 @@ public class JavaSourceFile
 	/**
 	 * Constructs a new Java source file with the specified file path.
 	 * 
-	 * @param pathFs the path of the file in a file system.
+	 * @param pathFs the path of the file in the file system.
 	 */
 	public JavaSourceFile(String pathFs)
 	{
@@ -38,8 +38,8 @@ public class JavaSourceFile
 	/**
 	 * Constructs a new Java source file with the specified file path and file content.
 	 * 
-	 * @param pathFs the path of the file in a file system.
-	 * @param content the saved content of the file
+	 * @param pathFs the path of the file in the file system.
+	 * @param content the saved content of the file.
 	 */
 	public JavaSourceFile(String pathFs, String content)
 	{
@@ -48,9 +48,9 @@ public class JavaSourceFile
 	}
 	
 	/**
-	 * Returns the path of the file in a file system.
+	 * Returns the path of the file in the file system.
 	 * 
-	 * @return the path of the file in a file system.
+	 * @return the path of the file in the file system.
 	 */
 	public String getPathFs()
 	{
@@ -58,9 +58,9 @@ public class JavaSourceFile
 	}
 	
 	/**
-	 * Sets the path of the file in a file system.
+	 * Sets the path of the file in the file system.
 	 * 
-	 * @param pathFs the path of the file in a file system.
+	 * @param pathFs the path of the file in the file system.
 	 */
 	public void setPathFs(String pathFs)
 	{
@@ -68,8 +68,9 @@ public class JavaSourceFile
 	}
 	
 	/**
-	 * Returns the saved content of the file
-	 * @return the saved content of the file
+	 * Returns the saved content of the file.
+	 * 
+	 * @return the saved content of the file.
 	 */
 	public String getContent()
 	{
@@ -77,9 +78,9 @@ public class JavaSourceFile
 	}
 	
 	/**
-	 * Sets the saved content of the file
+	 * Sets the saved content of the file.
 	 * 
-	 * @param content the saved content of the file
+	 * @param content the saved content of the file.
 	 */
 	public void setContent(String content)
 	{
@@ -107,9 +108,9 @@ public class JavaSourceFile
 	}
 	
 	/**
-	 * Returns the list of the versions of the file.
+	 * Returns the saved list of the versions of the file.
 	 * 
-	 * @return the list of the versions of the file.
+	 * @return the saved list of the versions of the file.
 	 */
 	public ArrayList<Version> getListVersions()
 	{
@@ -127,7 +128,7 @@ public class JavaSourceFile
 	}
 	
 	/**
-	 * Returns from the list of file versions the version of the file stored at the specified index number.
+	 * Returns from the saved list of file versions the version of the file stored at the specified index number.
 	 * 
 	 * @param index the index number at which the desired version is stored in the list of file versions.
 	 * @return the specified version of the file.
@@ -148,9 +149,9 @@ public class JavaSourceFile
 	}
 	
 	/**
-	 * Translates the object to String for display
+	 * Translates the object to String for display.
 	 * 
-	 * @return object translated to String for display
+	 * @return object translated to String for display.
 	 */
 	public String toString()
 	{
