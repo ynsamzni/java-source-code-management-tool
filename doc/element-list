@@ -1,0 +1,7 @@
+java_source_code_management_tool
+java_source_code_management_tool.controller
+java_source_code_management_tool.model.dao
+java_source_code_management_tool.model.dto
+java_source_code_management_tool.model.service
+java_source_code_management_tool.util
+java_source_code_management_tool.view

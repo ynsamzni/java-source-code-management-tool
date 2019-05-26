@@ -3,7 +3,7 @@ package java_source_code_management_tool.model.dto;
 /**
  * This class consists of methods that operate on or return a user.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class User 

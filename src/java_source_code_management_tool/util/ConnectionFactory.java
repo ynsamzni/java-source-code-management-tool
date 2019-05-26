@@ -7,7 +7,7 @@ import java.sql.SQLException;
 /**
  * This class consists of helper methods that operate on or return a connection to the database.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class ConnectionFactory

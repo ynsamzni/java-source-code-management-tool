@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 /**
  * This class consists of methods that operate on or return a Java source file.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class JavaSourceFile

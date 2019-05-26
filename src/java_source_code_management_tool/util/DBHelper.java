@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * This class consists of helper methods that operate on database related objects.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class DBHelper

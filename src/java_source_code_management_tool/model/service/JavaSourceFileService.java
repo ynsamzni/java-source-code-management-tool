@@ -17,7 +17,7 @@ import java_source_code_management_tool.util.DBHelper;
 /**
  * This class consists of model methods which persist local and remote data on the database related to Java source files following the Model-View-Controller pattern.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class JavaSourceFileService

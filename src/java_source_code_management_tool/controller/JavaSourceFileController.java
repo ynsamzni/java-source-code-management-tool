@@ -11,7 +11,7 @@ import java_source_code_management_tool.view.MainFrame;
 /**
  * This class consists of controller methods related to actions on Java source files that follow the Model-View-Controller pattern.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class JavaSourceFileController

@@ -3,7 +3,7 @@ package java_source_code_management_tool.util;
 /**
  * This class consists of helper methods that operate on or return Java code.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class JavaFormatter

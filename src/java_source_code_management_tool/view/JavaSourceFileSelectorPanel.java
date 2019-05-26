@@ -27,7 +27,7 @@ import java_source_code_management_tool.model.service.JavaSourceFileService;
 /**
  * This class consists of view methods related to the display of the Java source file selector panel following the Model-View-Controller pattern.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class JavaSourceFileSelectorPanel extends JPanel implements ActionListener

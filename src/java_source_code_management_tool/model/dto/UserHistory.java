@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 /**
  * This class consists of methods that return a user history entry.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class UserHistory

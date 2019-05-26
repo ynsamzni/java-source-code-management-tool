@@ -14,7 +14,7 @@ import oracle.jdbc.OracleTypes;
 /**
  * This class consists of method that operate on or return versions from the database.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class VersionDAO

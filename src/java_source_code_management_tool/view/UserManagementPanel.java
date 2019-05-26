@@ -15,7 +15,7 @@ import java_source_code_management_tool.controller.NavigationController;
 /**
  * This class consists of view methods related to the display of the user management panel following the Model-View-Controller pattern.
  * 
- * @author Jordan & Yanis (Group 4 - Pair 10)
+ * @author Jordan and Yanis (Group 4 - Pair 10)
  *
  */
 public class UserManagementPanel extends JPanel implements ActionListener
