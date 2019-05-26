@@ -113,8 +113,9 @@ public class UserController
 				// Delete user
 				userService.deleteUser(username);
 				
-				// Exit app
-				mainFrame.exit();
+				// Logout
+				mainFrame.showCard("LOGINPANEL");
+				userService.unloadUser();
 			}
 		}
 		else

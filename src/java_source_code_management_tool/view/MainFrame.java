@@ -182,14 +182,6 @@ public class MainFrame extends JFrame
 	}
 	
 	/**
-	 * Exits the program.
-	 */
-	public void exit()
-	{
-		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-	}
-	
-	/**
 	 * Displays a login error.
 	 */
 	public void showLoginError()
@@ -253,9 +245,9 @@ public class MainFrame extends JFrame
 	public boolean showCurrentUserDeletionWarning()
 	{
 		boolean userChoice = false;
-		Object[] options = {"Delete and exit", "Cancel"};
+		Object[] options = {"Delete and logout", "Cancel"};
 
-		if(JOptionPane.showOptionDialog(this, "Are you sure you want to delete the user you are currently being logged in?\nIf you choose to, the application will then exit.", "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION)
+		if(JOptionPane.showOptionDialog(this, "Are you sure you want to delete the user you are currently being logged in?\nIf you choose to, the application will logout after the deletion.", "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION)
 			userChoice = true;
 		
 		return userChoice;
