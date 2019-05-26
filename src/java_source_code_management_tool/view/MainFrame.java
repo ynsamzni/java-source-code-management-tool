@@ -3,7 +3,6 @@ package java_source_code_management_tool.view;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.FileDialog;
-import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

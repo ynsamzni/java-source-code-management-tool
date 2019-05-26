@@ -57,9 +57,9 @@ public class JavaSourceFileService
 	}
 	
 	/**
-	 * Adds the specified version to the currently loaded Java source file locally and remotely on the database.
+	 * Adds the specified version to the currently loaded Java source file locally and on the database.
 	 * 
-	 * @param version the version to add to the currently loaded Java source file locally and remotely on the database.
+	 * @param version the version to add to the currently loaded Java source file locally and on the database.
 	 */
 	public void addVersion(Version version)
 	{

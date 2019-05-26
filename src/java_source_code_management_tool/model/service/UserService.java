@@ -54,9 +54,9 @@ public class UserService
 	}
 	
 	/**
-	 * Adds the specified user remotely on the database.
+	 * Adds the specified user on the database.
 	 * 
-	 * @param user the user to add remotely on the database.
+	 * @param user the user to add on the database.
 	 */
 	public void addUser(User user)
 	{
@@ -81,9 +81,9 @@ public class UserService
 	}
 	
 	/**
-	 * Deletes the user which has the specified username remotely from the database.
+	 * Deletes the user which has the specified username from the database.
 	 * 
-	 * @param username the username of the user to delete remotely from the database.
+	 * @param username the username of the user to delete from the database.
 	 */
 	public void deleteUser(String username)
 	{
