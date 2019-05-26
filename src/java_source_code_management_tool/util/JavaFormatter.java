@@ -350,7 +350,7 @@ public class JavaFormatter
 					if(contentSB.indexOf("do", i) != i && (contentSB.indexOf("else", i) != i || contentSB.indexOf("else if", i) == i))
 					{
 						// Find index when number of '(' equals number of ')'
-						while(!(nbOpenedParentesis > 0 && nbOpenedParentesis == nbClosedParentesis))
+						while(j < contentSB.length() && !(nbOpenedParentesis > 0 && nbOpenedParentesis == nbClosedParentesis))
 						{
 							if(contentSB.charAt(j) == '(' && !isBetweenQuotesOrCommentsAt(j, contentSB.toString()))
 								nbOpenedParentesis++;
