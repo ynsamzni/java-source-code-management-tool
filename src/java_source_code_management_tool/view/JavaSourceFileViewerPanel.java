@@ -187,6 +187,7 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 	public void resetMenuItemsCheckBoxes()
 	{
 		checkBoxMenuItemDeleteComments.setSelected(false);
+		checkBoxMenuItemDeleteJavadoc.setSelected(false);
 		checkBoxMenuItemIndent.setSelected(false);
 	}
 	
