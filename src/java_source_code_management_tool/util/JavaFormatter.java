@@ -9,12 +9,13 @@ package java_source_code_management_tool.util;
 public class JavaFormatter
 {
 	/**
-	 * Returns the specified Java code with all comments being deleted.
+	 * Returns the specified Java code with the specified type of comment being deleted.
 	 * 
 	 * @param content the Java code to operate on.
-	 * @return the Java code with all comments being deleted.
+	 * @param commentTypeToDelete the type of comment to delete (0: comments / 1: Javadoc).
+	 * @return the Java code with the specified type of comment being deleted.
 	 */
-	public static String deleteComments(String content)
+	public static String deleteCommentsOrJavadoc(String content, int commentTypeToDelete)
 	{
 		StringBuilder contentSB;
 		String currentState = "OUTSIDE_COMMENT";
@@ -45,7 +46,7 @@ public class JavaFormatter
 						if(currentChar == '/')
 						{
 							// If start of '//' comment
-							if(nextChar == '/')
+							if(nextChar == '/' && commentTypeToDelete == 0)
 							{
 								currentState = "ONE_LINE_COMMENT";
 								
@@ -54,7 +55,7 @@ public class JavaFormatter
 								latestReadCharDeleted = true;
 							}
 							// If start of '/*' comment
-							else if(nextChar == '*')
+							else if(nextChar == '*' && i < contentSB.length()-2 && ((commentTypeToDelete == 1 && contentSB.charAt(i+2) == '*') || (commentTypeToDelete == 0 && contentSB.charAt(i+2) != '*')))
 							{
 								currentState = "MULTIPLE_LINES_COMMENT";
 								

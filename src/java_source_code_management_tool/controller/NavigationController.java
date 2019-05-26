@@ -151,7 +151,21 @@ public class NavigationController
 	public void toggleCommentDeletionActionPerformed(boolean commentDeletionIsActive, String currentContent)
 	{
 		if(commentDeletionIsActive)
-			mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(JavaFormatter.deleteComments(currentContent));
+			mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(JavaFormatter.deleteCommentsOrJavadoc(currentContent, 0));
+		else
+			reloadJavaSourceFileViewerContent();
+	}
+	
+	/**
+	 * Tells the view to update the displayed content of the opened Java source file by applying the Javadoc deletion toggle state in the Java source file viewer panel.
+	 * 
+	 * @param javadocDeletionIsActive the Javadoc deletion toggle state.
+	 * @param currentContent the currently being displayed Java source file content in the Java source file viewer panel.
+	 */
+	public void toggleJavadocDeletionActionPerformed(boolean javadocDeletionIsActive, String currentContent)
+	{
+		if(javadocDeletionIsActive)
+			mainFrame.getJavaSourceFileViewerPanel().setDisplayedContent(JavaFormatter.deleteCommentsOrJavadoc(currentContent, 1));
 		else
 			reloadJavaSourceFileViewerContent();
 	}
@@ -182,7 +196,10 @@ public class NavigationController
 		
 		// Re-apply toggled display options
 		if(mainFrame.getJavaSourceFileViewerPanel().commentDeletionIsActive())
-			reloadedContent = JavaFormatter.deleteComments(reloadedContent);
+			reloadedContent = JavaFormatter.deleteCommentsOrJavadoc(reloadedContent, 0);
+		
+		if(mainFrame.getJavaSourceFileViewerPanel().javadocDeletionIsActive())
+			reloadedContent = JavaFormatter.deleteCommentsOrJavadoc(reloadedContent, 1);
 		
 		if(mainFrame.getJavaSourceFileViewerPanel().indentationIsActive())
 			reloadedContent = JavaFormatter.indent(reloadedContent);

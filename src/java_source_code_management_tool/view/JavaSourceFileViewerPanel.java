@@ -37,6 +37,7 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 	private JMenuItem menuItemVersions;
 	private JMenu menuDisplay;
 	private JCheckBoxMenuItem checkBoxMenuItemDeleteComments;
+	private JCheckBoxMenuItem checkBoxMenuItemDeleteJavadoc;
 	private JCheckBoxMenuItem checkBoxMenuItemIndent;
 	
 	/**
@@ -90,6 +91,9 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		checkBoxMenuItemDeleteComments = new JCheckBoxMenuItem("Hide comments");
 		checkBoxMenuItemDeleteComments.addActionListener(this);
 		
+		checkBoxMenuItemDeleteJavadoc = new JCheckBoxMenuItem("Hide Javadoc");
+		checkBoxMenuItemDeleteJavadoc.addActionListener(this);
+		
 		checkBoxMenuItemIndent = new JCheckBoxMenuItem("Indent code");
 		checkBoxMenuItemIndent.addActionListener(this);
 
@@ -102,6 +106,7 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 		menuFile.add(menuItemHome);
 		
 		menuDisplay.add(checkBoxMenuItemDeleteComments);
+		menuDisplay.add(checkBoxMenuItemDeleteJavadoc);
 		menuDisplay.add(checkBoxMenuItemIndent);
 		
 		// Attach components to JPanel
@@ -131,6 +136,10 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 			else if(ae.getSource() == checkBoxMenuItemDeleteComments)
 			{
 				navigationController.toggleCommentDeletionActionPerformed(checkBoxMenuItemDeleteComments.isSelected(), textPane.getText());
+			}
+			else if(ae.getSource() == checkBoxMenuItemDeleteJavadoc)
+			{
+				navigationController.toggleJavadocDeletionActionPerformed(checkBoxMenuItemDeleteJavadoc.isSelected(), textPane.getText());
 			}
 			else if(ae.getSource() == checkBoxMenuItemIndent)
 			{
@@ -189,6 +198,16 @@ public class JavaSourceFileViewerPanel extends JPanel implements ActionListener,
 	public boolean commentDeletionIsActive()
 	{
 		return checkBoxMenuItemDeleteComments.isSelected();
+	}
+	
+	/**
+	 * Returns the Javadoc deletion toggle state.
+	 * 
+	 * @return the Javadoc deletion toggle state.
+	 */
+	public boolean javadocDeletionIsActive()
+	{
+		return checkBoxMenuItemDeleteJavadoc.isSelected();
 	}
 	
 	/**
